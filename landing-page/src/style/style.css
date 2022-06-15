@@ -1,4 +1,18 @@
+/* navbar */
+.na2{
+	margin-left: 160px;
+}
 
+.info1{
+	margin-left: 290px;
+	font-weight: bold;
+}
+
+/* Container Arrow*/
+.arrow2{
+	color: black;
+	font-size: 25px;
+}
 .myButton {
 	box-shadow: 0px 6px 20px -7px #276873;
 	background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
@@ -120,7 +134,9 @@
 	top:1px;
 }
 
-
+.container div .info2{
+	display:none;
+}
 
 
 
@@ -147,6 +163,7 @@
 
   .camera{
 	color: #7126B5;
+	
   }
 
   .border1{
@@ -180,15 +197,19 @@
 
     
 @media screen and (max-width: 1023px) {
-    .register-left {
+    .na1 {
       display: none; 
     }
-    .register-right {
-        /* width: 80%; */
-        /* position:inherit; */
-        margin: 110px 30px 0 50px;
-    }
-    .register-right p {
-        padding-top: 90px;
-    }
+	.info1 {
+		display: block;
+	  }
+	  .container div .info2{
+		font-weight: bold;
+		padding-bottom: 5%;
+		transform: translate(33%, 0px);
+		display: block;
+	  }
+	  .arrow2{
+		position: absolute;
+	  }
 }
