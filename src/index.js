@@ -7,7 +7,6 @@ import { Provider } from "react-redux";
 import { store } from "./app/store";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import About from "./pages/About";
 import Home from "./pages/Home";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -18,7 +17,6 @@ root.render(
       <Route path="/" element={<Home />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/about" element={<About />} />
     </Routes>
   </Router>
   </Provider>
