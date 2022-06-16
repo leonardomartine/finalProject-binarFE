@@ -68,17 +68,22 @@
 	top:1px;
 }
 
-@media screen and (max-width: 1023px) {
+@media (max-width: 1023px) {
     .na1 {
       display: none; 
     }
+	.box1{
+		margin-left: 100px;
+		margin-top: 20px;
+	}
 	.info1 {
 		display: block;
 	  }
+
 	  .container div .info2{
 		font-weight: bold;
 		padding-bottom: 5%;
-		transform: translate(31%, 8px);
+		transform: translate(28%, 8px);
 		display: block;
 	  }
 	  .arrow2{
