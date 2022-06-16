@@ -128,7 +128,7 @@ function About() {
           {errorResponse.isError && (
             <Alert variant="danger">{errorResponse.message}</Alert>
           )}
-          <button className="myButton w-100" type="submit">
+          <button className="myButton6 w-100" type="submit">
             Simpan
           </button>
         </Form>
