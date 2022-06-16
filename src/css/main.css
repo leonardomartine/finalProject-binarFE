@@ -1,0 +1,55 @@
+/********************
+ * Register
+ ********************/
+ .row {
+    position:absolute;
+    /* width: calc(120% - 260px); */
+    width: 100%;
+    height: 100%;
+}
+
+.register-left img {
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 649px;
+    width: 680px;
+}
+
+.register-right {
+    margin: 100px;
+}
+
+.register-right h3 {
+    font-weight: bold;
+}
+
+.register-right button {
+    background-color: #7126B5;
+    border-color: #7126B5;
+    margin-top: 16px;
+}
+
+
+@media screen and (max-width: 1023px) {
+    .register-left {
+      display: none; 
+    }
+    .register-right {
+        /* width: 80%; */
+        /* position:inherit; */
+        margin: 110px 30px 0 50px;
+    }
+    .register-right p {
+        padding-top: 90px;
+    }
+}
+
+/********************
+ * Home
+ ********************/
+.logo {
+    width: 100px;
+    height: 34px;
+    background-color: #4B1979;
+}
