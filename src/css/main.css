@@ -102,6 +102,45 @@
 }
 
 
+/********************
+ * Home
+ ********************/
+
+.home-carousel-bg {
+    background: #FFE9CA;
+}
+  
+.home-carousel-img {
+    width: 80px;
+    height: 80px;
+}
+  
+.home-carousel-rating {
+    max-height: 16px;
+}
+  
+.home-carousel-name {
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+    color: black;
+    line-height: 0px;
+}
+
+.home-carousel-media {
+    margin-top: 20px;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #f1f3ff;
+    color: black;
+    border-radius: 50%;
+}
+
+.home-carousel-media:hover {
+    background-color: #04aa6d;
+    color: white;
+}
 
 
 

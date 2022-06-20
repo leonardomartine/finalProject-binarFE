@@ -45,7 +45,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 
-export default function Header() {
+export default function NavBar() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -209,11 +209,4 @@ export default function Header() {
     );
 }
 
-export function Header2() {
-
-
-    return {
-
-    }
-}
 

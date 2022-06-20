@@ -1,7 +1,7 @@
 import "../css/main.css";
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
-import Header from "../components/Header";
+import Navbar from "../components/NavBar";
 
 export default function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -10,10 +10,11 @@ export default function Home() {
     return isLoggedIn ? (
         <>
             <div className="bg-nav">
-                <Header />
+                <Navbar />
             </div>
+
         </>
     ) : (
-        <Navigate to = "/login" replace />
+        <Navigate to="/login" replace />
     );
 }
