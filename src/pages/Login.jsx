@@ -34,7 +34,7 @@ export default function Login() {
             };
 
             const loginRequest = await axios.post(
-                "http://localhost:2000/auth/login",
+                "http://localhost:8888/auth/login",
                 userToLoginPayload
             );
 
@@ -55,29 +55,29 @@ export default function Login() {
             });
         }
     };
-    const onLoginGoogleSuccess = async (credentialResponse) => {
-        console.log(credentialResponse);
-        try {
-            const userToLoginPayload = {
-                google_credential: credentialResponse.credential,
-            };
+    // const onLoginGoogleSuccess = async (credentialResponse) => {
+    //         const userToLoginPayload = {
+    //             google_credential: credentialResponse.credential,
+    //         };
+    //   console.log(credentialResponse);
+    //     try {
+  
+    //         const loginGoogleRequest = await axios.post(
+    //             "http://localhost:2000/auth/login-google",
+    //             userToLoginPayload
+    //         );
 
-            const loginGoogleRequest = await axios.post(
-                "http://localhost:2000/auth/login-google",
-                userToLoginPayload
-            );
+    //         const loginGoogleResponse = loginGoogleRequest.data;
 
-            const loginGoogleResponse = loginGoogleRequest.data;
+    //         if (loginGoogleResponse.status) {
+    //             localStorage.setItem("token", loginGoogleResponse.data.token);
 
-            if (loginGoogleResponse.status) {
-                localStorage.setItem("token", loginGoogleResponse.data.token);
-
-                navigate("/");
-            }
-        } catch (err) {
-            console.log(err);
-        }
-    };
+    //             navigate("/");
+    //         }
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // };
 
     const styleLabel = {
         borderRadius: '10px',
@@ -99,9 +99,8 @@ export default function Login() {
     return (
         <Row>
         <Col className="loginpict">
-            <img src="/images/img.png" width="720px" height="960px" />
+             <img src="/images/img.png" width="720px" height="960px" />
             </Col>
-            
             <Col className="login">
         <Container className="my-100">
             <h4 className="mb-3 text-left">Masuk</h4>
@@ -116,21 +115,21 @@ export default function Login() {
                         style={styleLabel}
                     />
                 </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Password
+                <Form.Group className="mb-3 ">
+                    <Form.Label>Password 
                     </Form.Label>
-                    <div className="pass-login">
+                    
+                    {/* <div className="pass-login">
                     <input className="border-0 outline-none" type={passwordShown ? "text" : "password"} placeholder="Masukkan Password"  ref={passwordField}  />
                         <button className=" float-right border-0" onClick={togglePassword}><FontAwesomeIcon  icon={faEye}></FontAwesomeIcon></button>
-                        </div>
-                    {/* <Form.Control
-                        type="password"
+                        </div> */}
+                    <Form.Control
+                        type={passwordShown ? "text" : "password"}
                         ref={passwordField}
                         placeholder="Masukkan Password"
-                        style={styleLabel}
-                        
-
-                    /> */}
+                        style={styleLabel}      
+                    />
+                    <button className=" float-right border-0" onClick={togglePassword}><FontAwesomeIcon  icon={faEye}></FontAwesomeIcon></button>
                      
                 </Form.Group>
                 {/* <div className="my-3">
