@@ -19,6 +19,11 @@
     margin: 100px;
 }
 
+/* .register-right {
+  margin-top: 100px;
+  margin-left: 180px;
+} */
+
 .register-right h3 {
     font-weight: bold;
 }
@@ -43,7 +48,7 @@
 }
 
 /********************
- * Header
+ * Navbar
  ********************/
 .logo {
     width: 100px;
@@ -103,43 +108,261 @@
 
 
 /********************
- * Home
+ * Home-carousel
  ********************/
+ .slider .owl-theme .owl-nav { 
+    display: none; 
+} 
+   
+.slider { 
+    position: relative; 
+    transition: all 0.5 ease; 
+} 
+   
+.slider .owl-item.active.center .slider-card {
+    transform: scale(1.5);
+} 
 
-.home-carousel-bg {
-    background: #FFE9CA;
-}
+.slider .slider-card { 
+    margin: 50px 70px 50px 70px; 
+    border: 1px solid transparent; 
+} 
+   
+.slider .slider-card .card { 
+    border: 1px solid transparent; 
+} 
   
-.home-carousel-img {
-    width: 80px;
-    height: 80px;
-}
-  
-.home-carousel-rating {
-    max-height: 16px;
-}
-  
-.home-carousel-name {
-    font-weight: bold;
-    font-size: 14px;
-    text-decoration: none;
-    color: black;
-    line-height: 0px;
+.slider .owl-theme .owl-dots { 
+    display: none; 
+} 
+
+.home-carousel-1 {
+  width: 450px;
+  height: 135px;
+  border-radius: 10px;
+  background-color: #FFE9CA;
 }
 
-.home-carousel-media {
-    margin-top: 20px;
-    text-decoration: none;
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #f1f3ff;
-    color: black;
-    border-radius: 50%;
+.home-carousel-2 {
+  width: 450px;
+  height: 135px;
+  border-radius: 10px;
+  background-color: #E2D4F0;
 }
 
-.home-carousel-media:hover {
-    background-color: #04aa6d;
-    color: white;
+.home-carousel-3 {
+  width: 450px;
+  height: 135px;
+  border-radius: 10px;
+  background-color: #B6D4A8;
+}
+
+.text-1 {
+  font-weight: bold;
+  z-index: 999;
+  position: relative;
+  margin: 25px 0 0 70px;
+}
+
+.text-2 {
+  margin: 5px 0 0 70px;
+  font-size: 10px;
+}
+
+.text-3 {
+  margin: 0px 0 0 70px;
+  color: red;
+}
+
+.carousel-1 img{
+  max-width: 150px;
+  max-height: 150px;
+  z-index: 999;
+  position: relative;
+  margin: 40px 0 0 50px;
+}
+
+.carousel-2 img{
+  height: 134px;
+  max-width: 205px;
+  position: absolute;
+  z-index: 1;
+}
+
+@media screen and (max-width: 1023px) {
+  .slider .owl-item.active.center .slider-card {
+    transform: none;
+    z-index: -1 !important;
+  } 
+  .home-carousel-1{
+    width: 390px;
+    height: 335px;
+  }
+  .slider-2{
+    display: none;
+  }
+  .carousel-2 img{
+    display: none !important;
+  }
+  .slider-card {
+    
+  }
+
+}
+
+
+
+
+
+   
+/* carousel product */ 
+.slider-product .owl-theme .owl-dots { 
+  position: absolute; 
+  top: 90%; 
+  left: 45%; 
+} 
+   
+.slider-product .owl-theme .owl-nav button.owl-next { 
+  background-color: rgba(255, 255, 255, 1); 
+  width: 30px; 
+  height: 30px; 
+  border-radius: 50%; 
+  position: absolute; 
+  top: 45%; 
+  right: 10px; 
+} 
+   
+.slider-product .owl-theme .owl-nav button.owl-next.disabled { 
+  opacity: 0; 
+} 
+   
+.slider-product .owl-theme .owl-nav button.owl-prev.disabled { 
+  opacity: 0; 
+} 
+   
+.slider-product .owl-theme .owl-nav button.owl-prev { 
+  background-color: rgba(255, 255, 255, 1); 
+  width: 30px; 
+  height: 30px; 
+  border-radius: 50%; 
+  position: absolute; 
+  top: 45%; 
+  left: 10px; 
+} 
+   
+.slider-product .owl-theme .owl-dots .owl-dot.active span { 
+  background-color: rgba(113, 38, 181, 1); 
+} 
+
+.slider-product .owl-theme .owl-dots .owl-dot span { 
+  width: 6px; 
+  height: 6px; 
+  margin: 3px; 
+  background-color: rgba(196, 196, 196, 1); 
+  border: 1px solid rgba(113, 38, 181, 1); 
+}
+
+
+
+
+  /********************
+ * Home-category
+ ********************/
+.category div button.button-sell { 
+  width: 25%; 
+  margin: 0 37.5%; 
+} 
+ 
+.category .button-category { 
+  overflow-x: scroll; 
+} 
+
+.category .button-category::-webkit-scrollbar { 
+  width: 0; 
+}
+
+
+/********************
+ * Navbar-card
+ ********************/
+.card-content { 
+  display: grid; 
+  grid-template-columns: auto auto auto auto auto auto; 
+  grid-gap: 20px; 
+  grid-auto-flow: column; 
+}
+
+.card-content { 
+  display: grid; 
+  grid-template-columns: auto auto; 
+  grid-gap: 20px; 
+  grid-auto-flow: row; 
+}
+
+@media screen and (min-width: 1024px) {
+    .category div button { 
+        border: 1px solid rgba(226, 212, 240, 1); 
+        border-radius: 12px; 
+        background-color: rgba(226, 212, 240, 1); 
+        color: black; 
+    } 
+       
+    .category div button.button-sell { 
+        width: 7%; 
+        border: 1px solid rgba(113, 38, 181, 1); 
+        border-radius: 12px; 
+        background-color: rgba(113, 38, 181, 1); 
+        color: white; 
+        margin: 0 46.5%; 
+        box-shadow: 0 7px 20px rgba(0, 0, 0, 0.55); 
+    } 
+       
+    .category div button:hover { 
+        border: 1px solid rgba(113, 38, 181, 1); 
+        border-radius: 12px; 
+        background-color: rgba(113, 38, 181, 1); 
+        color: white; 
+    } 
+       
+    .category div button:focus { 
+        border: 1px solid rgba(113, 38, 181, 1); 
+        border-radius: 12px; 
+        background-color: rgba(113, 38, 181, 1); 
+        color: white; 
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .category div button { 
+        border: 1px solid rgba(226, 212, 240, 1); 
+        border-radius: 12px; 
+        background-color: rgba(226, 212, 240, 1); 
+        color: black; 
+    } 
+       
+    .category div button.button-sell { 
+        width: 20%; 
+        border: 1px solid rgba(113, 38, 181, 1); 
+        border-radius: 12px; 
+        background-color: rgba(113, 38, 181, 1); 
+        color: white; 
+        margin: 0 46.5%; 
+        box-shadow: 0 7px 20px rgba(0, 0, 0, 0.55); 
+    } 
+       
+    .category div button:hover { 
+        border: 1px solid rgba(113, 38, 181, 1); 
+        border-radius: 12px; 
+        background-color: rgba(113, 38, 181, 1); 
+        color: white; 
+    } 
+       
+    .category div button:focus { 
+        border: 1px solid rgba(113, 38, 181, 1); 
+        border-radius: 12px; 
+        background-color: rgba(113, 38, 181, 1); 
+        color: white; 
+    }
 }
 
 
