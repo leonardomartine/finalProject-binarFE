@@ -7254,12 +7254,12 @@ react-dev-utils@^12.0.1:
     text-table "^0.2.0"
 
 react-dom@18.0.1:
-  version "18.2.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.2.0.tgz#22aaf38708db2674ed9ada224ca4aa708d821e3d"
-  integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
+  version "18.3.0-next-cf665c4b7-20220620"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.3.0-next-cf665c4b7-20220620.tgz#1f7033dee5a6ee0f629a20a461f2c77186f0cc4d"
+  integrity sha512-ASeQvJhGEVKawKB+GynBrPbmssoovQUfi9dl3IoXEcH+MmsPAGJAv0ViDwG4YwshsmonGB9t0VD765fCOzjzww==
   dependencies:
     loose-envify "^1.1.0"
-    scheduler "^0.23.0"
+    scheduler "0.24.0-next-cf665c4b7-20220620"
 
 react-error-overlay@^6.0.11:
   version "6.0.11"
@@ -7389,9 +7389,9 @@ react-transition-group@^4.4.2:
     prop-types "^15.6.2"
 
 react@18.0.1:
-  version "18.3.0-next-522f47345-20220614"
-  resolved "https://registry.yarnpkg.com/react/-/react-18.3.0-next-522f47345-20220614.tgz#58fb0d2bdb710291706f6bc656bd00963e691ecd"
-  integrity sha512-/9AWBzFdmqi3NNdYn5jS6ZuDV2ANROamgZX13+7mIFD3ev3b+FeO4JJfpF/sHRK2rO1j8cLfCF9j0gzsoOyOZA==
+  version "18.3.0-next-cf665c4b7-20220620"
+  resolved "https://registry.yarnpkg.com/react/-/react-18.3.0-next-cf665c4b7-20220620.tgz#3c9b8b6aa8161170ceb6a2941324bb2980d304bd"
+  integrity sha512-xHD3JyACTwrYEw7LjA+bkCeozv9IrnQcFxj0Jik7C3XVD2aJ8xuD4moTQrnDoz8Y/ubmMgUGsUCtP8PF/TiQgg==
   dependencies:
     loose-envify "^1.1.0"
 
@@ -7684,10 +7684,10 @@ saxes@^5.0.1:
   dependencies:
     xmlchars "^2.2.0"
 
-scheduler@^0.23.0:
-  version "0.23.0"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.23.0.tgz#ba8041afc3d30eb206a487b6b384002e4e61fdfe"
-  integrity sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==
+scheduler@0.24.0-next-cf665c4b7-20220620:
+  version "0.24.0-next-cf665c4b7-20220620"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.24.0-next-cf665c4b7-20220620.tgz#61532e5714126145e64907ce033882627e8dee2b"
+  integrity sha512-8ueu73Eb6CxAfsBpvYwy2PbOMgyhkO+ppSQo1d5SExtVRqXfC7myMRKGxxSjLrb5fAJUu9EE2lrCToanCrKWXw==
   dependencies:
     loose-envify "^1.1.0"
 
