@@ -78,6 +78,7 @@ export default function Login() {
     //         console.log(err);
     //     }
     // };
+    
 
     const styleLabel = {
         borderRadius: '10px',
@@ -124,12 +125,17 @@ export default function Login() {
                         <button className=" float-right border-0" onClick={togglePassword}><FontAwesomeIcon  icon={faEye}></FontAwesomeIcon></button>
                         </div> */}
                     <Form.Control
+                    
                         type={passwordShown ? "text" : "password"}
                         ref={passwordField}
                         placeholder="Masukkan Password"
                         style={styleLabel}      
+                        onClick={togglePassword}
+                        FontAwesomeIcon={faEye}
+
                     />
-                    <button className=" float-right border-0" onClick={togglePassword}><FontAwesomeIcon  icon={faEye}></FontAwesomeIcon></button>
+                    {/* <button className=" float-right border-0" onClick={togglePassword}><FontAwesomeIcon  icon={faEye}></FontAwesomeIcon></button> */}
+                    
                      
                 </Form.Group>
                 {/* <div className="my-3">
