@@ -4,8 +4,6 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 // import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import "../css/login.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function Login() {
@@ -51,30 +49,6 @@ export default function Login() {
             });
         }
     };
-    // const onLoginGoogleSuccess = async (credentialResponse) => {
-    //         const userToLoginPayload = {
-    //             google_credential: credentialResponse.credential,
-    //         };
-    //   console.log(credentialResponse);
-    //     try {
-
-    //         const loginGoogleRequest = await axios.post(
-    //             "http://localhost:2000/auth/login-google",
-    //             userToLoginPayload
-    //         );
-
-    //         const loginGoogleResponse = loginGoogleRequest.data;
-
-    //         if (loginGoogleResponse.status) {
-    //             localStorage.setItem("token", loginGoogleResponse.data.token);
-
-    //             navigate("/");
-    //         }
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // };
-
     const styleLabel = {
         borderRadius: '10px',
     };
@@ -85,11 +59,7 @@ export default function Login() {
         fontWeight: 'bold',
     }
     const [passwordShown, setPasswordShown] = useState(false);
-    const togglePassword = () => {
-        // When the handler is invoked
-        // inverse the boolean state of passwordShown
-        setPasswordShown(!passwordShown);
-    };
+    
 
 
     return (
@@ -114,30 +84,14 @@ export default function Login() {
                         <Form.Group className="mb-3 ">
                             <Form.Label>Password
                             </Form.Label>
-
-                            {/* <div className="pass-login">
-                    <input className="border-0 outline-none" type={passwordShown ? "text" : "password"} placeholder="Masukkan Password"  ref={passwordField}  />
-                        <button className=" float-right border-0" onClick={togglePassword}><FontAwesomeIcon  icon={faEye}></FontAwesomeIcon></button>
-                        </div> */}
-                            <Form.Control
-                                type={passwordShown ? "text" : "password"}
-                                ref={passwordField}
-                                placeholder="Masukkan Password"
-                                style={styleLabel}
-                            />
-                            <button className=" float-right border-0" onClick={togglePassword}><FontAwesomeIcon icon={faEye}></FontAwesomeIcon></button>
-
-                        </Form.Group>
-                        {/* <div className="my-3">
-                    <GoogleOAuthProvider clientId="497081172258-0crldr8o7o1nn9th5bb6nm46vdqmnid1.apps.googleusercontent.com">
-                        <GoogleLogin
-                            onSuccess={onLoginGoogleSuccess}
-                            onError={() => {
-                                console.log("Login Failed");
-                            }}
-                        />
-                    </GoogleOAuthProvider>
-                </div> */}
+                    <Form.Control
+                        type={passwordShown ? "text" : "password"}
+                        ref={passwordField}
+                        placeholder="Masukkan Password"
+                        style={styleLabel}
+                    />
+                    {/* <button className=" float-right border-0" onClick={togglePassword}><FontAwesomeIcon  icon={faEye}></FontAwesomeIcon></button> */}
+                </Form.Group>
 
                         <Button className="login-button w-100" type="submit" style={styleLabel}>
                             Masuk
