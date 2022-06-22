@@ -1,38 +1,43 @@
-import { useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useRef, useState } from "react";
+// import { useSelector } from "react-redux";
 import { Nav, Navbar, Form, Container, Button, Alert } from "react-bootstrap";
-import { useNavigate, Link } from "react-router-dom";
-import { selectUser } from "../slices/userSlice";
+import { useNavigate, Link, useParams } from "react-router-dom";
+// import { selectUser } from "../slices/userSlice";
 import { FiCamera, FiArrowLeft } from "react-icons/fi";
 import axios from "axios";
 import "../css/mainRio.css";
 
 function About() {
   const navigate = useNavigate();
-  const userRedux = useSelector(selectUser);
-  const [user] = useState(userRedux.creds);
-  const titleField = useRef("");
-  const descriptionField = useRef("");
-  const [pictureField, setPictureField] = useState();
+  const [data, setData] = useState([]);
+  const { id } = useParams();
+  const nameField = useRef("");
+  const kotaField = useRef("");
+  const alamatField = useRef("");
+  const noHpField = useRef("");
+
+  const [imageField, setimageField] = useState();
 
   const [errorResponse, setErrorResponse] = useState({
     isError: false,
     message: "",
   });
 
-  const onCreate = async (e) => {
+  const onUpdate = async (e) => {
     e.preventDefault();
 
     try {
       const token = localStorage.getItem("token");
-      const postPayload = new FormData();
-      postPayload.append("title", titleField.current.value);
-      postPayload.append("description", descriptionField.current.value);
-      postPayload.append("picture", pictureField);
+      const userToUpdatePayload = new FormData();
+      userToUpdatePayload.append("name", nameField.current.value);
+      userToUpdatePayload.append("kota", kotaField.current.value);
+      userToUpdatePayload.append("alamat", alamatField.current.value);
+      userToUpdatePayload.append("noHp", noHpField.current.value);
+      userToUpdatePayload.append("image", imageField);
 
-      const createRequest = await axios.post(
-        "http://localhost:2000/posts",
-        postPayload,
+      const updateRequest = await axios.put(
+        `http://localhost:8088/api/users/update/${id}`,
+        userToUpdatePayload,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -41,11 +46,11 @@ function About() {
         }
       );
 
-      const createResponse = createRequest.data;
+      const updateResponse = updateRequest.data;
 
-      if (createResponse.status) navigate("/");
+      if (updateResponse.status) navigate("/");
     } catch (err) {
-      const response = err.response.data;
+      const response = err.response.data; 
 
       setErrorResponse({
         isError: true,
@@ -53,6 +58,24 @@ function About() {
       });
     }
   };
+
+  const getUsers = async () => {
+    try {
+
+      const responseUsers = await axios.get(`http://localhost:8088/api/users/${id}`)
+
+      const dataUsers = await responseUsers.data.data.getdata;
+
+      setData(dataUsers)
+      console.log(dataUsers);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    getUsers();
+}, [])
 
   return (
     <div>
@@ -80,22 +103,22 @@ function About() {
         <div>
           <Nav className="info2 text-dark">Lengkapi Info Akun</Nav>
         </div>
-        <Form onSubmit={onCreate}>
+        <Form onSubmit={onUpdate}>
           <button className="mb-3 box1">
             <h2>
               <FiCamera
                 className="camera"
-                onChange={(e) => setPictureField(e.target.files[0])}
+                onChange={(e) => setimageField(e.target.files[0])}
               />
             </h2>
           </button>
           <Form className="border1 mb-3">
             <Form.Label>Nama*</Form.Label>
-            <Form.Control type="text" ref={titleField} placeholder="Nama" />
+            <Form.Control type="text" ref={nameField} placeholder="Nama" />
           </Form>
           <Form.Group className="mb-3">
             <Form.Label>Kota*</Form.Label>
-            <select ref={descriptionField} className="form-select">
+            <select ref={kotaField} className="form-select">
               <option hidden>Pilih Kota</option>
               <option value="Jakarta">Jakarta</option>
               <option value="JawaTengah">Jawa Tengah</option>
@@ -111,7 +134,7 @@ function About() {
             <Form.Label>Alamat*</Form.Label>
             <Form.Control
               type="text"
-              ref={descriptionField}
+              ref={alamatField}
               placeholder="Contoh: Jalan Ikan Hiu 33"
               as="textarea"
               rows={3}
@@ -121,16 +144,16 @@ function About() {
             <Form.Label>No Handphone*</Form.Label>
             <Form.Control
               type="text"
-              ref={descriptionField}
+              ref={noHpField}
               placeholder="contoh: +628123456789"
             />
           </Form.Group>
           {errorResponse.isError && (
             <Alert variant="danger">{errorResponse.message}</Alert>
           )}
-          <button className="myButton6 w-100" type="submit">
+          <Button className="myButton6 w-100" type="submit">
             Simpan
-          </button>
+          </Button>
         </Form>
       </Container>
       <Link to="/">Go to home page</Link>
