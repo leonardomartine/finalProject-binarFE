@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import Register from "./pages/Register";
+import Login from "./pages/Login";
 import About from "./pages/About";
 import InfoProduct from "./pages/InfoProduct";
 
@@ -17,6 +18,7 @@ root.render(
       <Route path="/register" element={<Register />} />
       <Route path="/about" element={<About />} />
       <Route path="/InfoProduct" element={<InfoProduct />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   </Router>
   </Provider>
