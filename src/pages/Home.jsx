@@ -42,13 +42,13 @@ export default function Home() {
             <div className="slider">
                 <OwlCarousel
                     className="owl-theme slider-items"
-                    // items={2}
-                    // autoplay={true}
-                    // autoplayTimeout={5000}
-                    // autoplayHoverPause={true}
-                    // center
-                    // loop
-                    // margin={10}
+                    items={2}
+                    autoplay={true}
+                    autoplayTimeout={5000}
+                    autoplayHoverPause={true}
+                    center
+                    loop
+                    margin={10}
                     nav
                     
                 // responsive={state.responsive}
@@ -62,10 +62,10 @@ export default function Home() {
                                     <p className="text-3">60%</p>
                                 </Col>
                                 <Col xs={4} md={2} className="carousel-1">
-                                    <img src="/images/carousel-1.png" />
+                                    <img src="/images/carousel-1.png" alt=""/>
                                 </Col>
                                 <Col xs={6} md={4} className="carousel-2">
-                                    <img src="/images/carousel-2.png" />
+                                    <img src="/images/carousel-2.png" alt=""/>
                                 </Col>
                             </Row>
                         </Card>
@@ -79,10 +79,10 @@ export default function Home() {
                                     <p className="text-3">60%</p>
                                 </Col>
                                 <Col xs={4} md={2} className="carousel-1">
-                                    <img src="/images/carousel-1.png" />
+                                    <img src="/images/carousel-1.png" alt=""/>
                                 </Col>
                                 <Col xs={6} md={4} className="carousel-2">
-                                    <img src="/images/carousel-3.png" />
+                                    <img src="/images/carousel-3.png" alt=""/>
                                 </Col>
                             </Row>
                         </Card>
@@ -96,10 +96,10 @@ export default function Home() {
                                     <p className="text-3">60%</p>
                                 </Col>
                                 <Col xs={4} md={2} className="carousel-1">
-                                    <img src="/images/carousel-1.png" />
+                                    <img src="/images/carousel-1.png" alt=""/>
                                 </Col>
                                 <Col xs={6} md={4} className="carousel-2">
-                                    <img src="/images/carousel-4.png" />
+                                    <img src="/images/carousel-4.png" alt=""/>
                                 </Col>
                             </Row>
                         </Card>
@@ -146,10 +146,7 @@ export default function Home() {
             <div>
                 <CardProduct />
             </div>
-
         </>
-
-      
     ) : (
         <Navigate to="/login" replace />
     );
