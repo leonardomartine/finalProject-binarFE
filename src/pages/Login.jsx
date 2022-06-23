@@ -1,10 +1,13 @@
 import { useRef, useState } from "react";
-import { Form, Container, Button, Alert } from "react-bootstrap";
+import { Form, Row, Col, Container, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+// import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import "../css/login.css";
+
 
 export default function Login() {
+
     const navigate = useNavigate();
 
     const emailField = useRef("");
@@ -34,7 +37,7 @@ export default function Login() {
             if (loginResponse.status) {
                 localStorage.setItem("token", loginResponse.data.token);
 
-                navigate("/");
+                navigate("/about");
             }
         } catch (err) {
             console.log(err);
@@ -46,70 +49,55 @@ export default function Login() {
             });
         }
     };
-    const onLoginGoogleSuccess = async (credentialResponse) => {
-        console.log(credentialResponse);
-        try {
-            const userToLoginPayload = {
-                google_credential: credentialResponse.credential,
-            };
-
-            const loginGoogleRequest = await axios.post(
-                "http://localhost:2000/auth/login-google",
-                userToLoginPayload
-            );
-
-            const loginGoogleResponse = loginGoogleRequest.data;
-
-            if (loginGoogleResponse.status) {
-                localStorage.setItem("token", loginGoogleResponse.data.token);
-
-                navigate("/");
-            }
-        } catch (err) {
-            console.log(err);
-        }
+    const styleLabel = {
+        borderRadius: '10px',
     };
 
+    const styleLink = {
+        textDecoration: 'none',
+        color: '#7126B5',
+        fontWeight: 'bold',
+    }
+
+
+
     return (
-        <Container className="my-5">
-            <h1 className="mb-3 text-center">Masuk</h1>
-            <Form onSubmit={onLogin}>
-                <Form.Group className="mb-3">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                        type="text"
-                        ref={emailField}
-                        placeholder="Masukkan Email"
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        ref={passwordField}
-                        placeholder="Masukkan Password"
-                    />
-                </Form.Group>
-                <div className="my-3">
-                    <GoogleOAuthProvider clientId="497081172258-0crldr8o7o1nn9th5bb6nm46vdqmnid1.apps.googleusercontent.com">
-                        <GoogleLogin
-                            onSuccess={onLoginGoogleSuccess}
-                            onError={() => {
-                                console.log("Login Failed");
-                            }}
+        <Row>
+            <Col className="register-left">
+                <img src="/images/img-register.png" alt=""/>
+            </Col>
+            <Col className="register-right">
+                <h3 className="mb-3">Masuk</h3>
+                <Form onSubmit={onLogin}>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                            type="text"
+                            ref={emailField}
+                            placeholder="Contoh: johndee@gmail.com"
+                            style={styleLabel}
                         />
-                    </GoogleOAuthProvider>
-                </div>
-                <p>
-                    Belum punya akun? Silakan <Link to="/register">Daftar</Link>
-                </p>
-                {errorResponse.isError && (
-                    <Alert variant="danger">{errorResponse.message}</Alert>
-                )}
-                <Button className="w-100" type="submit">
-                    Masuk
-                </Button>
-            </Form>
-        </Container>
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            ref={passwordField}
+                            placeholder="Masukkan Password"
+                            style={styleLabel}
+                        />
+                    </Form.Group>
+                    {errorResponse.isError && (
+                        <Alert variant="danger">{errorResponse.message}</Alert>
+                    )}
+                    <Button className="w-100" type="submit" style={styleLabel}>
+                        Daftar
+                    </Button>
+                    <p className="m-4 text-center">
+                        Belum punya akun? <Link style={styleLink} to="/register">Daftar di sini</Link>
+                    </p>
+                </Form>
+            </Col>
+        </Row>
     );
 }
