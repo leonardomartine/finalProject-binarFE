@@ -4,16 +4,6 @@ import { Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const styleLabel = {
-    borderRadius: '10px',
-};
-
-const styleLink = {
-    textDecoration: 'none',
-    color: '#7126B5',
-    fontWeight: 'bold',
-};
-
 export default function Register() {
     const navigate = useNavigate();
 
@@ -55,6 +45,15 @@ export default function Register() {
         }
     };
 
+    const styleLabel = {
+        borderRadius: '10px',
+    };
+
+    const styleLink = {
+        textDecoration: 'none',
+        color: '#7126B5',
+        fontWeight: 'bold',
+    }
 
     return (
         <>
