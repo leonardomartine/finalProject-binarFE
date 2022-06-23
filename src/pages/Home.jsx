@@ -14,24 +14,34 @@ import CardProduct from "../components/Card";
 export default function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-    const state = {
-        responsiveClass:true,
-        responsive:{
-            0:{
-                items:1,
-                nav:true
+    const options = {
+        items:2,
+        autoplay:true,
+        autoplayTimeout:5000,
+        autoplayHoverPause:true,
+        center:true,
+        loop:true,
+        margin:10,
+        nav:true,
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1,
             },
-            600:{
-                items:3,
-                nav:false
+            400: {
+                items: 1,
             },
-            1000:{
-                items:5,
-                nav:true,
-                loop:false
+            600: {
+                items: 2,
+            },
+            700: {
+                items: 2,
+            },
+            1000: {
+                items: 2,
             }
-        }
-    }
+        },
+      };
 
     return isLoggedIn ? (
         <>
@@ -42,18 +52,9 @@ export default function Home() {
             <div className="slider">
                 <OwlCarousel
                     className="owl-theme slider-items"
-                    // items={2}
-                    // autoplay={true}
-                    // autoplayTimeout={5000}
-                    // autoplayHoverPause={true}
-                    // center
-                    // loop
-                    // margin={10}
-                    nav
-                    
-                // responsive={state.responsive}
+                    {...options}
                 >
-                    <div className="slider-card ">
+                    <div className="slider-card">
                         <Card className="card-content home-carousel-1">
                             <Row>
                                 <Col xs={8} md={6} className="carousel-text">

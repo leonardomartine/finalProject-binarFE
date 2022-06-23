@@ -54,6 +54,7 @@
     width: 100px;
     height: 34px;
     background-color: #4B1979;
+    margin-left: 5%;
 }
 
 .navbar {
@@ -98,11 +99,30 @@
     .logo {
         display: none;
     }
+    
+    .navbar {
+        box-shadow: none;
+    }
 
     .home-navbar {
         flex-direction: row-reverse;
         gap: 20px;
+    }
+
+    .navbar-light .navbar-toggler {
         background-color: white;
+        border-radius: 10px;
+        border-color: white;
+    }
+
+    .navbar {
+      position: fixed;
+      z-index: 10;
+      width: 100%;
+    }
+
+    .navbar-scroll {
+      background-color: white;
     }
 }
 
@@ -110,7 +130,7 @@
 /********************
  * Home-carousel
  ********************/
- .slider .owl-theme .owl-nav { 
+.slider .owl-theme .owl-nav { 
     display: none; 
 } 
    
@@ -190,84 +210,57 @@
 }
 
 @media screen and (max-width: 1023px) {
-  .slider .owl-item.active.center .slider-card {
+  .slider .owl-item.active.center {
     transform: none;
     z-index: -1 !important;
   } 
-  .home-carousel-1{
-    width: 390px;
-    height: 335px;
+
+  .home-carousel-1, .home-carousel-2, .home-carousel-3 {
+    height: 340px;
+    max-width: 100%;
+    border-radius: 0;
   }
-  .slider-2{
-    display: none;
-  }
-  .carousel-2 img{
+
+  .carousel-2 img {
     display: none !important;
   }
-  .slider-card {
-    
+  
+  .carousel-1 img {
+    margin-top: 100%;
+    margin-left: 0 !important;
+    max-width: 60%;
   }
 
+  .text-1, .text-2, .text-3 {
+    margin-left: 35%;
+    margin-right: 0 !important;
+  }
+
+  .text-1 {
+    margin-top: 45%;
+    font-size: 20px;
+  }
+
+  .text-2 {
+    font-size: 12px;
+    margin-top: 5%;
+  }
+
+  .text-3 {
+    font-size: 20px;
+  }
+
+  .slider-card {
+    margin:0 !important;
+    z-index: -1;
+    position: relative;
+  }
 }
 
 
-
-
-
-   
-/* carousel product */ 
-.slider-product .owl-theme .owl-dots { 
-  position: absolute; 
-  top: 90%; 
-  left: 45%; 
-} 
-   
-.slider-product .owl-theme .owl-nav button.owl-next { 
-  background-color: rgba(255, 255, 255, 1); 
-  width: 30px; 
-  height: 30px; 
-  border-radius: 50%; 
-  position: absolute; 
-  top: 45%; 
-  right: 10px; 
-} 
-   
-.slider-product .owl-theme .owl-nav button.owl-next.disabled { 
-  opacity: 0; 
-} 
-   
-.slider-product .owl-theme .owl-nav button.owl-prev.disabled { 
-  opacity: 0; 
-} 
-   
-.slider-product .owl-theme .owl-nav button.owl-prev { 
-  background-color: rgba(255, 255, 255, 1); 
-  width: 30px; 
-  height: 30px; 
-  border-radius: 50%; 
-  position: absolute; 
-  top: 45%; 
-  left: 10px; 
-} 
-   
-.slider-product .owl-theme .owl-dots .owl-dot.active span { 
-  background-color: rgba(113, 38, 181, 1); 
-} 
-
-.slider-product .owl-theme .owl-dots .owl-dot span { 
-  width: 6px; 
-  height: 6px; 
-  margin: 3px; 
-  background-color: rgba(196, 196, 196, 1); 
-  border: 1px solid rgba(113, 38, 181, 1); 
-}
-
-
-
-
-  /********************
+/********************
  * Home-category
- ********************/
+********************/
 .category div button.button-sell { 
   width: 25%; 
   margin: 0 37.5%; 
@@ -281,9 +274,14 @@
   width: 0; 
 }
 
+@media screen and (max-width: 1023px) {
+  .category {
+    margin-top: 10%;
+  }
+}
 
 /********************
- * Navbar-card
+ * Home-card
  ********************/
 .card-content { 
   display: grid; 
@@ -297,6 +295,12 @@
   grid-template-columns: auto auto; 
   grid-gap: 20px; 
   grid-auto-flow: row; 
+}
+
+.img-car {
+  object-fit: cover;
+  height: 250px;
+  width: 100%;
 }
 
 @media screen and (min-width: 1024px) {

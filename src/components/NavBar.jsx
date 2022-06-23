@@ -10,8 +10,6 @@ import Swal from "sweetalert2";
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -50,12 +48,22 @@ export default function NavBar() {
     const dispatch = useDispatch();
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [user, setUser] = useState({});
-    const [open, setOpen] = React.useState(true);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    //change nav color when scrolling
+    const [color, setColor] = useState(false);
+    const changeColor = () => {
+        if (window.scrollY >= 10) {
+            setColor(true)
+        } else {
+            setColor(false)
+        }
+    }
+
+    window.addEventListener('scroll', changeColor)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -128,7 +136,7 @@ export default function NavBar() {
 
     return (
         <>
-            <Navbar expand="lg" variant="light" >
+            <Navbar expand="lg" className={color ? 'navbar-scroll' : 'navbar'}>
                 <Container className="home-navbar" >
                     <Navbar.Brand className="logo" href="/cars"></Navbar.Brand>
                     <div className="me-auto">
