@@ -37,7 +37,7 @@ export default function Login() {
             if (loginResponse.status) {
                 localStorage.setItem("token", loginResponse.data.token);
 
-                navigate("/");
+                navigate("/about");
             }
         } catch (err) {
             console.log(err);
@@ -58,55 +58,45 @@ export default function Login() {
         color: '#7126B5',
         fontWeight: 'bold',
     }
-    const [passwordShown, setPasswordShown] = useState(false);
-    
+
 
 
     return (
         <Row>
-            <Col className="loginpict">
-                <img src="/images/img.png" width="100%" height="100%" />
+            <Col className="register-left">
+                <img src="/images/img-register.png" alt=""/>
             </Col>
-            <Col className="login">
-                <Container className="my-100">
-                    <h4 className="mb-3 text-left">Masuk</h4>
-
-                    <Form onSubmit={onLogin}>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control
-                                type="text"
-                                ref={emailField}
-                                placeholder="Contoh: johndee@gmail.com"
-                                style={styleLabel}
-                            />
-                        </Form.Group>
-                        <Form.Group className="mb-3 ">
-                            <Form.Label>Password
-                            </Form.Label>
-                    <Form.Control
-                        type={passwordShown ? "text" : "password"}
-                        ref={passwordField}
-                        placeholder="Masukkan Password"
-                        style={styleLabel}
-                    />
-                    {/* <button className=" float-right border-0" onClick={togglePassword}><FontAwesomeIcon  icon={faEye}></FontAwesomeIcon></button> */}
-                </Form.Group>
-
-                        <Button className="login-button w-100" type="submit" style={styleLabel}>
-                            Masuk
-                        </Button>
-                        <p className="loginp">
-                            Belum punya akun?<Link style={styleLink} to="/register">Daftar di sini</Link>
-                        </p>
-
-                        {errorResponse.isError && (
-                            <Alert variant="danger">{errorResponse.message}</Alert>
-                        )}
-
-                    </Form>
-
-                </Container>
+            <Col className="register-right">
+                <h3 className="mb-3">Masuk</h3>
+                <Form onSubmit={onLogin}>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                            type="text"
+                            ref={emailField}
+                            placeholder="Contoh: johndee@gmail.com"
+                            style={styleLabel}
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            ref={passwordField}
+                            placeholder="Masukkan Password"
+                            style={styleLabel}
+                        />
+                    </Form.Group>
+                    {errorResponse.isError && (
+                        <Alert variant="danger">{errorResponse.message}</Alert>
+                    )}
+                    <Button className="w-100" type="submit" style={styleLabel}>
+                        Daftar
+                    </Button>
+                    <p className="m-4 text-center">
+                        Belum punya akun? <Link style={styleLink} to="/register">Daftar di sini</Link>
+                    </p>
+                </Form>
             </Col>
         </Row>
     );

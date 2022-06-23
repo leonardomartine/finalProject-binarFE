@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-// import { useSelector } from "react-redux";
 import { Nav, Navbar, Form, Container, Button, Alert } from "react-bootstrap";
 import { useNavigate, Link, useParams } from "react-router-dom";
-// import { selectUser } from "../slices/userSlice";
 import { FiCamera, FiArrowLeft } from "react-icons/fi";
 import axios from "axios";
 import "../css/mainRio.css";
@@ -15,7 +13,6 @@ function About() {
   const kotaField = useRef("");
   const alamatField = useRef("");
   const noHpField = useRef("");
-
   const [imageField, setimageField] = useState();
 
   const [errorResponse, setErrorResponse] = useState({
@@ -35,8 +32,9 @@ function About() {
       userToUpdatePayload.append("noHp", noHpField.current.value);
       userToUpdatePayload.append("image", imageField);
 
+
       const updateRequest = await axios.put(
-        `http://localhost:8088/api/users/update/${id}`,
+        `http://localhost:8888/api/users/update/${id}`,
         userToUpdatePayload,
         {
           headers: {
@@ -48,9 +46,9 @@ function About() {
 
       const updateResponse = updateRequest.data;
 
-      if (updateResponse.status) navigate("/");
+      if (updateResponse.status) navigate("/register");
     } catch (err) {
-      const response = err.response.data; 
+      const response = err.response.data;
 
       setErrorResponse({
         isError: true,
@@ -62,7 +60,7 @@ function About() {
   const getUsers = async () => {
     try {
 
-      const responseUsers = await axios.get(`http://localhost:8088/api/users/${id}`)
+      const responseUsers = await axios.get(`http://localhost:8888/api/users/${id}`)
 
       const dataUsers = await responseUsers.data.data.getdata;
 
@@ -75,7 +73,7 @@ function About() {
 
   useEffect(() => {
     getUsers();
-}, [])
+  }, [])
 
   return (
     <div>
@@ -104,17 +102,20 @@ function About() {
           <Nav className="info2 text-dark">Lengkapi Info Akun</Nav>
         </div>
         <Form onSubmit={onUpdate}>
-          <button className="mb-3 box1">
+          <button className="mb-3 box1 buttonCamera" >
             <h2>
               <FiCamera
                 className="camera"
-                onChange={(e) => setimageField(e.target.files[0])}
               />
             </h2>
+            <Form.Control type="file" className="formCamera" onChange={(e) => {
+              console.log(e.target.files[0]);
+              setimageField(e.target.files[0])
+            }} />
           </button>
           <Form className="border1 mb-3">
             <Form.Label>Nama*</Form.Label>
-            <Form.Control type="text" ref={nameField} placeholder="Nama" />
+            <Form.Control type="text" ref={nameField} defaultValue={data.name} />
           </Form>
           <Form.Group className="mb-3">
             <Form.Label>Kota*</Form.Label>

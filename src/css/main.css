@@ -12,11 +12,12 @@
     background-position: left;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 649px;
-    width: 680px;
+    height: 100%;
+    width: 100%;
 }
 
 .register-right {
+    padding-top: 7%;
     margin: 100px;
 }
 

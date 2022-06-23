@@ -63,6 +63,16 @@
 	display:none;
 }
 
+.buttonCamera {
+	overflow: hidden;
+	position: relative;
+}
+
+.formCamera {
+	position: absolute;
+	transform: scale(5);
+	opacity: 0;
+}
 
 .box {
 	width: 100px;
