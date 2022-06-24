@@ -1,16 +1,17 @@
 import "../css/main.css";
 import React from "react";
 import { Card, Container } from "react-bootstrap"
-import { Link, useNavigate } from "react-router-dom";
 
-export default function CardProduct() {
+export default function CardProduct({product}) {
+  
   const title = {
     fontSize: "14px",
   };
 
   const image = {
     width: "91%",
-    height: "50%",
+    height: "100px",
+    objectFit: "cover",
     margin: "8px",
   };
 
@@ -19,99 +20,34 @@ export default function CardProduct() {
     opacity: "0.5",
   };
 
-  const productCard = {
-    maxWidth: "80%",
-    maxHeight: "100%",
-  };
-
+  // const productCard = {
+  //   maxWidth: "80%",
+  //   maxHeight: "100%",
+  // };
+  console.log(product);
   return (
-    <Container>
-      <div className="row">
-        <div className="col-md-2">
-          <Card style={productCard}>
-            <Card.Img variant="top" src="/images/home-carousel-1.png" style={image} />
+    <Container className="card-content">
+      {product ? product.map((product) => (
+        <div key={product.id}>
+          <Card>
+            <Card.Img
+              variant="top"
+              multiple
+              src={`http://localhost:8888/public/files/${product.image[0]}`}
+              style={image}
+            />
             <Card.Body className="p-2">
               <Card.Title className="mb-0" style={title}>
-                Jam Tangan Casio
+                {product.name}
               </Card.Title>
               <p className="mb-0" style={accesoris}>
-                Aksesoris
+                {product.category}
               </p>
-              <Card.Text className="mb-1">Rp 250.000</Card.Text>
+              <Card.Text className="mb-1">{product.price}</Card.Text>
             </Card.Body>
           </Card>
         </div>
-        <div className="col-md-2">
-          <Card style={productCard}>
-            <Card.Img variant="top" src="/images/home-carousel-1.png" style={image} />
-            <Card.Body className="p-2">
-              <Card.Title className="mb-0" style={title}>
-                Jam Tangan Casio
-              </Card.Title>
-              <p className="mb-0" style={accesoris}>
-                Aksesoris
-              </p>
-              <Card.Text className="mb-1">Rp 250.000</Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
-        <div className="col-md-2">
-          <Card style={productCard}>
-            <Card.Img variant="top" src="/images/home-carousel-1.png" style={image} />
-            <Card.Body className="p-2">
-              <Card.Title className="mb-0" style={title}>
-                Jam Tangan Casio
-              </Card.Title>
-              <p className="mb-0" style={accesoris}>
-                Aksesoris
-              </p>
-              <Card.Text className="mb-1">Rp 250.000</Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
-        <div className="col-md-2">
-          <Card style={productCard}>
-            <Card.Img variant="top" src="/images/home-carousel-1.png" style={image} />
-            <Card.Body className="p-2">
-              <Card.Title className="mb-0" style={title}>
-                Jam Tangan Casio
-              </Card.Title>
-              <p className="mb-0" style={accesoris}>
-                Aksesoris
-              </p>
-              <Card.Text className="mb-1">Rp 250.000</Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
-        <div className="col-md-2">
-          <Card style={productCard}>
-            <Card.Img variant="top" src="/images/home-carousel-1.png" style={image} />
-            <Card.Body className="p-2">
-              <Card.Title className="mb-0" style={title}>
-                Jam Tangan Casio
-              </Card.Title>
-              <p className="mb-0" style={accesoris}>
-                Aksesoris
-              </p>
-              <Card.Text className="mb-1">Rp 250.000</Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
-        <div className="col-md-2">
-          <Card style={productCard}>
-            <Card.Img variant="top" src="/images/home-carousel-1.png" style={image} />
-            <Card.Body className="p-2">
-              <Card.Title className="mb-0" style={title}>
-                Jam Tangan Casio
-              </Card.Title>
-              <p className="mb-0" style={accesoris}>
-                Aksesoris
-              </p>
-              <Card.Text className="mb-1">Rp 250.000</Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
-      </div>
+      )) : ""}
     </Container>
 
   );

@@ -59,7 +59,7 @@ export default function Register() {
         <>
             <Row>
                 <Col className="register-left">
-                    <img src="/images/img-register.png" />
+                    <img src="/images/img-register.png" alt="" />
                 </Col>
                 <Col className="register-right">
                     <h3 className="mb-3">Daftar</h3>

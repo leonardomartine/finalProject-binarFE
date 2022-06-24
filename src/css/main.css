@@ -11,12 +11,13 @@
     background-position: left;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 649px;
-    width: 680px;
+    height: 100%;
+    width: 115%;
 }
 
 .register-right {
-    margin: 100px;
+    margin: 10%;
+    margin-top: 12%;
 }
 
 /* .register-right {
@@ -363,6 +364,20 @@
         background-color: rgba(113, 38, 181, 1); 
         color: white; 
     }
+
+    .card-content { 
+      display: grid; 
+      grid-template-columns: auto auto; 
+      grid-gap: 20px; 
+      grid-auto-flow: row; 
+    }
+}
+
+.card-content { 
+  display: grid; 
+  grid-template-columns: auto auto auto auto auto auto; 
+  grid-gap: 20px; 
+  grid-auto-flow: column; 
 }
 
 

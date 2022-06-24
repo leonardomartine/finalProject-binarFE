@@ -8,6 +8,8 @@ import "../css/mainRio.css";
 function About() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+  const [user, setUser] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const { id } = useParams();
   const nameField = useRef("");
   const kotaField = useRef("");
@@ -19,6 +21,37 @@ function About() {
     isError: false,
     message: "",
   });
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        // Check status user login
+        // 1. Get token from localStorage
+        const token = localStorage.getItem("token");
+
+        // 2. Check token validity from API
+        const currentUserRequest = await axios.get(
+          "http://localhost:8888/auth/me",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const currentUserResponse = currentUserRequest.data;
+
+        if (currentUserResponse.status) {
+          setUser(currentUserResponse.data.user);
+        }
+      } catch (err) {
+        setIsLoggedIn(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const onUpdate = async (e) => {
     e.preventDefault();
@@ -34,7 +67,7 @@ function About() {
 
 
       const updateRequest = await axios.put(
-        `http://localhost:8888/api/users/update/${id}`,
+        `http://localhost:8888/api/users/${id}`,
         userToUpdatePayload,
         {
           headers: {
@@ -46,7 +79,7 @@ function About() {
 
       const updateResponse = updateRequest.data;
 
-      if (updateResponse.status) navigate("/register");
+      if (updateResponse.status) navigate("/InfoProduct");
     } catch (err) {
       const response = err.response.data;
 
@@ -56,24 +89,6 @@ function About() {
       });
     }
   };
-
-  const getUsers = async () => {
-    try {
-
-      const responseUsers = await axios.get(`http://localhost:8888/api/users/${id}`)
-
-      const dataUsers = await responseUsers.data.data.getdata;
-
-      setData(dataUsers)
-      console.log(dataUsers);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  useEffect(() => {
-    getUsers();
-  }, [])
 
   return (
     <div>
@@ -109,7 +124,6 @@ function About() {
               />
             </h2>
             <Form.Control type="file" className="formCamera" onChange={(e) => {
-              console.log(e.target.files[0]);
               setimageField(e.target.files[0])
             }} />
           </button>
@@ -157,7 +171,6 @@ function About() {
           </Button>
         </Form>
       </Container>
-      <Link to="/">Go to home page</Link>
     </div>
   );
 }

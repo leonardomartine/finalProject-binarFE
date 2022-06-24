@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { useSelector } from "react-redux";
 import {
   Col,
   Row,
@@ -7,11 +6,9 @@ import {
   Navbar,
   Form,
   Container,
-  Button,
   Alert,
 } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
-import { selectUser } from "../slices/userSlice";
 import { FiArrowLeft } from "react-icons/fi";
 import { BiPlus } from "react-icons/bi";
 import axios from "axios";
@@ -19,11 +16,13 @@ import "../css/mainRio.css";
 
 function InfoProduct() {
   const navigate = useNavigate();
-  const userRedux = useSelector(selectUser);
-  const [user] = useState(userRedux.creds);
-  const titleField = useRef("");
+  const nameField = useRef("");
+  const priceField = useRef("");
+  const categoryField = useRef("");
   const descriptionField = useRef("");
-  const [pictureField, setPictureField] = useState();
+  const soldField = useRef("");
+  // const isPublish = 
+  const [imageField, setImageField] = useState();
 
   const [errorResponse, setErrorResponse] = useState({
     isError: false,
@@ -36,12 +35,15 @@ function InfoProduct() {
     try {
       const token = localStorage.getItem("token");
       const postPayload = new FormData();
-      postPayload.append("title", titleField.current.value);
+      postPayload.append("name", nameField.current.value);
+      postPayload.append("price", priceField.current.value);
+      postPayload.append("category", categoryField.current.value);
       postPayload.append("description", descriptionField.current.value);
-      postPayload.append("picture", pictureField);
+      postPayload.append("sold", soldField.current.value);
+      postPayload.append("picture", imageField);
 
       const createRequest = await axios.post(
-        "http://localhost:2000/posts",
+        "http://localhost:8888/api/product",
         postPayload,
         {
           headers: {
@@ -93,11 +95,11 @@ function InfoProduct() {
         <Form onSubmit={onCreate}>
           <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
             <Form.Label>Nama Produk</Form.Label>
-            <Form.Control type="text" ref={titleField} placeholder="Nama" />
+            {/* <Form.Control type="text" ref={titleField} placeholder="Nama" /> */}
           </Form>
           <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
             <Form.Label>Harga Produk</Form.Label>
-            <Form.Control type="text" ref={titleField} placeholder="Rp 0,00" />
+            {/* <Form.Control type="text" ref={titleField} placeholder="Rp 0,00" /> */}
           </Form>
           <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
             <Form.Label>Kategori</Form.Label>
@@ -127,7 +129,7 @@ function InfoProduct() {
             <h2>
               <BiPlus
                 className="plus"
-                onChange={(e) => setPictureField(e.target.files[0])}
+                // onChange={(e) => setPictureField(e.target.files[0])}
               />
             </h2>
           </button>

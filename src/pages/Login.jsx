@@ -1,8 +1,7 @@
 import { useRef, useState } from "react";
-import { Form, Row, Col, Container, Button, Alert } from "react-bootstrap";
+import { Form, Row, Col, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-// import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import "../css/login.css";
 
 
@@ -33,11 +32,12 @@ export default function Login() {
             );
 
             const loginResponse = loginRequest.data;
+            console.log(loginResponse);
 
             if (loginResponse.status) {
                 localStorage.setItem("token", loginResponse.data.token);
 
-                navigate("/about");
+                navigate("/");
             }
         } catch (err) {
             console.log(err);
