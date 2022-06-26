@@ -46,24 +46,35 @@ export default function Home() {
         validateLogin();
     }, []);
 
-    // const state = {
-    //     responsiveClass: true,
-    //     responsive: {
-    //         0: {
-    //             items: 1,
-    //             nav: true
-    //         },
-    //         600: {
-    //             items: 3,
-    //             nav: false
-    //         },
-    //         1000: {
-    //             items: 5,
-    //             nav: true,
-    //             loop: false
-    //         }
-    //     }
-    // }
+    const options = {
+        items: 2,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplayHoverPause: true,
+        center: true,
+        loop: true,
+        margin: 10,
+        nav: true,
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            400: {
+                items: 1,
+            },
+            600: {
+                items: 2,
+            },
+            700: {
+                items: 2,
+            },
+            1000: {
+                items: 2,
+            }
+        },
+    };
+
     const categories = category ? `&category=${category}` : ""
     const getProductPublish = async () => {
         try {
@@ -77,7 +88,7 @@ export default function Home() {
             console.log(err);
         }
     }
-    useEffect(()=>{
+    useEffect(() => {
         getProductPublish()
     }, [categories])
 
@@ -90,18 +101,9 @@ export default function Home() {
             <div className="slider">
                 <OwlCarousel
                     className="owl-theme slider-items"
-                    items={2}
-                    autoplay={true}
-                    autoplayTimeout={5000}
-                    autoplayHoverPause={true}
-                    center
-                    loop
-                    margin={10}
-                    nav
-
-                // responsive={state.responsive}
+                    {...options}
                 >
-                    <div className="slider-card ">
+                    <div className="slider-card">
                         <Card className="card-content home-carousel-1">
                             <Row>
                                 <Col xs={8} md={6} className="carousel-text">
@@ -110,10 +112,10 @@ export default function Home() {
                                     <p className="text-3">60%</p>
                                 </Col>
                                 <Col xs={4} md={2} className="carousel-1">
-                                    <img src="/images/carousel-1.png" alt="" />
+                                    <img src="/images/carousel-1.png" alt=""/>
                                 </Col>
                                 <Col xs={6} md={4} className="carousel-2">
-                                    <img src="/images/carousel-2.png" alt="" />
+                                    <img src="/images/carousel-2.png" alt=""/>
                                 </Col>
                             </Row>
                         </Card>
@@ -127,7 +129,7 @@ export default function Home() {
                                     <p className="text-3">60%</p>
                                 </Col>
                                 <Col xs={4} md={2} className="carousel-1">
-                                    <img src="/images/carousel-1.png" alt="" />
+                                    <img src="/images/carousel-1.png" alt=""/>
                                 </Col>
                                 <Col xs={6} md={4} className="carousel-2">
                                     <img src="/images/carousel-3.png" alt="" />
@@ -144,10 +146,10 @@ export default function Home() {
                                     <p className="text-3">60%</p>
                                 </Col>
                                 <Col xs={4} md={2} className="carousel-1">
-                                    <img src="/images/carousel-1.png" alt="" />
+                                    <img src="/images/carousel-1.png" alt=""/>
                                 </Col>
                                 <Col xs={6} md={4} className="carousel-2">
-                                    <img src="/images/carousel-4.png" alt="" />
+                                    <img src="/images/carousel-4.png" alt=""/>
                                 </Col>
                             </Row>
                         </Card>
@@ -159,22 +161,22 @@ export default function Home() {
                 <h6 className="fw-bold">Telusuri Kategori</h6>
                 <div>
                     <div className="d-flex gap-3 button-category">
-                        <Button className="d-flex gap-1 px-3" variant="primary" onClick={()=> setCategory(null)}>
+                        <Button className="d-flex gap-1 px-3" variant="primary" onClick={() => setCategory(null)}>
                             <FiSearch className="align-self-center" /> Semua
                         </Button>
-                        <Button className="d-flex gap-1 px-3" variant="primary" onClick={()=> setCategory("hobi")}>
+                        <Button className="d-flex gap-1 px-3" variant="primary" onClick={() => setCategory("hobi")}>
                             <FiSearch className="align-self-center" /> Hobi
                         </Button>
-                        <Button className="d-flex gap-1 px-3" variant="primary" onClick={()=> setCategory("kendaraan")}>
+                        <Button className="d-flex gap-1 px-3" variant="primary" onClick={() => setCategory("kendaraan")}>
                             <FiSearch className="align-self-center" /> Kendaraan
                         </Button>
-                        <Button className="d-flex gap-1 px-3" variant="primary" onClick={()=> setCategory("Baju")}>
+                        <Button className="d-flex gap-1 px-3" variant="primary" onClick={() => setCategory("Baju")}>
                             <FiSearch className="align-self-center" /> Baju
                         </Button>
-                        <Button className="d-flex gap-1 px-3" variant="primary" onClick={()=> setCategory("Elektronik")}>
+                        <Button className="d-flex gap-1 px-3" variant="primary" onClick={() => setCategory("Elektronik")}>
                             <FiSearch className="align-self-center" /> Elektronik
                         </Button>
-                        <Button className="d-flex gap-1 px-3" variant="primary" onClick={()=> setCategory("kesehatan")}>
+                        <Button className="d-flex gap-1 px-3" variant="primary" onClick={() => setCategory("kesehatan")}>
                             <FiSearch className="align-self-center" /> Kesehatan
                         </Button>
                     </div>
@@ -205,7 +207,7 @@ export default function Home() {
             </Container>
 
             <div>
-                <CardProduct product= {product} />
+                <CardProduct product={product} />
             </div>
         </>
     );

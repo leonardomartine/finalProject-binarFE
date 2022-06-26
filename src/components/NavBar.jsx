@@ -45,6 +45,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 
+
+
 export default function NavBar() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -55,6 +57,18 @@ export default function NavBar() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    //change nav color when scrolling
+    const [color, setColor] = useState(false);
+    const changeColor = () => {
+        if (window.scrollY >= 10) {
+            setColor(true)
+        } else {
+            setColor(false)
+        }
+    }
+
+    window.addEventListener('scroll', changeColor)
 
 
     useEffect(() => {
@@ -128,7 +142,7 @@ export default function NavBar() {
 
     return (
         <>
-            <Navbar expand="lg" variant="light" >
+            <Navbar expand="lg" className={color ? 'navbar-scroll' : 'navbar'} >
                 <Container className="home-navbar" >
                     <Navbar.Brand className="logo" href="/cars"></Navbar.Brand>
                     <div className="me-auto">

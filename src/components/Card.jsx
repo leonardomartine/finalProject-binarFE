@@ -20,10 +20,11 @@ export default function CardProduct({product}) {
     opacity: "0.5",
   };
 
-  // const productCard = {
-  //   maxWidth: "80%",
-  //   maxHeight: "100%",
-  // };
+  const productCard = {
+    maxWidth: "80%",
+    maxHeight: "100%",
+  };
+
   console.log(product);
   return (
     <Container className="card-content">
@@ -31,6 +32,7 @@ export default function CardProduct({product}) {
         <div key={product.id}>
           <Card>
             <Card.Img
+              className="w-75 align-self-center"
               variant="top"
               multiple
               src={`http://localhost:8888/public/files/${product.image[0]}`}
