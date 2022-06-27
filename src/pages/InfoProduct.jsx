@@ -1,12 +1,11 @@
 import { useRef, useState } from "react";
 import {
-  Col,
-  Row,
   Nav,
   Navbar,
   Form,
   Container,
   Alert,
+  Button,
 } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
@@ -20,9 +19,10 @@ function InfoProduct() {
   const priceField = useRef("");
   const categoryField = useRef("");
   const descriptionField = useRef("");
-  const soldField = useRef("");
-  // const isPublish = 
+  const [isSold, setIsSold] = useState(Boolean);
+  const [isPublish, setIsPublish] = useState(Boolean);
   const [imageField, setImageField] = useState();
+  // const [preview, setPreview] = useState();
 
   const [errorResponse, setErrorResponse] = useState({
     isError: false,
@@ -31,6 +31,11 @@ function InfoProduct() {
 
   const onCreate = async (e) => {
     e.preventDefault();
+    // if (preview) {
+    //   setIsPublish(false)
+    // }else (
+    //   setIsPublish(true)
+    // )
 
     try {
       const token = localStorage.getItem("token");
@@ -39,8 +44,9 @@ function InfoProduct() {
       postPayload.append("price", priceField.current.value);
       postPayload.append("category", categoryField.current.value);
       postPayload.append("description", descriptionField.current.value);
-      postPayload.append("sold", soldField.current.value);
-      postPayload.append("picture", imageField);
+      postPayload.append("sold", isSold);
+      postPayload.append("isPublish", isPublish);
+      postPayload.append("image", imageField);
 
       const createRequest = await axios.post(
         "http://localhost:8888/api/product",
@@ -95,21 +101,21 @@ function InfoProduct() {
         <Form onSubmit={onCreate}>
           <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
             <Form.Label>Nama Produk</Form.Label>
-            {/* <Form.Control type="text" ref={titleField} placeholder="Nama" /> */}
+            <Form.Control type="text" ref={nameField} placeholder="Nama" />
           </Form>
           <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
             <Form.Label>Harga Produk</Form.Label>
-            {/* <Form.Control type="text" ref={titleField} placeholder="Rp 0,00" /> */}
+            <Form.Control type="text" ref={priceField} placeholder="Rp 0,00" />
           </Form>
           <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
             <Form.Label>Kategori</Form.Label>
-            <select ref={descriptionField} className="form-select">
+            <select ref={categoryField} className="form-select">
               <option hidden>Pilih Kategori</option>
-              <option value="Hobi">Hobi</option>
-              <option value="Kendaraan">Kendaraan</option>
+              <option value="hobi">Hobi</option>
+              <option value="kendaraan">Kendaraan</option>
               <option value="Baju">Baju</option>
               <option value="Elektronik">Elektronik</option>
-              <option value="Kesehatan">Kesehatan</option>
+              <option value="kesehatan">Kesehatan</option>
             </select>
           </Form.Group>
           <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
@@ -129,22 +135,20 @@ function InfoProduct() {
             <h2>
               <BiPlus
                 className="plus"
-                // onChange={(e) => setPictureField(e.target.files[0])}
               />
             </h2>
+            <Form.Control type="file"  onChange={(e) => {
+              setImageField(e.target.files[0])
+            }} />
           </button>
-          <Row>
-            <Col>
-              <button className="myButton7 w-100" type="submit">
-                Preview
-              </button>
-            </Col>
-            <Col>
-              <button className="myButton6 w-100" type="submit">
-                Terbitkan
-              </button>
-            </Col>
-          </Row>
+          <div className="d-flex justify-content-between">
+            <Button className="myButton7" type="submit" onClick={() => setIsPublish(false)}>
+              Preview
+            </Button>
+            <Button className="myButton6" type="submit" onClick={() => setIsPublish(true)}>
+              Terbitkan
+            </Button>
+          </div>
           {errorResponse.isError && (
             <Alert variant="danger">{errorResponse.message}</Alert>
           )}
