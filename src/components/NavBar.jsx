@@ -142,7 +142,7 @@ export default function NavBar() {
 
     return (
         <>
-            <Navbar expand="lg" className={color ? 'navbar-scroll' : 'navbar'} >
+            <Navbar expand="lg" className={color ? 'navbar-scroll' : 'navbar1'} >
                 <Container className="home-navbar" >
                     <Navbar.Brand className="logo" href="/cars"></Navbar.Brand>
                     <div className="me-auto">

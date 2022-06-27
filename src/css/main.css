@@ -58,7 +58,7 @@
   margin-left: 5%;
 }
 
-.navbar {
+.navbar1 {
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);
 }
 
@@ -101,7 +101,7 @@
       display: none;
   }
   
-  .navbar {
+  .navbar1 {
       box-shadow: none;
   }
 
