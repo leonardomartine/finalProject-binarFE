@@ -10,6 +10,8 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import InfoProduct from "./pages/InfoProduct";
+import UpdateProduct from "./pages/UpdateProduct";
+// import SellerProductPenawar from "./pages/SellerProductPenawar";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -20,7 +22,9 @@ root.render(
       <Route path="/" element={<Home />} />
       <Route path="/register" element={<Register />} />
       <Route path="/about/:id" element={<About />} />
-      <Route path="/InfoProduct" element={<InfoProduct />} />
+      <Route path="/infoproduct" element={<InfoProduct />} />
+      <Route path="/updateproduct" element={<UpdateProduct />} />
+      {/* <Route path="/sellerproductpenawar" element={<SellerProductPenawar />} /> */}
       <Route path="/login" element={<Login />} />
     </Routes>
   </Router>
