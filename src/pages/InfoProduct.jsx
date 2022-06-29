@@ -131,13 +131,13 @@ function InfoProduct() {
           <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
             Foto Produk
           </Form.Group>
-          <button className="mb-3 box2">
+          <button className="mb-3 box2" >
             <h2>
               <BiPlus
                 className="plus"
               />
             </h2>
-            <Form.Control type="file"  onChange={(e) => {
+            <Form.Control type="file" multiple onChange={(e) => {
               setImageField(e.target.files[0])
             }} />
           </button>
