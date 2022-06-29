@@ -1,12 +1,11 @@
 import "../css/main.css";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Navbar, Nav, Container, Button, Dropdown, DropdownButton, Offcanvas } from "react-bootstrap";
+import { Navbar, Container, Button, Dropdown, Offcanvas } from "react-bootstrap";
 import { FiLogIn, FiList, FiUser, FiBell } from "react-icons/fi";
 import { addUser } from "../slices/userSlice";
 import axios from "axios";
-import Swal from "sweetalert2";
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
@@ -45,14 +44,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 
-
-
 export default function NavBar() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [user, setUser] = useState({});
-    const [open, setOpen] = React.useState(true);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -107,44 +103,13 @@ export default function NavBar() {
         fetchData();
     }, []);
 
-    const logout = () => {
-        localStorage.removeItem("token");
-
-        setIsLoggedIn(false);
-        setUser({});
-
-        navigate("/");
-    };
-
-    const alertLogout = async () => {
-        Swal.fire({
-            title: "Apakah Anda Yakin?",
-            text: "Anda akan keluar dari akun ini",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Log out",
-        }).then((result) => {
-            if (result.value) {
-                Swal.fire(
-                    'LOGOUT!',
-                    'Anda telah keluar dari akun ini.',
-                    'success'
-                )
-                logout();
-            } else if (result.dismiss == 'cancel') {
-                console.log('cancel');
-            }
-        });
-    };
 
 
     return (
         <>
             <Navbar expand="lg" className={color ? 'navbar-scroll' : 'navbar1'} >
                 <Container className="home-navbar" >
-                    <Navbar.Brand className="logo" href="/cars"></Navbar.Brand>
+                    <Navbar.Brand className="logo" href="/"></Navbar.Brand>
                     <div className="me-auto">
                         <Search>
                             <SearchIcon className="search-icon" />
@@ -163,7 +128,7 @@ export default function NavBar() {
                                         <Offcanvas.Title className="title-navbar-mobile">Second Hand</Offcanvas.Title>
                                     </Offcanvas.Header>
                                     <Offcanvas.Body>
-                                        <Button variant="success" className="button-register" href="/register">
+                                        <Button variant="success" className="button-register" href="/login">
                                             <FiLogIn className="icon-register" />
                                             Masuk
                                         </Button>
@@ -174,23 +139,7 @@ export default function NavBar() {
                                 <>
                                     <FiList className="icon-list-header m-3" />
                                     <FiBell className="icon-bell-header m-3" />
-                                    <Dropdown >
-                                        <Dropdown.Toggle variant="white" id="dropdown-basic">
-                                            <FiUser className="icon-user-header" />
-                                        </Dropdown.Toggle>
-                                        <Dropdown.Menu>
-                                            <Dropdown.Item className="mt-2" href="#/action-1" >Ubah Akun</Dropdown.Item>
-                                            <Dropdown.Item className="mt-2" href="#/action-1" >Pengaturan Akun</Dropdown.Item>
-                                            {/* <Nav.Link className="m-2">{user.name}</Nav.Link> */}
-                                            <Button
-                                                variant="danger"
-                                                className="mx-3 mt-3"
-                                                onClick={alertLogout}
-                                            >
-                                                Logout
-                                            </Button>
-                                        </Dropdown.Menu>
-                                    </Dropdown>
+                                    <Button className="home-navbar-user" href="/account"><FiUser className="icon-user-header" /></Button>
 
                                     <Offcanvas show={show} onHide={handleClose} id="off-canvas">
                                         <Offcanvas.Header closeButton>
@@ -199,7 +148,7 @@ export default function NavBar() {
                                         <Offcanvas.Body>
                                             <Dropdown.Item href="#/action-1">Notifikasi</Dropdown.Item>
                                             <Dropdown.Item className="mt-2" href="#/action-1">Daftar Jual</Dropdown.Item>
-                                            <Dropdown.Item className="mt-2" href="#/action-1">Akun Saya</Dropdown.Item>
+                                            <Dropdown.Item className="mt-2" href="/account">Akun Saya</Dropdown.Item>
                                         </Offcanvas.Body>
                                     </Offcanvas>
 

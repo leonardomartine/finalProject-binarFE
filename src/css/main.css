@@ -84,6 +84,20 @@
   font-size: large;
 }
 
+.home-navbar-user{
+  background-color: white;
+  border-color: white;
+}
+
+.icon-user-header {
+  color: black;
+}
+
+.home-navbar-user:hover {
+  background-color: #E2D4F0;
+  border-color: #E2D4F0;
+}
+
 .dropdown-toggle::after {
   display: none !important;
 }

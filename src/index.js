@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import InfoProduct from "./pages/InfoProduct";
+import Account from "./pages/Account";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -22,6 +23,7 @@ root.render(
       <Route path="/about/:id" element={<About />} />
       <Route path="/InfoProduct" element={<InfoProduct />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/account" element={<Account />} />
     </Routes>
   </Router>
   </Provider>
