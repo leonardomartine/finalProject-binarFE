@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Nav,
   Navbar,
@@ -12,8 +12,9 @@ import { FiArrowLeft } from "react-icons/fi";
 import { BiPlus } from "react-icons/bi";
 import axios from "axios";
 import "../css/mainRio.css";
+import { useDropzone } from "react-dropzone";
 
-function InfoProduct() {
+function InfoProduct(props) {
   const navigate = useNavigate();
   const nameField = useRef("");
   const priceField = useRef("");
@@ -29,13 +30,70 @@ function InfoProduct() {
     message: "",
   });
 
+  const thumbsContainer = {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 16
+  };
+
+  const thumb = {
+    display: 'inline-flex',
+    borderRadius: 2,
+    border: '1px solid #eaeaea',
+    marginBottom: 8,
+    marginRight: 8,
+    width: 100,
+    height: 100,
+    padding: 4,
+    boxSizing: 'border-box'
+  };
+
+  const thumbInner = {
+    display: 'flex',
+    minWidth: 0,
+    overflow: 'hidden'
+  };
+
+  const img = {
+    display: 'block',
+    width: 'auto',
+    height: '100%'
+  };
+
+  const [files, setFiles] = useState([]);
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: {
+      'image/*': []
+    },
+    onDrop: acceptedFiles => {
+      setFiles(acceptedFiles.map(file => Object.assign(file, {
+        preview: URL.createObjectURL(file)
+      })));
+    }
+  });
+
+  const thumbs = files.map(file => (
+    <div style={thumb} key={file.name}>
+      <div style={thumbInner}>
+        <img
+          src={file.preview}
+          style={img}
+          // Revoke data uri after image is loaded
+          onLoad={() => { URL.revokeObjectURL(file.preview) }}
+        />
+      </div>
+    </div>
+  ));
+
+  useEffect(() => {
+    // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
+    return () => files.forEach(file => URL.revokeObjectURL(file.preview));
+  }, []);
+
   const onCreate = async (e) => {
     e.preventDefault();
-    // if (preview) {
-    //   setIsPublish(false)
-    // }else (
-    //   setIsPublish(true)
-    // )
+
 
     try {
       const token = localStorage.getItem("token");
@@ -46,7 +104,9 @@ function InfoProduct() {
       postPayload.append("description", descriptionField.current.value);
       postPayload.append("sold", isSold);
       postPayload.append("isPublish", isPublish);
-      postPayload.append("image", imageField);
+      files.forEach(element => {
+        postPayload.append("image", element);
+      });
 
       const createRequest = await axios.post(
         "http://localhost:8888/api/product",
@@ -131,16 +191,21 @@ function InfoProduct() {
           <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
             Foto Produk
           </Form.Group>
-          <button className="mb-3 box2" >
-            <h2>
-              <BiPlus
-                className="plus"
-              />
-            </h2>
-            <Form.Control type="file" multiple onChange={(e) => {
-              setImageField(e.target.files[0])
-            }} />
-          </button>
+          <section className="container">
+            <div {...getRootProps({ className: 'dropzone' })}>
+              <input {...getInputProps()} />
+              <button className="mb-3 box2" >
+                <h2>
+                  <BiPlus
+                    className="plus"
+                  />
+                </h2>
+              </button>
+            </div>
+            <aside style={thumbsContainer}>
+              {thumbs}
+            </aside>
+          </section>
           <div className="d-flex justify-content-between">
             <Button className="myButton7" type="submit" onClick={() => setIsPublish(false)}>
               Preview

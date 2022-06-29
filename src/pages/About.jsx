@@ -129,11 +129,11 @@ function About() {
           </button>
           <Form className="border1 mb-3">
             <Form.Label>Nama*</Form.Label>
-            <Form.Control type="text" ref={nameField} defaultValue={data.name} />
+            <Form.Control type="text" ref={nameField} defaultValue={user.name} />
           </Form>
           <Form.Group className="mb-3">
             <Form.Label>Kota*</Form.Label>
-            <select ref={kotaField} className="form-select">
+            <select ref={kotaField} value={user.kota} className="form-select">
               <option hidden>Pilih Kota</option>
               <option value="Jakarta">Jakarta</option>
               <option value="JawaTengah">Jawa Tengah</option>
@@ -150,6 +150,7 @@ function About() {
             <Form.Control
               type="text"
               ref={alamatField}
+              defaultValue={user.alamat}
               placeholder="Contoh: Jalan Ikan Hiu 33"
               as="textarea"
               rows={3}
@@ -160,6 +161,7 @@ function About() {
             <Form.Control
               type="text"
               ref={noHpField}
+              defaultValue={user.noHp}
               placeholder="contoh: +628123456789"
             />
           </Form.Group>

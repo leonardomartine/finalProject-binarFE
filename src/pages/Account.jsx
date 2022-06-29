@@ -2,10 +2,8 @@ import "../css/account.css";
 import * as React from 'react';
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { Navbar, Button, Form, Container } from "react-bootstrap";
 import { FiCamera, FiEdit3, FiLogOut } from "react-icons/fi";
-import { addUser } from "../slices/userSlice";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Box from '@mui/material/Box';
@@ -18,7 +16,6 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 
 export default function SelectedListItem() {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [user, setUser] = useState({});
     const [imageField, setimageField] = useState();
@@ -44,12 +41,6 @@ export default function SelectedListItem() {
                 const currentUserResponse = currentUserRequest.data;
 
                 if (currentUserResponse.status) {
-                    dispatch(
-                        addUser({
-                            user: currentUserResponse.data.user,
-                            token: token,
-                        })
-                    );
                     setUser(currentUserResponse.data.user);
                 }
             } catch (err) {
@@ -59,6 +50,8 @@ export default function SelectedListItem() {
 
         fetchData();
     }, []);
+
+
 
     const logout = () => {
         localStorage.removeItem("token");

@@ -1,7 +1,7 @@
 import "../css/main.css";
 import React, { useEffect, useState } from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
@@ -16,6 +16,11 @@ export default function Home() {
     const [product, setProduct] = useState([]);
     const [category, setCategory] = useState("")
     const [user, setUser] = useState({});
+    const navigate = useNavigate();
+
+    const handleJual = () => {
+        isLoggedIn ? user.kota ? navigate('/InfoProduct') : navigate(`/about/${user.id}`) : navigate('/login')
+    }
 
     useEffect(() => {
         // Function validasi user
@@ -110,10 +115,10 @@ export default function Home() {
                                     <p className="text-3">60%</p>
                                 </Col>
                                 <Col xs={4} md={2} className="carousel-1">
-                                    <img src="/images/carousel-1.png" alt=""/>
+                                    <img src="/images/carousel-1.png" alt="" />
                                 </Col>
                                 <Col xs={6} md={4} className="carousel-2">
-                                    <img src="/images/carousel-2.png" alt=""/>
+                                    <img src="/images/carousel-2.png" alt="" />
                                 </Col>
                             </Row>
                         </Card>
@@ -127,7 +132,7 @@ export default function Home() {
                                     <p className="text-3">60%</p>
                                 </Col>
                                 <Col xs={4} md={2} className="carousel-1">
-                                    <img src="/images/carousel-1.png" alt=""/>
+                                    <img src="/images/carousel-1.png" alt="" />
                                 </Col>
                                 <Col xs={6} md={4} className="carousel-2">
                                     <img src="/images/carousel-3.png" alt="" />
@@ -144,10 +149,10 @@ export default function Home() {
                                     <p className="text-3">60%</p>
                                 </Col>
                                 <Col xs={4} md={2} className="carousel-1">
-                                    <img src="/images/carousel-1.png" alt=""/>
+                                    <img src="/images/carousel-1.png" alt="" />
                                 </Col>
                                 <Col xs={6} md={4} className="carousel-2">
-                                    <img src="/images/carousel-4.png" alt=""/>
+                                    <img src="/images/carousel-4.png" alt="" />
                                 </Col>
                             </Row>
                         </Card>
@@ -178,28 +183,13 @@ export default function Home() {
                             <FiSearch className="align-self-center" /> Kesehatan
                         </Button>
                     </div>
-
-                    {isLoggedIn ? (
-                        <Link to={`/about/${user.id}`} className="text-decoration-none">
-                            <Button className="d-flex gap-2 px-3 py-2 fixed-bottom button-sell mb-4">
-                                <BsPlus
-                                    className="align-self-center "
-                                    style={{ fontSize: "24px" }}
-                                />{" "}
-                                Jual
-                            </Button>
-                        </Link>
-                    ) : (
-                        <Link to="/login" className="text-decoration-none">
-                            <Button className="d-flex gap-2 px-3 py-2 fixed-bottom button-sell mb-4">
-                                <BsPlus
-                                    className="align-self-center "
-                                    style={{ fontSize: "24px" }}
-                                />{" "}
-                                Jual
-                            </Button>
-                        </Link>
-                    )}
+                    <Button className="d-flex gap-2 px-3 py-2 fixed-bottom button-sell mb-4" onClick={handleJual}>
+                        <BsPlus
+                            className="align-self-center "
+                            style={{ fontSize: "24px" }}
+                        />{" "}
+                        Jual
+                    </Button>
                 </div>
 
             </Container>
