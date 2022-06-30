@@ -27,7 +27,7 @@ root.render(
       <Route path="/updateproduct" element={<UpdateProduct />} />
       <Route path="/InfoProduct" element={<InfoProduct />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/account" element={<Account />} />
+      {/* <Route path="/account" element={<Account />} /> */}
     </Routes>
   </Router>
   </Provider>
