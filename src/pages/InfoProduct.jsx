@@ -22,7 +22,7 @@ function InfoProduct(props) {
   const descriptionField = useRef("");
   const [isSold, setIsSold] = useState(Boolean);
   const [isPublish, setIsPublish] = useState(Boolean);
-  const [imageField, setImageField] = useState();
+  // const [imageField, setImageField] = useState();
   // const [preview, setPreview] = useState();
 
   const [errorResponse, setErrorResponse] = useState({
@@ -207,7 +207,7 @@ function InfoProduct(props) {
             </aside>
           </section>
           <div className="d-flex justify-content-between">
-            <Button className="myButton7" type="submit" onClick={() => setIsPublish(false)}>
+            <Button className="myButton7" type="submit" onClick={() => setIsPublish("false")}>
               Preview
             </Button>
             <Button className="myButton6" type="submit" onClick={() => setIsPublish(true)}>

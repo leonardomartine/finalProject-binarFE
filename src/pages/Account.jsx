@@ -1,7 +1,7 @@
 import "../css/account.css";
 import * as React from 'react';
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Navbar, Button, Form, Container } from "react-bootstrap";
 import { FiCamera, FiEdit3, FiLogOut } from "react-icons/fi";
 import axios from "axios";
@@ -61,6 +61,7 @@ export default function SelectedListItem() {
 
         navigate("/");
     };
+    console.log(user.image);
 
     const alertLogout = async () => {
         Swal.fire({
@@ -95,26 +96,25 @@ export default function SelectedListItem() {
                 </Container>
             </Navbar>
             <Container className="my-5 w-50">
-                <Button className="profil-account">
-                    <h2>
-                        <FiCamera
-                            className="account-camera-icon"
-                        />
-                    </h2>
-                    <Form.Control type="file" className="profil-camera-form" onChange={(e) => {
-                        setimageField(e.target.files[0])
-                    }} />
-                </Button>
+                <Box className="profil-account">
+                    <Box component={'img'}
+                    className="profil-camera-form"
+                    src={`http://localhost:8888/public/files/${user.image}`}
+                    />
+                </Box>
             </Container>
             <div className="account-items">
                 <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
                     <List component="nav" aria-label="main mailbox folders">
-                        <ListItemButton href="/about/1">
-                            <ListItemIcon>
-                                <FiEdit3 className="edit-account-icon" />
-                            </ListItemIcon>
-                            <ListItemText primary="Ubah Akun" />
-                        </ListItemButton>
+                        <Link to={`/EditProfil/${user.id}`} style={{textDecoration: "none", color: "black"}}>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <FiEdit3 className="edit-account-icon" />
+                                </ListItemIcon>
+                                <ListItemText primary="Ubah Akun" />
+                            </ListItemButton>
+                        </Link>
+
                         <Divider />
                         <ListItemButton>
                             <ListItemIcon>

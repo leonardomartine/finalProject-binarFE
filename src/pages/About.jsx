@@ -7,7 +7,7 @@ import "../css/mainRio.css";
 
 function About() {
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [user, setUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const { id } = useParams();
@@ -133,7 +133,7 @@ function About() {
           </Form>
           <Form.Group className="mb-3">
             <Form.Label>Kota*</Form.Label>
-            <select ref={kotaField} value={user.kota} className="form-select">
+            <Form.Select ref={kotaField} defaultValue={user.kota} className="form-select">
               <option hidden>Pilih Kota</option>
               <option value="Jakarta">Jakarta</option>
               <option value="JawaTengah">Jawa Tengah</option>
@@ -143,7 +143,7 @@ function About() {
               <option value="KalimantanTimur">Kalimantan Timur</option>
               <option value="KalimantanSelatan">Kalimantan Selatan</option>
               <option value="KalimantanBarat">Kalimantan Barat</option>
-            </select>
+            </Form.Select>
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Alamat*</Form.Label>
