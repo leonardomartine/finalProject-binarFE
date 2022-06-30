@@ -10,6 +10,7 @@ import { BsPlus } from "react-icons/bs";
 import Navbar from "../components/NavBar";
 import CardProduct from "../components/Card";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 export default function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -17,6 +18,8 @@ export default function Home() {
     const [category, setCategory] = useState("")
     const [user, setUser] = useState({});
     const navigate = useNavigate();
+    const searching = useSelector(state => state.search.search)
+    console.log(searching);
 
     const handleJual = () => {
         isLoggedIn ? user.kota ? navigate('/InfoProduct') : navigate(`/about/${user.id}`) : navigate('/login')
@@ -79,10 +82,11 @@ export default function Home() {
     };
 
     const categories = category ? `&category=${category}` : ""
+    const searched = searching ? `&name=${searching}` : ""
     const getProductPublish = async () => {
         try {
             const dataProduct = await axios.get(
-                `http://localhost:8888/api/filter?sold=false&isPublish=true${categories}`
+                `http://localhost:8888/api/filter?sold=false&isPublish=true${categories}${searched}`
             )
 
             const payloadData = await dataProduct.data.data.filteredProduct;
@@ -93,7 +97,7 @@ export default function Home() {
     }
     useEffect(() => {
         getProductPublish()
-    }, [categories])
+    }, [categories, searching])
 
     return (
         <>

@@ -9,6 +9,7 @@ import axios from "axios";
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+import { addSearch } from "../slices/searchingSlice";
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 
@@ -50,6 +51,7 @@ export default function NavBar() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [user, setUser] = useState({});
     const [show, setShow] = useState(false);
+    const [searching, setSearching] = useState("");
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -62,6 +64,12 @@ export default function NavBar() {
         } else {
             setColor(false)
         }
+    }
+
+    const handleSearch = () => {
+        dispatch(
+            addSearch(searching)
+        )
     }
 
     window.addEventListener('scroll', changeColor)
@@ -99,9 +107,9 @@ export default function NavBar() {
                 setIsLoggedIn(false);
             }
         };
-
+        handleSearch();
         fetchData();
-    }, []);
+    }, [searching]);
 
 
 
@@ -114,6 +122,9 @@ export default function NavBar() {
                         <Search>
                             <SearchIcon className="search-icon" />
                             <StyledInputBase
+                                onChange={(e) => {
+                                    setSearching(e.target.value)
+                                }}
                                 placeholder="Cari di sini …"
                                 inputProps={{ 'aria-label': 'search' }}
                             />
@@ -151,16 +162,6 @@ export default function NavBar() {
                                             <Dropdown.Item className="mt-2" href="/account">Akun Saya</Dropdown.Item>
                                         </Offcanvas.Body>
                                     </Offcanvas>
-
-
-                                    {/* for notification */}
-                                    {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                                    <Badge badgeContent={14} color="error">
-                                        <FiBell className="icon-bell-header mx-3" />
-                                    </Badge>
-                                    </IconButton> */}
-
-
                                 </>
                             )
                             }
