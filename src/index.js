@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import InfoProduct from "./pages/InfoProduct";
 import SellerProductPenawar from "./pages/SellerProductPenawar";
+import SellerProductPenawar2 from "./pages/SellerProductPenawar2";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,6 +24,7 @@ root.render(
       <Route path="/about/:id" element={<About />} />
       <Route path="/InfoProduct" element={<InfoProduct />} />
       <Route path="/sellerproductpenawar" element={<SellerProductPenawar />} />
+      <Route path="/sellerproductpenawar2" element={<SellerProductPenawar2 />} />
       <Route path="/login" element={<Login />} />
     </Routes>
   </Router>

@@ -14,9 +14,11 @@ import {
 import { useNavigate, Link } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
-import { AiOutlineClose } from "react-icons/ai";
+import { BiRadioCircle } from "react-icons/bi";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import ToggleButton from "react-bootstrap/ToggleButton";
 import axios from "axios";
-import "../css/sellerProductPenawar.css";
+import "../css/sellerProductPenawar2.css";
 
 function UpdateProduct() {
   const navigate = useNavigate();
@@ -29,8 +31,16 @@ function UpdateProduct() {
   const [imageField, setImageField] = useState();
   const [show, setShow] = useState(false);
 
+  const [checked, setChecked] = useState(false);
+  const [radioValue, setRadioValue] = useState("1");
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const radios = [
+    { name: "O", value: "1" },
+    { name: "O", value: "2" },
+  ];
 
   const [errorResponse, setErrorResponse] = useState({
     isError: false,
@@ -168,14 +178,21 @@ function UpdateProduct() {
                 type="submit"
                 onClick={() => setIsPublish(false)}
               >
-                Tolak
+                Status
               </button>
               <button
                 className="myButton6-seller-product-penawar"
                 type="submit"
                 onClick={handleShow}
               >
-                Terima
+                Hubungi di
+                <FaWhatsapp
+                  style={{
+                    fontSize: "15px",
+                    marginLeft: "10px",
+                    marginBotom: "15px",
+                  }}
+                />
               </button>
               <Modal
                 className="Modal-info-penawar-seller"
@@ -185,118 +202,115 @@ function UpdateProduct() {
                 size="sm"
                 centered
               >
-                <Modal.Header closeButton></Modal.Header>
-                <Modal.Body
-                  style={{
-                    color: "black",
-                    fontWeight: "bold",
-                    fontSize: "14px",
-                  }}
-                >
-                  Yeay kamu berhasil mendapat harga yang sesuai
-                </Modal.Body>
-                <Modal.Body
-                  style={{
-                    color: "#8A8A8A",
-                    marginTop: "-25px",
-                    fontSize: "14px",
-                  }}
-                >
-                  Segera hubungi pembeli melalui whatsapp untuk transaksi
-                  selanjutnya
-                </Modal.Body>
-                <Container>
-                  <Col className="gambar-modal">
-                    <Modal.Body
-                      style={{
-                        color: "black",
-                        fontWeight: "bold",
-                        textAlign: "center",
-                        fontSize: "14px",
-                      }}
-                    >
-                      Product Match
-                    </Modal.Body>
-                    <Card.Img
-                      src="/images/carousel-2.png"
-                      alt=""
-                      style={{
-                        color: "black",
-                        width: "48px",
-                        height: "48px",
-                        marginLeft: "10px",
-                        borderRadius: "12px",
-                        flex: "none",
-                      }}
-                    />
-                    <Card.Title
-                      className="nama-seller-product-penawar"
-                      style={{
-                        color: "black",
-                        marginTop: "-50px",
-                      }}
-                    >
-                      Nama Pembeli
-                    </Card.Title>
-                    <Card.Text className="card-kota-seller-product-penawar">
-                      Kota
-                    </Card.Text>
-                    <Card.Img
-                      src="/images/carousel-2.png"
-                      alt=""
-                      style={{
-                        color: "black",
-                        width: "48px",
-                        height: "48px",
-                        marginLeft: "10px",
-                        borderRadius: "12px",
-                        flex: "none",
-                      }}
-                    />
-                    <Card.Title
-                      className="nama2-seller-product-penawar"
-                      style={{
-                        marginTop: "-50px",
-                      }}
-                    >
-                      Jam Tangan Casio
-                    </Card.Title>
-                    <Card.Text
-                      className="nama2-seller-product-penawar"
-                      style={{
-                        marginTop: "-5px",
-                      }}
-                    >
-                      <s>Rp 250.000 </s>
-                    </Card.Text>
-                    <Card.Text className="nama2-seller-product-penawar">
-                      Ditawar Rp 200.000
-                    </Card.Text>
-                  </Col>
-                </Container>
-                <Modal.Body>
-                  <button
-                    className="myButton8-seller-product-penawar w-100"
-                    onClick={handleClose}
+                <div className="">
+                  <Modal.Header closeButton></Modal.Header>
+                  <Modal.Body
+                    style={{
+                      color: "black",
+                      fontWeight: "bold",
+                      fontSize: "14px",
+                    }}
                   >
-                    <Link
-                      to="/sellerproductpenawar2"
-                      className="text-decoration-none"
-                      style={{
-                        color: "white",
-                      }}
-                    >
-                      Hubungi via Whatsapp
-                      <FaWhatsapp
+                    Perbarui status penjualan produkmu
+                  </Modal.Body>
+                  <Modal.Body
+                    style={{
+                      color: "#8A8A8A",
+                      marginTop: "-25px",
+                      fontSize: "14px",
+                    }}
+                  >
+                    Segera hubungi pembeli melalui whatsapp untuk transaksi
+                    selanjutnya
+                  </Modal.Body>
+                  <div
+                    className="control-group"
+                    style={{
+                      fontSize: "14px",
+                      marginLeft: "12px",
+                    }}
+                  >
+                    <label className="control control-radio col-10">
+                      <input type="radio" name="radio" checked="checked" />
+                      Berhasil terjual
+                      <p
                         style={{
-                          fontSize: "15px",
-                          marginLeft: "6px",
-                          marginBotom: "15px",
+                          color: "#8A8A8A",
+                          fontSize: "14px",
                         }}
-                      />
-                    </Link>
-                  </button>
-                </Modal.Body>
+                      >
+                        Kamu telah sepakat menjual produk ini kepada pembeli
+                      </p>
+                      <div className="control_indicator"></div>
+                    </label>
+                    <label className="control control-radio col-10">
+                      <input type="radio" name="radio" />
+                      Batalkan transaksi
+                      <p
+                        style={{
+                          color: "#8A8A8A",
+                          fontSize: "14px",
+                        }}
+                      >
+                        Kamu membatalkan transaksi produk ini dengan pembeli
+                      </p>
+                      <div className="control_indicator"></div>
+                    </label>
+                  </div>
+
+                  {/* <Modal.Body>
+                  <Col>
+                    <ButtonGroup>
+                      {radios.map((radio, idx) => (
+                        <Button
+                          key={idx}
+                          id={`radio-${idx}`}
+                          type="radio"
+                          variant={
+                            idx % 2 ? "outline-success" : "outline-danger"
+                          }
+                          name="radio"
+                          value={radio.value}
+                          checked={radioValue === radio.value}
+                          onChange={(e) => setRadioValue(e.currentTarget.value)}
+                        >
+                          {radio.name}
+                        </Button>
+                      ))}
+                    </ButtonGroup>
+                  </Col>
+                </Modal.Body> */}
+                  {/* <Modal.Body>
+                  <Col>
+                    <ButtonGroup>
+                      {radios.map((radio, idx) => (
+                        <ToggleButton
+                          key={idx}
+                          id={`radio-${idx}`}
+                          type="radio"
+                          variant={
+                            idx % 2 ? "outline-success" : "outline-danger"
+                          }
+                          name="radio"
+                          value={radio.value}
+                          checked={radioValue === radio.value}
+                          onChange={(e) => setRadioValue(e.currentTarget.value)}
+                        >
+                          {radio.name}
+                        </ToggleButton>
+                      ))}
+                    </ButtonGroup>
+                  </Col>
+                </Modal.Body> */}
+                  <Modal.Body>
+                    <button
+                      className="myButton8-seller-product-penawar w-100"
+                      onClick={handleClose}
+                    >
+                      Kirim
+                    </button>
+                  </Modal.Body>
+                </div>
               </Modal>
               {/* <button
                 className="myButton6-seller-product-penawar"
@@ -307,6 +321,7 @@ function UpdateProduct() {
               </button> */}
             </div>
           </div>
+
           {errorResponse.isError && (
             <Alert variant="danger">{errorResponse.message}</Alert>
           )}
