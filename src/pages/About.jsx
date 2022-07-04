@@ -7,9 +7,7 @@ import "../css/mainRio.css";
 
 function About() {
   const navigate = useNavigate();
-  // const [data, setData] = useState([]);
-  const [user, setUser] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [data, setData] = useState([]);
   const { id } = useParams();
   const nameField = useRef("");
   const kotaField = useRef("");
@@ -21,37 +19,6 @@ function About() {
     isError: false,
     message: "",
   });
-
-  useEffect(() => {
-
-    const fetchData = async () => {
-      try {
-        // Check status user login
-        // 1. Get token from localStorage
-        const token = localStorage.getItem("token");
-
-        // 2. Check token validity from API
-        const currentUserRequest = await axios.get(
-          "http://localhost:8888/auth/me",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        const currentUserResponse = currentUserRequest.data;
-
-        if (currentUserResponse.status) {
-          setUser(currentUserResponse.data.user);
-        }
-      } catch (err) {
-        setIsLoggedIn(false);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const onUpdate = async (e) => {
     e.preventDefault();
@@ -67,7 +34,7 @@ function About() {
 
 
       const updateRequest = await axios.put(
-        `http://localhost:8888/api/users/${id}`,
+        `http://localhost:8888/api/users/update/${id}`,
         userToUpdatePayload,
         {
           headers: {
@@ -79,7 +46,7 @@ function About() {
 
       const updateResponse = updateRequest.data;
 
-      if (updateResponse.status) navigate("/InfoProduct");
+      if (updateResponse.status) navigate("/register");
     } catch (err) {
       const response = err.response.data;
 
@@ -89,6 +56,24 @@ function About() {
       });
     }
   };
+
+  const getUsers = async () => {
+    try {
+
+      const responseUsers = await axios.get(`http://localhost:8888/api/users/${id}`)
+
+      const dataUsers = await responseUsers.data.data.getdata;
+
+      setData(dataUsers)
+      console.log(dataUsers);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    getUsers();
+  }, [])
 
   return (
     <div>
@@ -124,16 +109,17 @@ function About() {
               />
             </h2>
             <Form.Control type="file" className="formCamera" onChange={(e) => {
+              console.log(e.target.files[0]);
               setimageField(e.target.files[0])
             }} />
           </button>
           <Form className="border1 mb-3">
             <Form.Label>Nama*</Form.Label>
-            <Form.Control type="text" ref={nameField} defaultValue={user.name} />
+            <Form.Control type="text" ref={nameField} defaultValue={data.name} />
           </Form>
           <Form.Group className="mb-3">
             <Form.Label>Kota*</Form.Label>
-            <Form.Select ref={kotaField} defaultValue={user.kota} className="form-select">
+            <select ref={kotaField} className="form-select">
               <option hidden>Pilih Kota</option>
               <option value="Jakarta">Jakarta</option>
               <option value="JawaTengah">Jawa Tengah</option>
@@ -143,14 +129,13 @@ function About() {
               <option value="KalimantanTimur">Kalimantan Timur</option>
               <option value="KalimantanSelatan">Kalimantan Selatan</option>
               <option value="KalimantanBarat">Kalimantan Barat</option>
-            </Form.Select>
+            </select>
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Alamat*</Form.Label>
             <Form.Control
               type="text"
               ref={alamatField}
-              defaultValue={user.alamat}
               placeholder="Contoh: Jalan Ikan Hiu 33"
               as="textarea"
               rows={3}
@@ -161,7 +146,6 @@ function About() {
             <Form.Control
               type="text"
               ref={noHpField}
-              defaultValue={user.noHp}
               placeholder="contoh: +628123456789"
             />
           </Form.Group>
@@ -173,6 +157,7 @@ function About() {
           </Button>
         </Form>
       </Container>
+      <Link to="/">Go to home page</Link>
     </div>
   );
 }

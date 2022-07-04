@@ -1,115 +1,47 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import {
+  Col,
+  Row,
   Nav,
   Navbar,
   Form,
   Container,
-  Alert,
   Button,
+  Alert,
 } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
+import { selectUser } from "../slices/userSlice";
 import { FiArrowLeft } from "react-icons/fi";
 import { BiPlus } from "react-icons/bi";
 import axios from "axios";
 import "../css/mainRio.css";
-import { useDropzone } from "react-dropzone";
 
-function InfoProduct(props) {
+function InfoProduct() {
   const navigate = useNavigate();
-  const nameField = useRef("");
-  const priceField = useRef("");
-  const categoryField = useRef("");
+  const userRedux = useSelector(selectUser);
+  const [user] = useState(userRedux.creds);
+  const titleField = useRef("");
   const descriptionField = useRef("");
-  const [isSold, setIsSold] = useState(Boolean);
-  const [isPublish, setIsPublish] = useState(Boolean);
-  // const [imageField, setImageField] = useState();
-  // const [preview, setPreview] = useState();
+  const [pictureField, setPictureField] = useState();
 
   const [errorResponse, setErrorResponse] = useState({
     isError: false,
     message: "",
   });
 
-  const thumbsContainer = {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginTop: 16
-  };
-
-  const thumb = {
-    display: 'inline-flex',
-    borderRadius: 2,
-    border: '1px solid #eaeaea',
-    marginBottom: 8,
-    marginRight: 8,
-    width: 100,
-    height: 100,
-    padding: 4,
-    boxSizing: 'border-box'
-  };
-
-  const thumbInner = {
-    display: 'flex',
-    minWidth: 0,
-    overflow: 'hidden'
-  };
-
-  const img = {
-    display: 'block',
-    width: 'auto',
-    height: '100%'
-  };
-
-  const [files, setFiles] = useState([]);
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: {
-      'image/*': []
-    },
-    onDrop: acceptedFiles => {
-      setFiles(acceptedFiles.map(file => Object.assign(file, {
-        preview: URL.createObjectURL(file)
-      })));
-    }
-  });
-
-  const thumbs = files.map(file => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <img
-          src={file.preview}
-          style={img}
-          // Revoke data uri after image is loaded
-          onLoad={() => { URL.revokeObjectURL(file.preview) }}
-        />
-      </div>
-    </div>
-  ));
-
-  useEffect(() => {
-    // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
-    return () => files.forEach(file => URL.revokeObjectURL(file.preview));
-  }, []);
-
   const onCreate = async (e) => {
     e.preventDefault();
-
 
     try {
       const token = localStorage.getItem("token");
       const postPayload = new FormData();
-      postPayload.append("name", nameField.current.value);
-      postPayload.append("price", priceField.current.value);
-      postPayload.append("category", categoryField.current.value);
+      postPayload.append("title", titleField.current.value);
       postPayload.append("description", descriptionField.current.value);
-      postPayload.append("sold", isSold);
-      postPayload.append("isPublish", isPublish);
-      files.forEach(element => {
-        postPayload.append("image", element);
-      });
+      postPayload.append("picture", pictureField);
 
       const createRequest = await axios.post(
-        "http://localhost:8888/api/product",
+        "http://localhost:2000/posts",
         postPayload,
         {
           headers: {
@@ -161,21 +93,21 @@ function InfoProduct(props) {
         <Form onSubmit={onCreate}>
           <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
             <Form.Label>Nama Produk</Form.Label>
-            <Form.Control type="text" ref={nameField} placeholder="Nama" />
+            <Form.Control type="text" ref={titleField} placeholder="Nama" />
           </Form>
           <Form className="border1 mb-3" style={{ fontWeight: "bold" }}>
             <Form.Label>Harga Produk</Form.Label>
-            <Form.Control type="text" ref={priceField} placeholder="Rp 0,00" />
+            <Form.Control type="text" ref={titleField} placeholder="Rp 0,00" />
           </Form>
           <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
             <Form.Label>Kategori</Form.Label>
-            <select ref={categoryField} className="form-select">
+            <select ref={descriptionField} className="form-select">
               <option hidden>Pilih Kategori</option>
-              <option value="hobi">Hobi</option>
-              <option value="kendaraan">Kendaraan</option>
+              <option value="Hobi">Hobi</option>
+              <option value="Kendaraan">Kendaraan</option>
               <option value="Baju">Baju</option>
               <option value="Elektronik">Elektronik</option>
-              <option value="kesehatan">Kesehatan</option>
+              <option value="Kesehatan">Kesehatan</option>
             </select>
           </Form.Group>
           <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
@@ -191,29 +123,26 @@ function InfoProduct(props) {
           <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
             Foto Produk
           </Form.Group>
-          <section className="container">
-            <div {...getRootProps({ className: 'dropzone' })}>
-              <input {...getInputProps()} />
-              <button className="mb-3 box2" >
-                <h2>
-                  <BiPlus
-                    className="plus"
-                  />
-                </h2>
+          <button className="mb-3 box2">
+            <h2>
+              <BiPlus
+                className="plus"
+                onChange={(e) => setPictureField(e.target.files[0])}
+              />
+            </h2>
+          </button>
+          <Row>
+            <Col>
+              <button className="myButton7 w-100" type="submit">
+                Preview
               </button>
-            </div>
-            <aside style={thumbsContainer}>
-              {thumbs}
-            </aside>
-          </section>
-          <div className="d-flex justify-content-between">
-            <Button className="myButton7" type="submit" onClick={() => setIsPublish("false")}>
-              Preview
-            </Button>
-            <Button className="myButton6" type="submit" onClick={() => setIsPublish(true)}>
-              Terbitkan
-            </Button>
-          </div>
+            </Col>
+            <Col>
+              <button className="myButton6 w-100" type="submit">
+                Terbitkan
+              </button>
+            </Col>
+          </Row>
           {errorResponse.isError && (
             <Alert variant="danger">{errorResponse.message}</Alert>
           )}
