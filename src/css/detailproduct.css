@@ -158,11 +158,10 @@ position: relative;
       height: 30px;
       text-align: center;
       padding: 6px 0;
-      font-size: 12px;
+      font-size: 3px;
       line-height: 1.428571429;
       border-radius: 15px;
-      background-color: rgb(255, 255, 255);
-      color: white;
+      
       /* display: none; */
 
     }
