@@ -13,7 +13,7 @@ import InfoProduct from "./pages/InfoProduct";
 import Account from "./pages/Account";
 import EditProfil from "./pages/EditProfil";
 import UpdateProduct from "./pages/UpdateProduct";
-
+import DaftarJual from "./pages/DaftarJual";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -27,7 +27,8 @@ root.render(
       <Route path="/updateproduct" element={<UpdateProduct />} />
       <Route path="/InfoProduct" element={<InfoProduct />} />
       <Route path="/login" element={<Login />} />
-      {/* <Route path="/account" element={<Account />} /> */}
+      <Route path="/account" element={<Account />} />
+      <Route path="/seller/daftar-jual" element={<DaftarJual />} />
     </Routes>
   </Router>
   </Provider>

@@ -1,7 +1,7 @@
 import "../css/main.css";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Navbar, Container, Button, Dropdown, Offcanvas } from "react-bootstrap";
 import { FiLogIn, FiList, FiUser, FiBell } from "react-icons/fi";
 import { addUser } from "../slices/userSlice";
@@ -10,9 +10,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import { addSearch } from "../slices/searchingSlice";
-import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
-
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -112,7 +109,6 @@ export default function NavBar() {
     }, [searching]);
 
 
-
     return (
         <>
             <Navbar expand="lg" className={color ? 'navbar-scroll' : 'navbar1'} >
@@ -148,7 +144,7 @@ export default function NavBar() {
 
                             ) : (
                                 <>
-                                    <FiList className="icon-list-header m-3" />
+                                    <Button className="home-navbar-user" href="/seller/daftar-jual"><FiList className="icon-list-header" /></Button>
                                     <FiBell className="icon-bell-header m-3" />
                                     <Button className="home-navbar-user" href="/account"><FiUser className="icon-user-header" /></Button>
 
@@ -158,7 +154,7 @@ export default function NavBar() {
                                         </Offcanvas.Header>
                                         <Offcanvas.Body>
                                             <Dropdown.Item href="#/action-1">Notifikasi</Dropdown.Item>
-                                            <Dropdown.Item className="mt-2" href="#/action-1">Daftar Jual</Dropdown.Item>
+                                            <Dropdown.Item className="mt-2" href="/seller/daftar-jual">Daftar Jual</Dropdown.Item>
                                             <Dropdown.Item className="mt-2" href="/account">Akun Saya</Dropdown.Item>
                                         </Offcanvas.Body>
                                     </Offcanvas>
