@@ -37,6 +37,10 @@
     margin-top: 10px;
     
 }
+
+.card-main{
+	width: 40%;
+}
 .nama-seller-product-penawar{
     margin-left:70px;
     font-size: 14px;
@@ -317,6 +321,11 @@
 /* Modal Perbarui status penjualan */
     
 @media (max-width: 1023px) {
+
+	.card-main{
+		width: 100%;
+		overflow-x: hidden;
+	}
 	/* Lengkapi Info akun */
     .na1-seller-product-penawar {
 		display: none; 

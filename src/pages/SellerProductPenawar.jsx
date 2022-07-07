@@ -95,7 +95,7 @@ function UpdateProduct() {
         </nav>
       </div>
 
-      <Container className="my-5 w-50">
+      <Container className="card-main">
         <div>
           <Link
             className="arrow2-seller-product-penawar"
@@ -129,7 +129,7 @@ function UpdateProduct() {
 
           <Form.Group
             className="mb-3"
-            style={{ fontWeight: "bold", marginTop: "15px" }}
+            style={{ fontWeight: "bold", marginTop: "15px"}}
           >
             <Form.Label>Daftar Produkmu yang Ditawar</Form.Label>
           </Form.Group>

@@ -105,7 +105,7 @@ function UpdateProduct() {
         </nav>
       </div>
 
-      <Container className="my-5 w-50">
+      <Container className="card-main">
         <div>
           <Link
             className="arrow2-seller-product-penawar"

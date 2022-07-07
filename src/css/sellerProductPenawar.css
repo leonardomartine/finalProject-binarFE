@@ -192,8 +192,76 @@
 	padding-bottom: 15px;
 
 }
+
+.card-main{
+	width: 40%;
+}
     
 @media (max-width: 1023px) {
+
+	.card-main{
+		width: 100%;
+		overflow-x: hidden;
+	}
+
+	.card2-seller-product-penawar{
+		border-radius: 16px;
+		display: flex;
+		border: 1px ;
+		margin-right: 100px;
+	}
+	.card2-kota-seller-product-penawar p{
+	 margin-left: 88%;
+	 margin-top: -10px;
+	}
+	.card2-seller-product-penawar img{
+		width: 100px ;
+		height: 50px;
+		border-radius: 12px;
+	}
+	.nama2-seller-product-penawar{
+		margin-left:70px;
+		font-size: 14px;
+		color: black;
+		margin-bottom: 5px;
+		line-height: 20px;
+	}
+	.card2-kota-seller-product-penawar{
+		margin-left:70px;
+		font-size: 10px;
+		color: #8A8A8A;
+	}
+	.shadow-seller-product-penawar{
+		border-bottom: 2px solid #E5E5E5	;
+	}
+
+	.nama-seller-product-penawar {
+		margin: 15px;
+		justify-content: left;
+	}
+	
+	.card-seller-product-penawar img{
+		width: 100px ;
+		height: 50px;
+		border-radius: 12px;
+		margin-top: 10px;
+		justify-content: left;
+		
+	}
+	.nama-seller-product-penawar{
+		margin-left:70px;
+		font-size: 14px;
+		font-weight: bold;
+		justify-content: left;
+	}
+	.card-kota-seller-product-penawar{
+		margin-left:70px;
+		font-size: 10px;
+		color: #8A8A8A;
+		justify-content: left;
+		width: 100px !important;
+
+	}
 	/* Lengkapi Info akun */
     .na1-seller-product-penawar {
 		display: none; 
@@ -251,6 +319,7 @@
 		padding:8px 24px;
 		width: 49%;
 		margin-left:10px;
+		
 	}
 
 	.myButton7-seller-product-penawar{
