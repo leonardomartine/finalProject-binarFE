@@ -6,6 +6,7 @@ import { BiPlus } from "react-icons/bi";
 import axios from "axios";
 import "../css/updateProduct.css";
 import { useDropzone } from "react-dropzone";
+import { Box } from "@mui/material";
 
 function UpdateProduct() {
     const navigate = useNavigate();
@@ -82,7 +83,7 @@ function UpdateProduct() {
         return () => files.forEach(file => URL.revokeObjectURL(file.preview));
     }, []);
 
-    const onUpdate = async (e) => {
+    const onUpdate = async (e, isPublish) => {
         e.preventDefault();
 
         try {
@@ -92,12 +93,13 @@ function UpdateProduct() {
             postPayload.append("price", priceField.current.value);
             postPayload.append("category", categoryField.current.value);
             postPayload.append("description", descriptionField.current.value);
+            postPayload.append("isPublish", isPublish);
             files.forEach(element => {
                 postPayload.append("image", element);
             });
 
-            const createRequest = await axios.post(
-                "http://localhost:8888/api/product",
+            const createRequest = await axios.put(
+                `http://localhost:8888/api/product/${id}`,
                 postPayload,
                 {
                     headers: {
@@ -106,10 +108,11 @@ function UpdateProduct() {
                     },
                 }
             );
+            console.log(id);
 
             const createResponse = createRequest.data;
 
-            if (createResponse.status) navigate("/");
+            if (createResponse.status) navigate(`/detailProduct/${data.id}`);
         } catch (err) {
             const response = err.response.data;
 
@@ -125,8 +128,7 @@ function UpdateProduct() {
             const token = localStorage.getItem("token");
             const responseProduct = await axios.get(`http://localhost:8888/api/product/${id}`, {
                 headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${token}`
                 },
             })
 
@@ -151,7 +153,7 @@ function UpdateProduct() {
                     <Link to="/">
                         <button className="na2-update-product navbar-brand box-update-product"></button>
                     </Link>
-                    <Navbar.Brand href="#" />
+                    <Navbar.Brand href="/" />
                     <div className="offcanvas-body" id="offcanvasRight">
                         <div className="info-update-product-nav navbar">
                             <Nav className="text-dark"> Update Produk </Nav>
@@ -164,7 +166,7 @@ function UpdateProduct() {
                 <div>
                     <Link
                         className="arrow2-update-product"
-                        to="/"
+                        to={`/detailProduct/${data.id}`}
                         style={{ color: "black" }}
                     >
                         <FiArrowLeft />
@@ -173,79 +175,79 @@ function UpdateProduct() {
                 <div>
                     <Nav className="info3-update-product text-dark">Update Produk</Nav>
                 </div>
-                <Form onSubmit={onUpdate}>
-                    <Form
-                        className="border1-update-product mb-3"
-                        style={{ fontWeight: "bold" }}
-                    >
-                        <Form.Label>Nama Produk</Form.Label>
-                        <Form.Control type="text" ref={nameField} defaultValue={data.name} placeholder="Nama" />
-                    </Form>
-                    <Form
-                        className="border1-update-product mb-3"
-                        style={{ fontWeight: "bold" }}
-                    >
-                        <Form.Label>Harga Produk</Form.Label>
-                        <Form.Control type="text" ref={priceField} defaultValue={data.price} placeholder="Rp 0,00" />
-                    </Form>
-                    <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
-                        <Form.Label>Kategori</Form.Label>
-                        <select ref={categoryField} className="form-select">
-                            <option hidden>Pilih Kategori</option>
-                            <option value="hobi">Hobi</option>
-                            <option value="kendaraan">Kendaraan</option>
-                            <option value="Baju">Baju</option>
-                            <option value="Elektronik">Elektronik</option>
-                            <option value="kesehatan">Kesehatan</option>
-                        </select>
-                    </Form.Group>
-                    <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
-                        <Form.Label>Deskripsi</Form.Label>
-                        <Form.Control
-                            type="text"
-                            ref={descriptionField}
-                            defaultValue={data.description}
-                            placeholder="Contoh: Jalan Ikan Hiu 33"
-                            as="textarea"
-                            rows={3}
-                        />
-                    </Form.Group>
-                    <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
-                        Foto Produk
-                    </Form.Group>
-                    <section className="container">
-                        <div {...getRootProps({ className: 'dropzone' })}>
-                            <input {...getInputProps()} />
-                            <button className="mb-3 box2-update-product">
-                                <h2>
-                                    <BiPlus className="plus-update-product" />
-                                </h2>
-                            </button>
-                        </div>
-                        <aside style={thumbsContainer}>
-                            {thumbs}
-                        </aside>
-                    </section>
-                    <div className="d-flex justify-content-between">
-                        <Button
-                            className="myButton6-update-product"
-                            type="submit"
-                        >
-                            Simpan
-                        </Button>
-                        <Link to='/' className="myButton7-update-product">
-                            <Button
-                                className="w-100"
-                                variant="light"
-                            >
-                                Batal
-                            </Button>
-                        </Link>
-                    </div>
-                    {errorResponse.isError && (
-                        <Alert variant="danger" className="mt-2">{errorResponse.message}</Alert>
-                    )}
+
+                <Form
+                    className="border1-update-product mb-3"
+                    style={{ fontWeight: "bold" }}
+                >
+                    <Form.Label>Nama Produk</Form.Label>
+                    <Form.Control type="text" ref={nameField} defaultValue={data.name} placeholder="Nama" />
                 </Form>
+                <Form
+                    className="border1-update-product mb-3"
+                    style={{ fontWeight: "bold" }}
+                >
+                    <Form.Label>Harga Produk</Form.Label>
+                    <Form.Control type="text" ref={priceField} defaultValue={data.price} placeholder="Rp 0,00" />
+                </Form>
+                <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
+                    <Form.Label>Kategori</Form.Label>
+                    <select ref={categoryField} className="form-select">
+                        <option hidden>Pilih Kategori</option>
+                        <option value="hobi">Hobi</option>
+                        <option value="kendaraan">Kendaraan</option>
+                        <option value="Baju">Baju</option>
+                        <option value="Elektronik">Elektronik</option>
+                        <option value="kesehatan">Kesehatan</option>
+                    </select>
+                </Form.Group>
+                <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
+                    <Form.Label>Deskripsi</Form.Label>
+                    <Form.Control
+                        type="text"
+                        ref={descriptionField}
+                        defaultValue={data.description}
+                        placeholder="Contoh: Jalan Ikan Hiu 33"
+                        as="textarea"
+                        rows={3}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
+                    Foto Produk
+                </Form.Group>
+                <section className="container">
+                    <div {...getRootProps({ className: 'dropzone' })}>
+                        <input {...getInputProps()} />
+                        {files.length === 0 ? <button className="mb-3 box2-update-product">
+                            <h2>
+                                <BiPlus className="plus-update-product" />
+                            </h2>
+                        </button> :
+                            <div>
+                                {thumbs}
+                            </div>}
+                    </div>
+                </section>
+                <div className="d-flex justify-content-between">
+                    <Button
+                        className="myButton6-update-product"
+                        type="submit"
+                        onClick={(e) => onUpdate(e, false)}
+                    >
+                        Simpan
+                    </Button>
+                    <Link to={`/detailProduct/${data.id}`} className="myButton7-update-product">
+                        <Button
+                            className="w-100"
+                            variant="light"
+                        >
+                            Batal
+                        </Button>
+                    </Link>
+                </div>
+                {errorResponse.isError && (
+                    <Alert variant="danger" className="mt-2">{errorResponse.message}</Alert>
+                )}
             </Container>
         </div>
     );

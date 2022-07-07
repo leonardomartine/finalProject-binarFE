@@ -13,6 +13,8 @@ import InfoProduct from "./pages/InfoProduct";
 import Account from "./pages/Account";
 import EditProfil from "./pages/EditProfil";
 import UpdateProduct from "./pages/UpdateProduct";
+import DaftarJual from "./pages/DaftarJual";
+import DetailProduct from "./pages/DetailProduct";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -24,10 +26,12 @@ root.render(
       <Route path="/register" element={<Register />} />
       <Route path="/about/:id" element={<About />} />
       <Route path="/EditProfil/:id" element={<EditProfil />} />
-      <Route path="/updateproduct" element={<UpdateProduct />} />
+      <Route path="/updateproduct/:id" element={<UpdateProduct />} />
       <Route path="/InfoProduct" element={<InfoProduct />} />
       <Route path="/login" element={<Login />} />
       <Route path="/account" element={<Account />} />
+      <Route path="/seller/daftar-jual" element={<DaftarJual />} />
+      <Route path="/detailProduct/:id" element={<DetailProduct />} />
     </Routes>
   </Router>
   </Provider>

@@ -19,7 +19,6 @@ export default function Home() {
     const [user, setUser] = useState({});
     const navigate = useNavigate();
     const searching = useSelector(state => state.search.search)
-    console.log(searching);
 
     const handleJual = () => {
         isLoggedIn ? user.kota ? navigate('/InfoProduct') : navigate(`/about/${user.id}`) : navigate('/login')

@@ -25,7 +25,6 @@ export default function CardProduct({product}) {
     maxHeight: "100%",
   };
 
-  console.log(product);
   return (
     <Container className="card-content">
       {product ? product.map((product) => (

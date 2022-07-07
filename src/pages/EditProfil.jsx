@@ -8,7 +8,6 @@ import { Box } from "@mui/material";
 
 function About() {
     const navigate = useNavigate();
-    // const [data, setData] = useState([]);
     const [user, setUser] = useState({});
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const { id } = useParams();

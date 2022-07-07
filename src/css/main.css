@@ -1,7 +1,7 @@
 /********************
  * Register
  ********************/
- .row {
+.row {
     position:absolute;
     width: 100%;
     height: 100%;
@@ -51,7 +51,7 @@
 /********************
  * Navbar
  ********************/
- .logo {
+.logo {
   width: 100px;
   height: 34px;
   background-color: #4B1979;
@@ -89,7 +89,7 @@
   border-color: white;
 }
 
-.icon-user-header {
+.icon-list-header, .icon-user-header {
   color: black;
 }
 
@@ -119,9 +119,8 @@
       box-shadow: none;
   }
 
-  .home-navbar {
-      flex-direction: row-reverse;
-      gap: 20px;
+  .home-navbar-user, .icon-bell-header, .home-navbar-user {
+      display: none;
   }
 
   .navbar-light .navbar-toggler {
@@ -145,15 +144,15 @@
 /********************
  * Home-carousel
  ********************/
- .slider .owl-theme .owl-nav { 
+.slider .owl-theme .owl-nav { 
   display: none; 
 } 
- 
+
 .slider { 
   position: relative; 
   transition: all 0.5 ease; 
 } 
- 
+
 .slider .owl-item.active.center .slider-card {
   transform: scale(1.5);
 } 
@@ -162,7 +161,7 @@
   margin: 50px 70px 50px 70px; 
   border: 1px solid transparent; 
 } 
- 
+
 .slider .slider-card .card { 
   border: 1px solid transparent; 
 } 
@@ -275,11 +274,11 @@ z-index: 1;
   /********************
  * Home-category
  ********************/
- .category div button.button-sell { 
+.category div button.button-sell { 
   width: 25%; 
   margin: 0 37.5%; 
 } 
- 
+
 .category .button-category { 
   overflow-x: scroll; 
 } 
@@ -318,7 +317,6 @@ z-index: 1;
       grid-gap: 20px;
     }
     
-       
     .category div button.button-sell { 
         width: 7%; 
         border: 1px solid rgba(113, 38, 181, 1); 
@@ -328,14 +326,14 @@ z-index: 1;
         margin: 0 46.5%; 
         box-shadow: 0 7px 20px rgba(0, 0, 0, 0.55); 
     } 
-       
+
     .category div button:hover { 
         border: 1px solid rgba(113, 38, 181, 1); 
         border-radius: 12px; 
         background-color: rgba(113, 38, 181, 1); 
         color: white; 
     } 
-       
+
     .category div button:focus { 
         border: 1px solid rgba(113, 38, 181, 1); 
         border-radius: 12px; 
@@ -351,7 +349,7 @@ z-index: 1;
         background-color: rgba(226, 212, 240, 1); 
         color: black; 
     } 
-       
+
     .category div button.button-sell { 
         width: 20%; 
         border: 1px solid rgba(113, 38, 181, 1); 
@@ -361,14 +359,14 @@ z-index: 1;
         margin: 0 39%; 
         box-shadow: 0 7px 20px rgba(0, 0, 0, 0.55); 
     } 
-       
+
     .category div button:hover { 
         border: 1px solid rgba(113, 38, 181, 1); 
         border-radius: 12px; 
         background-color: rgba(113, 38, 181, 1); 
         color: white; 
     } 
-       
+
     .category div button:focus { 
         border: 1px solid rgba(113, 38, 181, 1); 
         border-radius: 12px; 
