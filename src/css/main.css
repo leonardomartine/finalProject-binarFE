@@ -110,6 +110,11 @@
   font-weight: bold;
 }
 
+.notif-accesoris {
+  font-size: 14px;
+  opacity: 0.5;
+};
+
 @media screen and (max-width: 1023px) {
   .logo {
       display: none;

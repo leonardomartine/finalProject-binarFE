@@ -9,6 +9,7 @@ import axios from "axios";
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+import Divider from '@mui/material/Divider';
 import { addSearch } from "../slices/searchingSlice";
 
 
@@ -147,7 +148,35 @@ export default function NavBar() {
                             ) : (
                                 <>
                                     <Button className="home-navbar-user" href="/seller/daftar-jual"><FiList className="icon-list-header" /></Button>
-                                    <FiBell className="icon-bell-header m-3" />
+                                    <Dropdown >
+                                        <Dropdown.Toggle variant="white" id="dropdown-basic">
+                                            <FiBell className="icon-bell-header" />
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu align="end">
+                                            <Dropdown.Item href="#/action-1">
+                                                <div class="d-flex my-1">
+                                                    <img
+                                                        src={`http://localhost:8888/public/files/${user.image}`}
+                                                        style={{ width: '60px', height: '60px', marginTop: '5px' }}
+                                                        alt=""
+                                                    />
+                                                    <div class="mx-3">
+                                                        <p className="mb-0 notif-accesoris">Hobi</p>
+                                                        <p className="mb-0">Jam Tangan Casio</p>
+                                                        <p className="mb-0">Rp.250.000</p>
+                                                        <p className="mb-0">Ditawarkan Rp.10.000</p>
+                                                    </div>
+                                                    <div class="ms-auto">
+                                                        <p className="mb-0 notif-accesoris">
+                                                            7 Juli, 14.00
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <Divider variant="middle" className="mt-3"/>
+                                            </Dropdown.Item>
+                                      </Dropdown.Menu>
+                                    </Dropdown>
+
                                     <Button className="home-navbar-user" href="/account"><FiUser className="icon-user-header" /></Button>
 
                                     <Offcanvas show={show} onHide={handleClose} id="off-canvas">
