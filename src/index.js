@@ -15,6 +15,7 @@ import EditProfil from "./pages/EditProfil";
 import UpdateProduct from "./pages/UpdateProduct";
 import DaftarJual from "./pages/DaftarJual";
 import DetailProduct from "./pages/DetailProduct";
+import BuyerHalaman from "./pages/BuyerHalaman";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -32,6 +33,7 @@ root.render(
       <Route path="/account" element={<Account />} />
       <Route path="/seller/daftar-jual" element={<DaftarJual />} />
       <Route path="/detailProduct/:id" element={<DetailProduct />} />
+      <Route path="/buyerhalaman" element={<BuyerHalaman />} />
     </Routes>
   </Router>
   </Provider>

@@ -1,0 +1,489 @@
+/* caourosel img buyer halaman */
+.carousel-img-buyer-halaman{
+  width: 600px;
+  height: 436px;
+  border-radius: 16px;
+  top: 10px;
+  left: 60px;
+}
+/* caourosel img buyer halaman */
+
+/* img buyer */
+.img-buyer-halaman{
+  border-radius:16px;
+}
+  /* img buyer */
+
+  /* buyer halaman inti */
+  .buyer-halaman-inti{
+    margin-top:20px;
+    justify-content: space-around;
+    margin-left: 95px;
+  }
+  /* buyer halaman inti */
+
+  /* card bayer halaman */
+  .card-buyer-halaman{
+     border-radius: 16px;
+     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+     margin-top: 35px;
+     padding: 25px;
+     margin-right: 35px;
+  }
+/* modal card */
+  .modal-1-card-buyer-halaman{
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+    padding: 18px;
+    margin-bottom: 20px;
+     background-color:#EEEEEE;
+
+ }
+ /* 
+  /* card bayer halaman */
+
+  /* jam tangan buyer 1 */
+
+  .jam-buyer-halaman {
+    font-size: 16px;
+  }
+
+  /* jam tangan buyer 1 */
+
+  /* mark buyer */
+  .bs-bookmark-buyer-halaman{
+    margin-left: 180px;
+    border: 1px solid #151515;
+    font-size: 20px;
+  }
+      /* mark buyer */
+
+    /* aksesoris buyer */
+    .aksesoris-buyer-halaman{
+    color: #8A8A8A;
+    font-size: 14px;
+    }
+      /* aksesoris buyer */
+
+    /* harga buyer */
+      .harga-buyer-halaman{
+        font-size: 16px;
+      }
+       /* harga buyer */
+
+       /* modal buyer 1 */
+       .modal-buyer-halaman{
+        color: black;
+        font-weight: bold;
+        font-size: 14px;
+        margin-top: -20px;
+       }
+         /* modal buyer 1 */
+
+       /* modal buyer 2 */
+       .modal-2-buyer-halaman{
+        color:#8A8A8A;
+        margin-top: -25px;
+        font-size: 14px;
+       }
+       /* modal buyer 2 */
+
+      /* card 2 buyer */
+      .card-2-buyer-halaman{
+        width:48px;
+        height:48px;
+        border-radius: 12px;
+      }
+       /* card 2 buyer */
+
+       /* card nama buyer */
+       .nama-buyer-halaman{
+        color: black;
+        margin-top: -50px;
+        margin-left: 70px;
+        font-size:14px;
+       }
+       /* card nama buyer */
+
+       /* harga 2 buyer */
+       .harga-2-buyer-halaman{
+        color: black;
+        margin-left: 70px;
+        font-size:14px;
+       }
+        /* harga 2 buyer */
+
+        /* button kirim buyer */
+      .button-kirim-buyer-halaman{
+        color: white;
+        border-radius: 16px;
+      }
+
+      /* card 3 halaman */
+      .card-3-buyer-halaman {
+        margin-top: 20px;
+        border-radius: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+        margin-right: 35px;
+      }
+       /* card 3 halaman */
+
+       /* img 3 buyer halaman */
+      .img-3-buyer-halaman{
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        margin-left: 12px;
+      }
+      
+         /* img 3 buyer halaman */
+
+         /* nama penjual buyer */
+        .nama-penjual-buyer-halaman{
+          margin-left: 20px;  
+        }
+        /* nama penjual buyer */
+
+        /* kota 2 buyer */
+        .kota-2-buyer-halaman{
+          color: #8A8A8A;
+          font-size: 10px;
+          margin-bottom: 20px;
+        }
+          /* kota 2 buyer */
+
+          /* deskrpipsi buyer halaman */
+          .deskipsi-buyer-halaman{
+            color: #8A8A8A;
+            font-size: 14px;
+            padding: 20px;
+            border-radius: 16px;
+            margin-top: 0px;
+            margin-left: 30px;
+            margin-right: 30px;
+          }
+          /* deskrpipsi buyer halaman */
+
+.btnPurpleLg-buyer-halaman {
+    width: 100%;
+    background-color:#7126B5;
+    border-radius: 16px;
+    border-color: #7126B5;
+    color: #fff;
+  }
+  
+  .btnPurpleLg-buyer-halaman:hover  {
+    background-color: #A06ECE;
+    border-color: #A06ECE;
+    color: #fff;
+  }
+  
+  .btnPurpleLg-buyer-halaman:active:focus {
+    background-color: #4B1979;
+    border-color: #4B1979;
+    color: #fff;
+  }
+  
+  /* Button Medium */
+  
+  
+  
+  /* Button Small */
+  
+  .btnPurpleSm-buyer-halaman {
+    width: 24%;
+    background-color:#7126B5;
+    border-radius: 16px;
+    border-color: #7126B5;
+    color: #fff;
+    margin-left: 1%;
+  }
+  
+  .btnPurpleSm-buyer-halaman:hover  {
+    background-color: #A06ECE;
+    border-color: #A06ECE;
+    color: #fff;
+  }
+  
+  .btnPurpleSm-buyer-halaman:active:focus {
+    background-color: #4B1979;
+    border-color: #4B1979;
+    color: #fff;
+  }
+  
+  .btnSecondarySm-buyer-halaman {
+    width: 24%;
+    background-color:#fff;
+    border-radius: 16px;
+    border-color: #7126B5;
+    color: #7126B5;
+    margin-left: 1%;
+  }
+  
+  .btnSecondarySm-buyer-halaman:hover  {
+    background-color: #A06ECE;
+    border-color: #7126B5;
+    color: #fff;
+  }
+  
+  .btnSecondarySm-buyer-halaman:active:focus {
+    background-color:  #7126B5;
+    border-color:  #7126B5;
+    color: #fff;
+  }
+  /* Masuk */
+  .btnPurple-buyer-halaman {
+    background-color: #7126b5;
+    border-radius: 12px;
+    border-color: #7126b5;
+    color: #ffff;
+    height: 48px;
+    margin: 10px;
+    width: 304px;
+    height:48px;
+    padding: 12px 24px;
+
+  }
+  
+  .btnPurple-buyer-halaman:hover {
+    background-color: #A06ECE;
+    border-color: #A06ECE;
+    color: #fff;
+  }
+
+  .btnPurple2-buyer-halaman {
+    background-color: #7126b5;
+    border-radius: 12px;
+    border-color: #7126b5;
+    color: #ffff;
+    height: 48px;
+  }
+  
+  .btnPurple-buyer-halaman:hover2 {
+    background-color: #A06ECE;
+    border-color: #A06ECE;
+    color: #fff;
+  }
+  
+  /* Modal */
+  .modal-btnPurple-buyer-halaman {
+    background-color: #7126b5;
+    border-radius: 12px;
+    border-color: #7126b5;
+    color: #ffff;
+    height: 48px;
+    width: 304px;
+    height:48px;
+
+  }
+  
+  .modal-btnPurple-buyer-halaman:hover {
+    background-color: #A06ECE;
+    border-color: #A06ECE;
+    color: #fff;
+  }
+
+  .modal-btnPurple-buyer-halaman {
+    background-color: #7126b5;
+    border-radius: 12px;
+    border-color: #7126b5;
+    color: #ffff;
+    height: 48px;
+  }
+  
+  .modal-btnPurple-buyer-halaman:hover2 {
+    background-color: #A06ECE;
+    border-color: #A06ECE;
+    color: #fff;
+  }
+
+
+  /* Link as Button */
+  .btnLinkPurp-buyer-halaman {
+    color:#7126B5;
+  }
+  
+  .btnLinkPurp-buyer-halahalamanman:hover {
+    color:#A06ECE;
+  }
+  
+  .btnLinkPurp-buyer-halaman:active:focus {
+    color: #4B1979;
+  }
+  
+  
+    .textShadowBox2-buyer-halaman  {
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+      border-radius: 20px;
+    }
+
+    .flex-container-buyer-halaman {
+      display: flex;
+      flex-direction: row;
+      font-size: 30px;
+      position: relative;
+      /* text-align: center; */
+
+    }
+
+    .flex-container2-buyer-halaman {
+      display: flex;
+      flex-direction: row;
+      font-size: 30px;
+      /* text-align: center; */
+
+    }
+
+    .desc-buyer-halaman {
+      float: left;
+      width: 65%;
+    }
+
+    .left-buyer-halaman{
+      float: left;
+    }
+
+    .right-buyer-halaman {
+      float: right;
+      right: 90%;
+    }
+
+    .carousel-buyer-halaman {
+      margin: 0 auto;
+      max-width: 800px;
+    }
+
+    .arrow2-buyer-halaman{
+      position: relative;
+      top: 0%;
+      left: 0%;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      padding: 6px 0;
+      font-size: 3px;
+      line-height: 1.428571429;
+      border-radius: 15px;
+      color: black;
+      
+      /* display: none; */
+
+    }
+    
+
+
+    @media (max-width: 1023px) {
+      .flex-container-buyer-halaman {
+        flex-direction: column;
+      }
+      .flex-container2-buyer-halaman {
+        flex-direction: row;
+        font-size: 20px;
+        justify-content: space-between;
+      }
+      .desc-buyer-halaman {
+        width: 100%;
+      }
+
+      .top-20-buyer-halaman {
+        margin-top: 20px;
+        justify-content: center;
+        
+
+      }
+        
+    .textShadowBox-buyer-halaman {
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+      border-radius: 20px;
+ 
+      /* justify-content: center; */
+    }
+
+    .textShadowBox2-buyer-halaman {
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+      border-radius: 20px;
+ 
+      /* justify-content: center; */
+    }
+
+    .btnPurpleLg-buyer-halaman {
+      float: right;
+      width: 83%;
+      margin-right: 0px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      height:625px;
+      overflow:auto;
+      width: 100%;
+      background-color:#7126B5;
+      border-radius: 16px;
+      border-color: #7126B5;
+      color: #fff;
+    }
+    
+    .btnPurpleLg-buyer-halamanhover  {
+      background-color: #A06ECE;
+      border-color: #A06ECE;
+      color: #fff;
+    }
+    
+    .btnPurpleLg-buyer-halaman:active:focus {
+      background-color: #4B1979;
+      border-color: #4B1979;
+      color: #fff;
+    }
+
+
+    .btnPurple-buyer-halaman {
+      background-color: #7126b5;
+      border-radius: 12px;
+      border-color: #7126b5;
+      color: #ffff;
+      height: 48px;
+      position: fixed;
+      width: 80%;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1030;
+    }
+
+    .btnPurple2-buyer-halaman {
+      background-color: #7126b5;
+      border-radius: 12px;
+      border-color: #7126b5;
+      color: #ffff;
+      height: 48px;
+      display: none;
+    }
+
+    .textShadowBox2-buyer-halaman {
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+      border-radius: 20px;
+    }
+
+    .arrow2-buyer-halaman{
+      position: absolute;
+      top: 10%;
+      left: 30%;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      padding: 6px 0;
+      font-size: 12px;
+      line-height: 1.428571429;
+      border-radius: 15px;
+      background-color: rgb(255, 255, 255);
+      color: white;
+      /* display: none; */
+      }
+
+      .navbar-buyer-halaman {
+        position: fixed;
+        z-index: 10;
+        width: 100%;
+        display: none;
+      }
+    
+    }
