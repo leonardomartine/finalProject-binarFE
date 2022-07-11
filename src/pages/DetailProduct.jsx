@@ -126,7 +126,7 @@ function DetailProduct() {
                                                 <FiArrowLeft />
                                             </Link>
                                             <img
-                                                className="d-block w-100 "
+                                                className="d-block w-100"
                                                 src={`http://localhost:8888/public/files/${image}`}
                                                 alt=''
                                             />
@@ -141,7 +141,7 @@ function DetailProduct() {
                         <div class="textShadowBox2  w-100  mt-4">
                             <h4>{data.name}</h4>
                             <h6>{data.category}</h6>
-                            <h5>{data.price}</h5>
+                            <h5>Rp {data.price}</h5>
                             <Button className="btnPurple w-100 mt-2 mb-2" type='submit' onClick={(e) => onUpdate(e, true)} > Terbitkan</Button>
                         <Link to={`/updateproduct/${data.id}`}>
                             <Button

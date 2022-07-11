@@ -192,7 +192,7 @@ function UpdateProduct() {
                 </Form>
                 <Form.Group className="mb-3" style={{ fontWeight: "bold" }}>
                     <Form.Label>Kategori</Form.Label>
-                    <select ref={categoryField} className="form-select">
+                    <select ref={categoryField} selected={data.category === "Hobi" ? "selected" : ""} className="form-select">
                         <option hidden>Pilih Kategori</option>
                         <option value="hobi">Hobi</option>
                         <option value="kendaraan">Kendaraan</option>

@@ -44,7 +44,7 @@ export default function CardProduct({product}) {
               <p className="mb-0" style={accesoris}>
                 {product.category}
               </p>
-              <Card.Text className="mb-1">{product.price}</Card.Text>
+              <Card.Text className="mb-1">Rp {product.price}</Card.Text>
             </Card.Body>
           </Card>
         </div>
