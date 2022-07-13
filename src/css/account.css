@@ -35,9 +35,24 @@
     position: relative;
 }
 
+.profil-account1 {
+    width: 100px;
+	height: 100px;
+	border: none;
+    margin-left: -30%;
+    position: relative;
+}
+
 .profil-camera-form {
 	height: 100%;
     width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+}
+.profil-camera-form1 {
+	height: 100%;
+    width: 100%;
+    margin-left: 20px;
     border-radius: 12px;
     object-fit: cover;
 }
@@ -90,7 +105,13 @@
         position: relative;
     }
 
-    .profil-camera-form {
+    .profil-account1 {
+        margin-left: 25%;
+		margin-top: 30%;
+        position: relative;
+    }
+
+    .profil-camera-form .profil-camera-form1{
         position:fixed;
     }
 

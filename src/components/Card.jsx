@@ -34,7 +34,7 @@ export default function CardProduct({product}) {
               className="w-75 align-self-center"
               variant="top"
               multiple
-              src={`http://localhost:8888/public/files/${product.image[0]}`}
+              src={`${product.image[0]}`}
               style={image}
             />
             <Card.Body className="p-2">

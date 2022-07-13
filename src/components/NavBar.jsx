@@ -156,7 +156,7 @@ export default function NavBar() {
                                             <Dropdown.Item href="#/action-1">
                                                 <div class="d-flex my-1">
                                                     <img
-                                                        src={`http://localhost:8888/public/files/${user.image}`}
+                                                        src={`${user.image}`}
                                                         style={{ width: '60px', height: '60px', marginTop: '5px' }}
                                                         alt=""
                                                     />
@@ -172,13 +172,11 @@ export default function NavBar() {
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <Divider variant="middle" className="mt-3"/>
+                                                <Divider variant="middle" className="mt-3" />
                                             </Dropdown.Item>
-                                      </Dropdown.Menu>
+                                        </Dropdown.Menu>
                                     </Dropdown>
-
                                     <Button className="home-navbar-user" href="/account"><FiUser className="icon-user-header" /></Button>
-
                                     <Offcanvas show={show} onHide={handleClose} id="off-canvas">
                                         <Offcanvas.Header closeButton>
                                             <Offcanvas.Title className="title-navbar-mobile">Second Hand</Offcanvas.Title>

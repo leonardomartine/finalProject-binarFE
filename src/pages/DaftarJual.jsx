@@ -107,7 +107,7 @@ export default function DaftarJual() {
                     <div class="d-flex mb-3">
                         <div class="p-2 ">
                             <Card.Img
-                                src={`http://localhost:8888/public/files/${user.image}`}
+                                src={`${user.image}`}
                                 style={{ objectFit: "cover" }}
                                 alt=""
                             />

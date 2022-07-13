@@ -61,7 +61,6 @@ export default function SelectedListItem() {
 
         navigate("/");
     };
-    console.log(user.image);
 
     const alertLogout = async () => {
         Swal.fire({
@@ -99,7 +98,7 @@ export default function SelectedListItem() {
                 <Box className="profil-account">
                     <Box component={'img'}
                     className="profil-camera-form"
-                    src={`http://localhost:8888/public/files/${user.image}`}
+                    src={`${user.image}`}
                     />
                 </Box>
             </Container>

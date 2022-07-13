@@ -144,6 +144,7 @@ function UpdateProduct() {
     useEffect(() => {
         getProduct();
     }, [])
+    console.log(data.image);
 
     return (
         <div>
@@ -217,11 +218,27 @@ function UpdateProduct() {
                 </Form.Group>
                 <section className="container">
                     <div {...getRootProps({ className: 'dropzone' })}>
+                        {/* <Box className="profil-account d-flex">
+                            {data.image ? data.image.map((img) => (
+                                <Box component={'img'}
+                                    className="profil-camera-form"
+                                    src={`${img}`}
+                                />
+                            )) : ""}
+                        </Box> */}
                         <input {...getInputProps()} />
                         {files.length === 0 ? <button className="mb-3 box2-update-product">
-                            <h2>
-                                <BiPlus className="plus-update-product" />
-                            </h2>
+                            <Box className="profil-account1 d-flex">
+                                {data.image ? data.image.map((img) => (
+                                    <Box component={'img'}
+                                        className="profil-camera-form1"
+                                        src={`${img}`}
+                                    />
+                                )) : <h2>
+                                    <BiPlus className="plus-update-product" />
+                                </h2>}
+                            </Box>
+
                         </button> :
                             <div>
                                 {thumbs}

@@ -55,7 +55,7 @@ export default function CardProduct({ sellerProduct }) {
                                     className="w-80 align-self-center"
                                     variant="top"
                                     multiple
-                                    src={`http://localhost:8888/public/files/${product.image[0]}`}
+                                    src={`${product.image[0]}`}
                                     style={image}
                                 />
                                 <Card.Body className="p-2">

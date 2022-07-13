@@ -127,7 +127,7 @@ function DetailProduct() {
                                             </Link>
                                             <img
                                                 className="d-block w-100"
-                                                src={`http://localhost:8888/public/files/${image}`}
+                                                src={`${image}`}
                                                 alt=''
                                             />
                                         </div>
@@ -142,7 +142,7 @@ function DetailProduct() {
                             <h4>{data.name}</h4>
                             <h6>{data.category}</h6>
                             <h5>Rp {data.price}</h5>
-                            <Button className="btnPurple w-100 mt-2 mb-2" type='submit' onClick={(e) => onUpdate(e, true)} > Terbitkan</Button>
+                            <Button className="btnPurple w-100 mt-2 mb-2" type='submit' onClick={(e) => onUpdate(e, true)} >Terbitkan</Button>
                         <Link to={`/updateproduct/${data.id}`}>
                             <Button
                                 className="btnPurple2 w-100 mt-2 "
@@ -157,7 +157,7 @@ function DetailProduct() {
                         <div className="justify-content-start">
                             <div className="flex-container2">
                                 <div>
-                                    <img src={`http://localhost:8888/public/files/${user.image}`} style={{ height: '48px', width: '48px', objectFit: 'cover', borderRadius: '12px' }} alt='' />
+                                    <img src={`${user.image}`} style={{ height: '48px', width: '48px', objectFit: 'cover', borderRadius: '12px' }} alt='' />
                                 </div>
                                 <div style={{ marginLeft: '1rem' }}>
                                     <h5>{user.name}</h5>

@@ -121,7 +121,7 @@ function About() {
                     {user.image ? <Box className="profil-account">
                         <Box component={'img'}
                             className="profil-camera-form"
-                            src={`http://localhost:8888/public/files/${user.image}`}
+                            src={`${user.image}`}
                             
                         />
                         <Form.Control type="file" className="formCamera" onChange={(e) => {
