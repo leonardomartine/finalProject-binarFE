@@ -10,7 +10,7 @@ import Navbar from "../components/NavBar";
 import { FiArrowLeft } from "react-icons/fi";
 import { useNavigate, Link, useParams, Navigate } from "react-router-dom";
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Alert, Form, Stack } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 
@@ -19,6 +19,7 @@ import Modal from 'react-bootstrap/Modal';
 function DetailProduct() {
     const navigate = useNavigate();
     const { id } = useParams();
+    const requestedPrice = useRef();
     const [data, setData] = useState([]);
     const [user, setUser] = useState({});
     const [show, setShow] = useState(false);
@@ -71,7 +72,6 @@ function DetailProduct() {
             const dataProduct = await responseProduct.data.data.getProductById;
 
             setData(dataProduct)
-            console.log(dataProduct);
         } catch (err) {
             console.log(err);
         }
@@ -113,7 +113,44 @@ function DetailProduct() {
         getProduct();
         fetchData();
     }, [])
-    console.log(data);
+
+    const onCreateTransaction = async (e, isOpened, isRejected, isAccepted) => {
+        e.preventDefault();
+
+        try {
+            const token = localStorage.getItem("token");
+            const postPayload = {
+                owner_id: data.user.id,
+                product_id: data.id,
+                requestedPrice: requestedPrice.current.value,
+                isOpened: isOpened,
+                isRejected: isRejected,
+                isAccepted: isAccepted
+            };
+            setShow(false)
+            const createRequest = await axios.post(
+                "http://localhost:8888/api/transaction",
+                postPayload,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            console.log(createRequest);
+
+            const createResponse = createRequest.data;
+            if (createResponse.status) navigate('/')
+
+        } catch (err) {
+            console.log(err);
+            const response = err.response.data;
+            setErrorResponse({
+                isError: true,
+                message: response.message,
+            });
+        }
+    };
 
     return (
         <>
@@ -194,7 +231,7 @@ function DetailProduct() {
                             <p className="fw-bold">Masukan Harga Tawarmu</p>
                             <p className="text-black-50">Harga tawaranmu akan diketahui penual, jika penjual cocok kamu akan segera dihubungi penjual.</p>
                             <Stack direction="horizontal" gap={3} className="bg-color-grey radius-secondary p-2">
-                                <img src={`${data.image[0]}`} alt=""
+                                <img src={`${data.image ? data.image[0] : ""}`} alt=""
                                     style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
                                 <Stack>
                                     <p className="m-0 fw-bold">{data.name}</p>
@@ -206,6 +243,7 @@ function DetailProduct() {
                                     <Form.Label className="fs-7">Harga Tawar</Form.Label>
                                     <Form.Control
                                         type="text"
+                                        ref={requestedPrice}
                                         placeholder="Rp. 0,00"
                                         className="radius-primary box-shadow"
                                     />
@@ -213,7 +251,7 @@ function DetailProduct() {
                             </Form>
                         </Modal.Body>
                         <Modal.Footer className="border-0">
-                            <Button className="btnPurple w-100 radius-primary border-0" onClick={handleClose}>
+                            <Button className="btnPurple w-100 radius-primary border-0" onClick={(e) => onCreateTransaction(e, true, null, null)}>
                                 Kirim
                             </Button>
                         </Modal.Footer>
