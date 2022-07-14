@@ -1,6 +1,7 @@
 import "../css/main.css";
 import React from "react";
 import { Card, Container } from "react-bootstrap"
+import { Link } from "react-router-dom";
 
 export default function CardProduct({product}) {
   
@@ -28,6 +29,7 @@ export default function CardProduct({product}) {
   return (
     <Container className="card-content">
       {product ? product.map((product) => (
+        <Link to={`/detailProduct/${product.id}`} style={{ textDecoration: "none", color: "black" }}>
         <div key={product.id}>
           <Card>
             <Card.Img
@@ -48,6 +50,7 @@ export default function CardProduct({product}) {
             </Card.Body>
           </Card>
         </div>
+        </Link>
       )) : ""}
     </Container>
 

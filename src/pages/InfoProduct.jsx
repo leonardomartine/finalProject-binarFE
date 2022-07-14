@@ -62,10 +62,11 @@ function InfoProduct(props) {
   };
 
   const [files, setFiles] = useState([]);
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getRootProps, getInputProps, fileRejections} = useDropzone({
     accept: {
       'image/*': []
     },
+    maxFiles: 4,
     onDrop: acceptedFiles => {
       setFiles(acceptedFiles.map(file => Object.assign(file, {
         preview: URL.createObjectURL(file)
@@ -73,12 +74,16 @@ function InfoProduct(props) {
     }
   });
 
+  const rejected = fileRejections.map(() => {
+    return <div></div>
+  });
   const thumbs = files.map(file => (
     <div style={thumb} key={file.name}>
       <div style={thumbInner}>
         <img
           src={file.preview}
           style={img}
+          alt=''
           // Revoke data uri after image is loaded
           onLoad={() => { URL.revokeObjectURL(file.preview) }}
         />
@@ -211,6 +216,7 @@ function InfoProduct(props) {
               <div>
                 {thumbs}
               </div>}
+              {rejected[0] && <Alert variant="danger">gambar maksimal 4</Alert>}
           </div>
         </section>
         <div className="d-flex justify-content-between">

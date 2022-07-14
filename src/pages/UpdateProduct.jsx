@@ -54,15 +54,20 @@ function UpdateProduct() {
     };
 
     const [files, setFiles] = useState([]);
-    const { getRootProps, getInputProps } = useDropzone({
+    const { getRootProps, getInputProps, fileRejections } = useDropzone({
         accept: {
             'image/*': []
         },
+        maxFiles: 4,
         onDrop: acceptedFiles => {
             setFiles(acceptedFiles.map(file => Object.assign(file, {
                 preview: URL.createObjectURL(file)
             })));
         }
+    });
+
+    const rejected = fileRejections.map(() => {
+        return <div></div>
     });
 
     const thumbs = files.map(file => (
@@ -71,6 +76,7 @@ function UpdateProduct() {
                 <img
                     src={file.preview}
                     style={img}
+                    alt=''
                     // Revoke data uri after image is loaded
                     onLoad={() => { URL.revokeObjectURL(file.preview) }}
                 />
@@ -218,14 +224,6 @@ function UpdateProduct() {
                 </Form.Group>
                 <section className="container">
                     <div {...getRootProps({ className: 'dropzone' })}>
-                        {/* <Box className="profil-account d-flex">
-                            {data.image ? data.image.map((img) => (
-                                <Box component={'img'}
-                                    className="profil-camera-form"
-                                    src={`${img}`}
-                                />
-                            )) : ""}
-                        </Box> */}
                         <input {...getInputProps()} />
                         {files.length === 0 ? <button className="mb-3 box2-update-product">
                             <Box className="profil-account1 d-flex">
@@ -243,6 +241,7 @@ function UpdateProduct() {
                             <div>
                                 {thumbs}
                             </div>}
+                        {rejected[0] && <Alert variant="danger">gambar maksimal 4</Alert>}
                     </div>
                 </section>
                 <div className="d-flex justify-content-between">

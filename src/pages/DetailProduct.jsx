@@ -11,7 +11,8 @@ import { FiArrowLeft } from "react-icons/fi";
 import { useNavigate, Link, useParams, Navigate } from "react-router-dom";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Alert } from 'react-bootstrap';
+import { Alert, Form, Stack } from 'react-bootstrap';
+import Modal from 'react-bootstrap/Modal';
 
 
 
@@ -20,6 +21,10 @@ function DetailProduct() {
     const { id } = useParams();
     const [data, setData] = useState([]);
     const [user, setUser] = useState({});
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const [errorResponse, setErrorResponse] = useState({
         isError: false,
@@ -108,6 +113,7 @@ function DetailProduct() {
         getProduct();
         fetchData();
     }, [])
+    console.log(data);
 
     return (
         <>
@@ -142,45 +148,82 @@ function DetailProduct() {
                             <h4>{data.name}</h4>
                             <h6>{data.category}</h6>
                             <h5>Rp {data.price}</h5>
-                            <Button className="btnPurple w-100 mt-2 mb-2" type='submit' onClick={(e) => onUpdate(e, true)} >Terbitkan</Button>
-                        <Link to={`/updateproduct/${data.id}`}>
-                            <Button
-                                className="btnPurple2 w-100 mt-2 "
-                                style={{ background: "#FFFFFF", color: "black" }}
-                            >
-                                Edit
-                            </Button>
-                        </Link>
-                    </div>
+                            <Button className="btnPurple w-100 mt-2 mb-2" type='submit' onClick={data.user_id === user.id ? (e) => onUpdate(e, true) : handleShow}>{data.user_id === user.id ? 'terbitkan' : 'saya tertarik dan ingin nego'}</Button>
+                            <Link to={`/updateproduct/${data.id}`}>
+                                <Button
+                                    className="btnPurple2 w-100 mt-2 "
+                                    style={{ background: "#FFFFFF", color: "black" }}
+                                    hidden={data.user_id === user.id ? false : true}
+                                >
+                                    Edit
+                                </Button>
+                            </Link>
+                        </div>
 
-                    <div class="textShadowBox2  mt-4 " >
-                        <div className="justify-content-start">
-                            <div className="flex-container2">
-                                <div>
-                                    <img src={`${user.image}`} style={{ height: '48px', width: '48px', objectFit: 'cover', borderRadius: '12px' }} alt='' />
-                                </div>
-                                <div style={{ marginLeft: '1rem' }}>
-                                    <h5>{user.name}</h5>
-                                    <h5>{user.kota}</h5>
+                        <div class="textShadowBox2  mt-4 " >
+                            <div className="justify-content-start">
+                                <div className="flex-container2">
+                                    <div>
+                                        <img src={`${data.user ? data.user.image : ""}`} style={{ height: '48px', width: '48px', objectFit: 'cover', borderRadius: '12px' }} alt='' />
+                                    </div>
+                                    <div style={{ marginLeft: '1rem' }}>
+                                        <h5>{data.user && data.user.name}</h5>
+                                        <h5>{data.user && data.user.kota}</h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                </div>
-            </div>
-            <div className="desc">
-                <div className="textShadowBox p-4 mt-4 mb-4">
-                    <h4>Deskripsi</h4>
-                    <div>
-                        {data.description}
                     </div>
                 </div>
-            </div>
-            {errorResponse.isError && (
-                <Alert variant="danger" className="mt-2">{errorResponse.message}</Alert>
-            )}
-        </Container>
+                <div className="desc">
+                    <div className="textShadowBox p-4 mt-4 mb-4">
+                        <h4>Deskripsi</h4>
+                        <div>
+                            {data.description}
+                        </div>
+                    </div>
+                </div>
+
+                <Modal show={show} onHide={handleClose} centered size="sm" dialogClassName="modal-30w">
+                    <div className="p-3">
+                        <Modal.Header closeButton className="border-0">
+                            <Modal.Title></Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <p className="fw-bold">Masukan Harga Tawarmu</p>
+                            <p className="text-black-50">Harga tawaranmu akan diketahui penual, jika penjual cocok kamu akan segera dihubungi penjual.</p>
+                            <Stack direction="horizontal" gap={3} className="bg-color-grey radius-secondary p-2">
+                                <img src={`${data.image[0]}`} alt=""
+                                    style={{ width: "48px", height: "48px", objectFit: "cover", borderRadius: "12px" }} />
+                                <Stack>
+                                    <p className="m-0 fw-bold">{data.name}</p>
+                                    <p className="m-0 text-black-50">Rp. {data.price}</p>
+                                </Stack>
+                            </Stack>
+                            <Form className="">
+                                <Form.Group className="mt-3">
+                                    <Form.Label className="fs-7">Harga Tawar</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Rp. 0,00"
+                                        className="radius-primary box-shadow"
+                                    />
+                                </Form.Group>
+                            </Form>
+                        </Modal.Body>
+                        <Modal.Footer className="border-0">
+                            <Button className="btnPurple w-100 radius-primary border-0" onClick={handleClose}>
+                                Kirim
+                            </Button>
+                        </Modal.Footer>
+                    </div>
+                </Modal>
+
+                {errorResponse.isError && (
+                    <Alert variant="danger" className="mt-2">{errorResponse.message}</Alert>
+                )}
+            </Container>
         </>
     );
 }
