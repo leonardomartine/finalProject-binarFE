@@ -100,6 +100,7 @@ export default function NavBar() {
                             token: token,
                         })
                     );
+                    localStorage.setItem("user", JSON.stringify(currentUserResponse.data.user))
                     setUser(currentUserResponse.data.user);
                 }
             } catch (err) {

@@ -23,6 +23,7 @@ function DetailProduct() {
     const [data, setData] = useState([]);
     const [user, setUser] = useState({});
     const [show, setShow] = useState(false);
+    const [transaksi, setTransaksi] = useState([]);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -32,6 +33,10 @@ function DetailProduct() {
         message: "",
     });
 
+    const [successResponse, setSuccessResponse] = useState({
+        isSuccess: false,
+        message: "",
+    });
     const fetchData = async () => {
         try {
             // Check status user login
@@ -112,6 +117,8 @@ function DetailProduct() {
     useEffect(() => {
         getProduct();
         fetchData();
+        getTransactionByUserId();
+
     }, [])
 
     const onCreateTransaction = async (e, isOpened, isRejected, isAccepted) => {
@@ -139,8 +146,11 @@ function DetailProduct() {
             );
             console.log(createRequest);
 
-            const createResponse = createRequest.data;
-            if (createResponse.status) navigate('/')
+            const successResponse = createRequest.data.message;
+            setSuccessResponse({
+                isSuccess: true,
+                message: successResponse,
+            })
 
         } catch (err) {
             console.log(err);
@@ -152,12 +162,42 @@ function DetailProduct() {
         }
     };
 
+    const getTransactionByUserId = async () => {
+        try {
+
+            const token = localStorage.getItem("token");
+            const user_id = localStorage.getItem("user");
+            const userId = JSON.parse(user_id);
+            // console.log(JSON.parse(user_id));
+            const responseTransactionByUserId = await axios.get(`http://localhost:8888/api/transaction/${userId.id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+
+            const dataTransactionByUserId = await responseTransactionByUserId.data.data.getTransactionByUserId;
+
+            setTransaksi(dataTransactionByUserId)
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const filteredTransaction = Object.keys(transaksi).length !== 0 ? transaksi.filter((data) => data.product_id === Number(id) && data.isOpened === true) : ""
+    console.log(filteredTransaction);
+
     return (
         <>
+
             <div className="bg-nav">
                 <Navbar />
             </div>
             <Container >
+                {successResponse.isSuccess && (
+                    <Alert variant="success" className='mt-5' onClose={() => setSuccessResponse(true)} dismissible>{successResponse.message}</Alert>
+                )}
                 <div className="flex-container">
                     <div style={{ width: "100%" }}>
                         <div className="carousel">
@@ -185,7 +225,7 @@ function DetailProduct() {
                             <h4>{data.name}</h4>
                             <h6>{data.category}</h6>
                             <h5>Rp {data.price}</h5>
-                            <Button className="btnPurple w-100 mt-2 mb-2" type='submit' onClick={data.user_id === user.id ? (e) => onUpdate(e, true) : handleShow}>{data.user_id === user.id ? 'terbitkan' : 'saya tertarik dan ingin nego'}</Button>
+                            <Button className="btnPurple w-100 mt-2 mb-2" disabled={Object.keys(filteredTransaction).length !== 0} type='submit' onClick={data.user_id === user.id ? (e) => onUpdate(e, true) : handleShow}>{data.user_id === user.id ? 'terbitkan' : Object.keys(filteredTransaction).length !== 0 ? 'Menunggu Respon Penjual' : 'saya tertarik dan ingin nego'}</Button>
                             <Link to={`/updateproduct/${data.id}`}>
                                 <Button
                                     className="btnPurple2 w-100 mt-2 "
