@@ -15,9 +15,12 @@ import axios from "axios";
 import "../css/mainRio.css";
 import { useDropzone } from "react-dropzone";
 import { addProduct } from "../slices/productSlice";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function InfoProduct(props) {
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
   const nameField = useRef("");
   const priceField = useRef("");
   const categoryField = useRef("");
@@ -29,13 +32,6 @@ function InfoProduct(props) {
     isError: false,
     message: "",
   });
-
-  const thumbsContainer = {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginTop: 16
-  };
 
   const thumb = {
     display: 'inline-flex',
@@ -62,7 +58,7 @@ function InfoProduct(props) {
   };
 
   const [files, setFiles] = useState([]);
-  const { getRootProps, getInputProps, fileRejections} = useDropzone({
+  const { getRootProps, getInputProps, fileRejections } = useDropzone({
     accept: {
       'image/*': []
     },
@@ -113,7 +109,7 @@ function InfoProduct(props) {
       files.forEach(element => {
         postPayload.append("image", element);
       });
-
+      setOpen(true);
       const createRequest = await axios.post(
         "http://localhost:8888/api/product",
         postPayload,
@@ -124,7 +120,7 @@ function InfoProduct(props) {
           },
         }
       );
-      
+
       const createResponse = createRequest.data;
 
       dispatch(
@@ -147,6 +143,12 @@ function InfoProduct(props) {
 
   return (
     <div>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       {/* navbar */}
       <div className="na1 py-4 shadow">
         <nav className="navbar navbar-expand-lg navbar-light bg-all">
@@ -216,7 +218,7 @@ function InfoProduct(props) {
               <div>
                 {thumbs}
               </div>}
-              {rejected[0] && <Alert variant="danger">gambar maksimal 4</Alert>}
+            {rejected[0] && <Alert variant="danger">gambar maksimal 4</Alert>}
           </div>
         </section>
         <div className="d-flex justify-content-between">

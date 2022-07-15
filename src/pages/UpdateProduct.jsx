@@ -7,9 +7,12 @@ import axios from "axios";
 import "../css/updateProduct.css";
 import { useDropzone } from "react-dropzone";
 import { Box } from "@mui/material";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function UpdateProduct() {
     const navigate = useNavigate();
+    const [open, setOpen] = useState(false);
     const [data, setData] = useState([]);
     const { id } = useParams();
     const nameField = useRef("");
@@ -103,7 +106,7 @@ function UpdateProduct() {
             files.forEach(element => {
                 postPayload.append("image", element);
             });
-
+            setOpen(true);
             const createRequest = await axios.put(
                 `http://localhost:8888/api/product/${id}`,
                 postPayload,
@@ -154,6 +157,12 @@ function UpdateProduct() {
 
     return (
         <div>
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={open}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
             {/* navbar */}
             <div className="na1-update-product py-4 shadow">
                 <nav className="navbar navbar-expand-lg navbar-light bg-all">

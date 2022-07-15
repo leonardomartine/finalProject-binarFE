@@ -4,10 +4,12 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 import { FiCamera, FiArrowLeft } from "react-icons/fi";
 import axios from "axios";
 import "../css/mainRio.css";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function About() {
   const navigate = useNavigate();
-  // const [data, setData] = useState([]);
+  const [open, setOpen] = useState(false);
   const [user, setUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const { id } = useParams();
@@ -64,7 +66,7 @@ function About() {
       userToUpdatePayload.append("alamat", alamatField.current.value);
       userToUpdatePayload.append("noHp", noHpField.current.value);
       userToUpdatePayload.append("image", imageField);
-
+      setOpen(true);
 
       const updateRequest = await axios.put(
         `http://localhost:8888/api/users/${id}`,
@@ -92,6 +94,12 @@ function About() {
 
   return (
     <div>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       {/* navbar */}
       <div className="na1 py-4 shadow">
         <nav className="navbar navbar-expand-lg navbar-light bg-all">

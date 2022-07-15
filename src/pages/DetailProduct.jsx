@@ -5,7 +5,6 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Carousel from "react-bootstrap/Carousel";
 import "../css/detailproduct.css";
-// import "../css/main.css";
 import Navbar from "../components/NavBar";
 import { FiArrowLeft } from "react-icons/fi";
 import { useNavigate, Link, useParams, Navigate } from "react-router-dom";
@@ -13,11 +12,13 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { Alert, Form, Stack } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 function DetailProduct() {
     const navigate = useNavigate();
+    const [open, setOpen] = useState(false);
     const { id } = useParams();
     const requestedPrice = useRef();
     const [data, setData] = useState([]);
@@ -89,7 +90,7 @@ function DetailProduct() {
             const token = localStorage.getItem("token");
             const postPayload = new FormData();
             postPayload.append("isPublish", isPublish);
-
+            setOpen(true);
             const createRequest = await axios.put(
                 `http://localhost:8888/api/product/${id}`,
                 postPayload,
@@ -190,7 +191,12 @@ function DetailProduct() {
 
     return (
         <>
-
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={open}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
             <div className="bg-nav">
                 <Navbar />
             </div>
