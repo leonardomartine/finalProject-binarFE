@@ -185,7 +185,7 @@ function DetailProduct() {
         }
     }
 
-    const filteredTransaction = Object.keys(transaksi).length !== 0 ? transaksi.filter((data) => data.product_id === Number(id) && data.isOpened === true) : ""
+    const filteredTransaction = Object.keys(transaksi).length !== 0 ? transaksi.filter((data) => data.product_id === Number(id) && data.isRejected === false) : ""
 
     return (
         <>
@@ -295,7 +295,7 @@ function DetailProduct() {
                             </Form>
                         </Modal.Body>
                         <Modal.Footer className="border-0">
-                            <Button className="btnPurple w-100 radius-primary border-0" onClick={(e) => onCreateTransaction(e, false, null, null)}>
+                            <Button className="btnPurple w-100 radius-primary border-0" onClick={(e) => onCreateTransaction(e, false, false, null)}>
                                 Kirim
                             </Button>
                         </Modal.Footer>

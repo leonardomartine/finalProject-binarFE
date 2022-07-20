@@ -68,7 +68,7 @@ export default function CardProduct() {
 
                 if (currentUserResponse.data.user.id) {
                     const dataTransaction = await axios.get(
-                        `http://localhost:8888/api/transactionOwner/${currentUserResponse.data.user.id}`,
+                        `http://localhost:8888/api/transactionOwner/${currentUserResponse.data.user.id}?isRejected=false`,
                         {
                             headers: {
                                 Authorization: `Bearer ${token}`,
@@ -94,30 +94,29 @@ export default function CardProduct() {
                 <Container className="card-content-seller">
                     {sellerProduct.map((transaction) => (
                         <div key={transaction.id}>
-                            {/* <Link to={``} style={{ textDecoration: "none", color: "black" }}> */}
-                            <Card style={CardProduct}>
-                                <Card.Img
-                                    className="w-80 align-self-center"
-                                    variant="top"
-                                    multiple
-                                    src={`${transaction.product.image[0]}`}
-                                    style={imageCard}
-                                />
-                                <Card.Body className="p-2">
-                                    <Card.Title className="mb-0" style={title}>
-                                        {transaction.product.name}
-                                    </Card.Title>
-                                    <p className="mb-0" style={accesoris}>
-                                        {transaction.product.category}
-                                    </p>
-                                    <Card.Text className="mb-1">Rp {transaction.product.price}</Card.Text>
-                                </Card.Body>
-                            </Card>
-                            {/* // </Link> */}
+                            <Link to={`/sellerproductpenawar/${transaction.id}`} style={{ textDecoration: "none", color: "black" }}>
+                                <Card style={CardProduct}>
+                                    <Card.Img
+                                        className="w-80 align-self-center"
+                                        variant="top"
+                                        multiple
+                                        src={`${transaction.product.image[0]}`}
+                                        style={imageCard}
+                                    />
+                                    <Card.Body className="p-2">
+                                        <Card.Title className="mb-0" style={title}>
+                                            {transaction.product.name}
+                                        </Card.Title>
+                                        <p className="mb-0" style={accesoris}>
+                                            {transaction.product.category}
+                                        </p>
+                                        <Card.Text className="mb-1">Rp {transaction.product.price}</Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            </Link>
                         </div>
                     ))}
                 </Container>
-
             ) : (
                 <Container className="d-flex align-items-center justify-content-center">
                     <div style={productCard} className="my-4">
