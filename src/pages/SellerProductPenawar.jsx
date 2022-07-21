@@ -14,7 +14,6 @@ import {
 import { useNavigate, Link, useParams } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
-import { AiOutlineClose } from "react-icons/ai";
 import axios from "axios";
 import "../css/sellerProductPenawar.css";
 import dateFormat from "dateformat";
@@ -22,7 +21,6 @@ import dateFormat from "dateformat";
 function UpdateProduct() {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(true);
-    const [statusProduct, setStatusProduct] = useState();
     const [sellerProduct, setSellerProduct] = useState([]);
     const { id } = useParams();
 
@@ -31,7 +29,10 @@ function UpdateProduct() {
     const handleShowAccepted = () => setShowAccepted(true);
     const [showStatus, setShowStatus] = useState(false);
     const handleCloseStatus = () => setShowStatus(false);
-    const handleShowStatus = () => setShowStatus(true);
+    const handleShowStatus = (e) => {
+        e.preventDefault();
+        setShowStatus(true);
+    }
 
     const [errorResponse, setErrorResponse] = useState({
         isError: false,
@@ -107,19 +108,20 @@ function UpdateProduct() {
         }
     };
 
-    const onStatus = (e) => {
-        setStatusProduct(e.target.value)
-        console.log(statusProduct);
-    }
+    const [selectedSold, setSelectedSold] = useState();
+    const selectedButton = (e) => {
+        setSelectedSold(e.target.value);
+		console.log(e.target.value);
+	};
 
-    const updateStatus = async (e, isAccepted, isRejected, sold) => {
+    const updateStatus = async (e) => {
         e.preventDefault();
 
         try {
             const payloadUpdateStatus = {
-                isAccepted: isAccepted,
-                isRejected: statusProduct,
-                sold: statusProduct
+                isAccepted: selectedSold === true ? true : false,
+                isRejected: selectedSold === true ? false : true,
+                sold: selectedSold
             };
 
             const token = localStorage.getItem("token");
@@ -147,7 +149,7 @@ function UpdateProduct() {
             const dataProduct = await responseProduct.data.data.getTransactionById;
             console.log(dataProduct);
 
-            setStatusProduct(dataProduct)
+            setSellerProduct(dataProduct)
 
             if (statusResponse.status) navigate(`/sellerproductpenawar/${sellerProduct.id}`);
         } catch (err) {
@@ -252,7 +254,7 @@ function UpdateProduct() {
                                 className="myButton7-seller-product-penawar"
                                 type="submit"
                                 onClick={sellerProduct.isAccepted === true ? (e) => handleShowStatus(e) : (e) => updateTransaction(e, false, true, true)}
-                                hidden={sellerProduct.isRejected === true ? true : false}
+                                hidden={sellerProduct.isRejected === true || (sellerProduct.product && sellerProduct.product.sold) === true ? true : false}
                             >
                                 {sellerProduct.isAccepted === true ? "status" : "tolak"}
                             </button>
@@ -260,174 +262,10 @@ function UpdateProduct() {
                                 className="myButton6-seller-product-penawar"
                                 type="submit"
                                 onClick={(e) => { updateTransaction(e, true, false, true); handleShowAccepted() }}
-                                hidden={sellerProduct.isRejected === true ? true : false}
+                                hidden={sellerProduct.isRejected === true || (sellerProduct.product && sellerProduct.product.sold) === true ? true : false}
                             >
                                 {sellerProduct.isAccepted === true ? "hubungi di " : "terima"}
                             </button>
-                            <Modal
-                                className="Modal-info-penawar-seller"
-                                show={showAccepted}
-                                onHide={handleCloseAccepted}
-                                aria-labelledby="contained-modal-title-vcenter"
-                                size="sm"
-                                centered
-                            >
-                                <Modal.Header closeButton></Modal.Header>
-                                <Modal.Body
-                                    style={{
-                                        color: "black",
-                                        fontWeight: "bold",
-                                        fontSize: "14px",
-                                    }}
-                                >
-                                    Yeay kamu berhasil mendapat harga yang sesuai
-                                </Modal.Body>
-                                <Modal.Body
-                                    style={{
-                                        color: "#8A8A8A",
-                                        marginTop: "-25px",
-                                        fontSize: "14px",
-                                    }}
-                                >
-                                    Segera hubungi pembeli melalui whatsapp untuk transaksi
-                                    selanjutnya
-                                </Modal.Body>
-                                <Container>
-                                    <Col className="gambar-modal">
-                                        <Modal.Body
-                                            style={{
-                                                color: "black",
-                                                fontWeight: "bold",
-                                                textAlign: "center",
-                                                fontSize: "14px",
-                                            }}
-                                        >
-                                            Product Match
-                                        </Modal.Body>
-                                        <Card.Img
-                                            src={`${sellerProduct.user ? sellerProduct.user.image : ""}`}
-                                            alt=""
-                                            style={{
-                                                color: "black",
-                                                width: "48px",
-                                                height: "48px",
-                                                marginLeft: "10px",
-                                                borderRadius: "12px",
-                                                flex: "none",
-                                            }}
-                                        />
-                                        <Card.Title
-                                            className="nama-seller-product-penawar"
-                                            style={{
-                                                color: "black",
-                                                marginTop: "-50px",
-                                            }}
-                                        >
-                                            {sellerProduct.user && sellerProduct.user.name}
-                                        </Card.Title>
-                                        <Card.Text className="card-kota-seller-product-penawar">
-                                            {sellerProduct.user && sellerProduct.user.kota}
-                                        </Card.Text>
-                                        <Card.Img
-                                            src={`${sellerProduct.product ? sellerProduct.product.image[0] : ""}`}
-                                            alt=""
-                                            style={{
-                                                color: "black",
-                                                width: "48px",
-                                                height: "48px",
-                                                marginLeft: "10px",
-                                                borderRadius: "12px",
-                                                flex: "none",
-                                            }}
-                                        />
-                                        <Card.Title
-                                            className="nama2-seller-product-penawar"
-                                            style={{
-                                                marginTop: "-50px",
-                                            }}
-                                        >
-                                            {sellerProduct.product && sellerProduct.product.name}
-                                        </Card.Title>
-                                        <Card.Text
-                                            className="nama2-seller-product-penawar"
-                                            style={{
-                                                marginTop: "-5px",
-                                            }}
-                                        >
-                                            <s>Rp {sellerProduct.product && sellerProduct.product.price}</s>
-                                        </Card.Text>
-                                        <Card.Text className="nama2-seller-product-penawar">
-                                            Ditawar Rp {sellerProduct.product && sellerProduct.requestedPrice}
-                                        </Card.Text>
-                                    </Col>
-                                </Container>
-                                <Modal.Body>
-                                    <button
-                                        className="myButton8-seller-product-penawar w-100"
-                                        onClick={handleCloseAccepted}
-                                    >
-                                        <Link
-                                            to="/sellerproductpenawar2"
-                                            className="text-decoration-none"
-                                            style={{
-                                                color: "white",
-                                            }}
-                                        >
-                                            Hubungi via Whatsapp
-                                            <FaWhatsapp
-                                                style={{
-                                                    fontSize: "15px",
-                                                    marginLeft: "6px",
-                                                    marginBotom: "15px",
-                                                }}
-                                            />
-                                        </Link>
-                                    </button>
-                                </Modal.Body>
-                            </Modal>
-                            {/* <Modal show={showStatus} onHide={handleCloseStatus} centered size="sm" dialogClassName="modal-30w">
-                                <div className="p-3">
-                                    <Modal.Header closeButton className="border-0">
-                                        <Modal.Title></Modal.Title>
-                                    </Modal.Header>
-                                    <Modal.Body>
-                                        <p className="fw-bold">Perbarui status penjualan produkmu</p>
-                                        <Form>
-                                            <div key={`radio`} className="mb-3">
-                                                <Form.Check
-                                                    name="status"
-                                                    type="radio"
-                                                    id={`radio-1`}
-                                                    label={`Berhasil terjual`}
-                                                    checked={statusProduct === true}
-                                                    value={true}
-                                                    onChange={onStatus}
-                                                />
-                                                <p className=" text-black-50">Kamu telah sepakat menjual produk ini kepada pembeli</p>
-
-                                                <Form.Check
-                                                    name="status"
-                                                    type="radio"
-                                                    label={`Batalkan transaksi`}
-                                                    id={`radio-2`}
-                                                    checked={statusProduct === false}
-                                                    value={false}
-                                                    onChange={onStatus}
-                                                />
-                                                <p className=" text-black-50">Kamu membatalkan transaksi produk ini dengan pembeli</p>
-                                            </div>
-                                        </Form>
-                                    </Modal.Body>
-                                    <Modal.Footer className="border-0">
-                                        <Button
-                                            className="bg-color-primary w-100 radius-primary border-0"
-                                            onClick={(e) => { updateStatus(e); handleCloseStatus() }}
-                                        >
-                                            Kirim
-                                        </Button>
-                                    </Modal.Footer>
-                                </div>
-                            </Modal> */}
                         </div>
                     </div>
                     {errorResponse.isError && (
@@ -436,6 +274,173 @@ function UpdateProduct() {
                 </Form>
             </Container>
 
+            {/* modal accepted */}
+            <Modal
+                className="Modal-info-penawar-seller"
+                show={showAccepted}
+                onHide={handleCloseAccepted}
+                aria-labelledby="contained-modal-title-vcenter"
+                size="sm"
+                centered
+            >
+                <Modal.Header closeButton></Modal.Header>
+                <Modal.Body
+                    style={{
+                        color: "black",
+                        fontWeight: "bold",
+                        fontSize: "14px",
+                    }}
+                >
+                    Yeay kamu berhasil mendapat harga yang sesuai
+                </Modal.Body>
+                <Modal.Body
+                    style={{
+                        color: "#8A8A8A",
+                        marginTop: "-25px",
+                        fontSize: "14px",
+                    }}
+                >
+                    Segera hubungi pembeli melalui whatsapp untuk transaksi
+                    selanjutnya
+                </Modal.Body>
+                <Container>
+                    <Col className="gambar-modal">
+                        <Modal.Body
+                            style={{
+                                color: "black",
+                                fontWeight: "bold",
+                                textAlign: "center",
+                                fontSize: "14px",
+                            }}
+                        >
+                            Product Match
+                        </Modal.Body>
+                        <Card.Img
+                            src={`${sellerProduct.user ? sellerProduct.user.image : ""}`}
+                            alt=""
+                            style={{
+                                color: "black",
+                                width: "48px",
+                                height: "48px",
+                                marginLeft: "10px",
+                                borderRadius: "12px",
+                                flex: "none",
+                            }}
+                        />
+                        <Card.Title
+                            className="nama-seller-product-penawar"
+                            style={{
+                                color: "black",
+                                marginTop: "-50px",
+                            }}
+                        >
+                            {sellerProduct.user && sellerProduct.user.name}
+                        </Card.Title>
+                        <Card.Text className="card-kota-seller-product-penawar">
+                            {sellerProduct.user && sellerProduct.user.kota}
+                        </Card.Text>
+                        <Card.Img
+                            src={`${sellerProduct.product ? sellerProduct.product.image[0] : ""}`}
+                            alt=""
+                            style={{
+                                color: "black",
+                                width: "48px",
+                                height: "48px",
+                                marginLeft: "10px",
+                                borderRadius: "12px",
+                                flex: "none",
+                            }}
+                        />
+                        <Card.Title
+                            className="nama2-seller-product-penawar"
+                            style={{
+                                marginTop: "-50px",
+                            }}
+                        >
+                            {sellerProduct.product && sellerProduct.product.name}
+                        </Card.Title>
+                        <Card.Text
+                            className="nama2-seller-product-penawar"
+                            style={{
+                                marginTop: "-5px",
+                            }}
+                        >
+                            <s>Rp {sellerProduct.product && sellerProduct.product.price}</s>
+                        </Card.Text>
+                        <Card.Text className="nama2-seller-product-penawar">
+                            Ditawar Rp {sellerProduct.product && sellerProduct.requestedPrice}
+                        </Card.Text>
+                    </Col>
+                </Container>
+                <Modal.Body>
+                    <button
+                        className="myButton8-seller-product-penawar w-100"
+                        onClick={handleCloseAccepted}
+                    >
+                        <Link
+                            to="/sellerproductpenawar2"
+                            className="text-decoration-none"
+                            style={{
+                                color: "white",
+                            }}
+                        >
+                            Hubungi via Whatsapp
+                            <FaWhatsapp
+                                style={{
+                                    fontSize: "15px",
+                                    marginLeft: "6px",
+                                    marginBotom: "15px",
+                                }}
+                            />
+                        </Link>
+                    </button>
+                </Modal.Body>
+            </Modal>
+
+            {/* modal status */}
+            <Modal show={showStatus} onHide={handleCloseStatus} centered size="sm" dialogClassName="modal-30w">
+                <div className="p-3">
+                    <Modal.Header closeButton className="border-0">
+                        <Modal.Title></Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <p className="fw-bold">Perbarui status penjualan produkmu</p>
+                        <Form>
+                            <div key={`radio`} onChange={selectedButton} className="mb-3">
+                                <Form.Check
+                                    name="status"
+                                    type="radio"
+                                    id={`radio-1`}
+                                    label={`Berhasil terjual`}
+                                    value={true}
+                                    // onChange={selectedButtonSold}
+                                    // checked={selectedButtonSold === true}
+                                />
+                                <p className=" text-black-50">Kamu telah sepakat menjual produk ini kepada pembeli</p>
+
+                                <Form.Check
+                                    name="status"
+                                    type="radio"
+                                    label={`Batalkan transaksi`}
+                                    id={`radio-2`}
+                                    value={false}
+                                    // onChange={selectedButtonReject}
+                                    // checked={selectedButtonReject === false}
+                                />
+                                <p className=" text-black-50">Kamu membatalkan transaksi produk ini dengan pembeli</p>
+                            </div>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer className="border-0">
+                        <Button
+                            className="bg-color-primary w-100 radius-primary border-0"
+                            onClick={(e) => { updateStatus(e); handleCloseStatus() }}
+                        >
+                            Kirim
+                        </Button>
+                    </Modal.Footer>
+                </div>
+            </Modal>
         </div>
     );
 }

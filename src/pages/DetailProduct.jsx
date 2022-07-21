@@ -151,6 +151,21 @@ function DetailProduct() {
                 isSuccess: true,
                 message: successResponse,
             })
+            
+            const user_id = localStorage.getItem("user");
+            const userId = JSON.parse(user_id);
+            // console.log(JSON.parse(user_id));
+            const responseTransactionByUserId = await axios.get(`http://localhost:8888/api/transaction/${userId.id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+
+            const dataTransactionByUserId = await responseTransactionByUserId.data.data.getTransactionByUserId;
+
+            setTransaksi(dataTransactionByUserId)
 
         } catch (err) {
             console.log(err);
