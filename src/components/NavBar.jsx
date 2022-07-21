@@ -195,7 +195,7 @@ export default function NavBar() {
                                                                     <p className="mb-0 notif-accesoris">Penawaran Produk</p>
                                                                     <p className="mb-0">{notif.product.name}</p>
                                                                     <p className="mb-0">Rp.{notif.product.price}</p>
-                                                                    <p className="mb-0">{user.id === notif.owner_id ? "ditawar" : "menawar"} Rp.{notif.requestedPrice}</p>
+                                                                    <p className="mb-0">{user.id === notif.owner_id ? "ditawar" : user.id === notif.user_id && "menawar"} Rp.{notif.requestedPrice}</p>
                                                                 </div>
                                                                 <div class="ms-auto">
                                                                     <p className="mb-0 notif-accesoris">
