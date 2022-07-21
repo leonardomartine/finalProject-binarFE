@@ -413,8 +413,6 @@ function UpdateProduct() {
                                     id={`radio-1`}
                                     label={`Berhasil terjual`}
                                     value={true}
-                                    // onChange={selectedButtonSold}
-                                    // checked={selectedButtonSold === true}
                                 />
                                 <p className=" text-black-50">Kamu telah sepakat menjual produk ini kepada pembeli</p>
 
@@ -424,8 +422,6 @@ function UpdateProduct() {
                                     label={`Batalkan transaksi`}
                                     id={`radio-2`}
                                     value={false}
-                                    // onChange={selectedButtonReject}
-                                    // checked={selectedButtonReject === false}
                                 />
                                 <p className=" text-black-50">Kamu membatalkan transaksi produk ini dengan pembeli</p>
                             </div>

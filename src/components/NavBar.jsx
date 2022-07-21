@@ -1,6 +1,6 @@
 import "../css/main.css";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Navbar, Container, Button, Dropdown, Offcanvas } from "react-bootstrap";
 import { FiLogIn, FiList, FiUser, FiBell } from "react-icons/fi";
@@ -118,7 +118,7 @@ export default function NavBar() {
             try {
                 const token = localStorage.getItem("token");
                 const user_local = localStorage.getItem("user");
-				const user = JSON.parse(user_local);
+                const user = JSON.parse(user_local);
 
                 const notifRequest = await axios.get(`http://localhost:8888/api/transactionNotif/${user.id}`,
                     {
@@ -182,30 +182,31 @@ export default function NavBar() {
                                             <FiBell className="icon-bell-header" />
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu align="end">
-                                            {notif.map((notif) =>
-                                                user.id === notif.owner_id ? (
-                                                    <Dropdown.Item href="#/action-1">
-                                                        <div class="d-flex my-1">
-                                                            <img
-                                                                src={`${notif.product.image[0]}`}
-                                                                style={{ width: '60px', height: '60px', marginTop: '5px' }}
-                                                                alt=""
-                                                            />
-                                                            <div class="mx-3">
-                                                                <p className="mb-0 notif-accesoris">Penawaran Produk</p>
-                                                                <p className="mb-0">{notif.product.name}</p>
-                                                                <p className="mb-0">Rp.{notif.product.price}</p>
-                                                                <p className="mb-0">Ditawarkan Rp.{notif.requestedPrice}</p>
+                                            {notif.map((notif) => (
+                                                    <Dropdown.Item>
+                                                        <Link to={`/sellerproductpenawar/${notif.id}`} style={{ textDecoration: "none", color: "black" }}>
+                                                            <div class="d-flex my-1">
+                                                                <img
+                                                                    src={`${notif.product.image[0]}`}
+                                                                    style={{ width: '60px', height: '60px', marginTop: '5px' }}
+                                                                    alt=""
+                                                                />
+                                                                <div class="mx-3">
+                                                                    <p className="mb-0 notif-accesoris">Penawaran Produk</p>
+                                                                    <p className="mb-0">{notif.product.name}</p>
+                                                                    <p className="mb-0">Rp.{notif.product.price}</p>
+                                                                    <p className="mb-0">{user.id === notif.owner_id ? "ditawar" : "menawar"} Rp.{notif.requestedPrice}</p>
+                                                                </div>
+                                                                <div class="ms-auto">
+                                                                    <p className="mb-0 notif-accesoris">
+                                                                        {dateFormat(notif.createdAt, "d mmm, h:MM")}
+                                                                    </p>
+                                                                </div>
                                                             </div>
-                                                            <div class="ms-auto">
-                                                                <p className="mb-0 notif-accesoris">
-                                                                    {dateFormat(notif.createdAt, "d mmm, h:MM")}
-                                                                </p>
-                                                            </div>
-                                                        </div>
+                                                        </Link>
                                                         <Divider variant="middle" className="mt-3" />
                                                     </Dropdown.Item>
-                                                ) : ("")).reverse()}
+                                                )).reverse()}
                                         </Dropdown.Menu>
                                     </Dropdown>
                                     <Button className="home-navbar-user" href="/account"><FiUser className="icon-user-header" /></Button>
