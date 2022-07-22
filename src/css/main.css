@@ -115,6 +115,7 @@
   opacity: 0.5;
 };
 
+
 @media screen and (max-width: 1023px) {
   .logo {
       display: none;
@@ -122,6 +123,9 @@
   
   .navbar1 {
       box-shadow: none;
+      position: fixed;
+      z-index: 10;
+      width: 100%;
   }
 
   .home-navbar-user, .icon-bell-header, .home-navbar-user {
@@ -134,11 +138,6 @@
       border-color: white;
   }
 
-  .navbar {
-    position: fixed;
-    z-index: 10;
-    width: 100%;
-  }
 
   .navbar-scroll {
     background-color: white;

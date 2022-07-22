@@ -91,7 +91,7 @@ export default function Login() {
                         <Alert variant="danger">{errorResponse.message}</Alert>
                     )}
                     <Button className="w-100" type="submit" style={styleLabel}>
-                        Daftar
+                        Masuk
                     </Button>
                     <p className="m-4 text-center">
                         Belum punya akun? <Link style={styleLink} to="/register">Daftar di sini</Link>

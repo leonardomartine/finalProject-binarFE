@@ -1,4 +1,4 @@
-import "../css/main.css";
+import "../css/detailproduct.css";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -143,8 +143,8 @@ export default function NavBar() {
 
     return (
         <>
-            <Navbar expand="lg" className={color ? 'navbar-scroll' : 'navbar1'}>
-                <Container className="home-navbar">
+            <Navbar expand="lg" className={color ? 'navbar-scroll' : 'navbarDetail'}>
+                <Container className="home-navbar" >
                     <Navbar.Brand className="logo" href="/"></Navbar.Brand>
                     <div className="me-auto">
                         <Search>

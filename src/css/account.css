@@ -19,10 +19,14 @@
 
 .navbar-account-text {
     font-weight: bold;
-    font-size: 24px;
+    font-size: 22px;
     margin-right: 47%;
-
 }
+
+.arrow-account{
+    display: none;
+}
+
 
 /********************
  * Info-account
@@ -95,8 +99,16 @@
     }
 
     .navbar-account-items {
-        margin: 0 0 0 5%;
+        margin: 8% 0 0 35%;
         position:fixed;
+    }
+
+    .arrow-account{
+        color: black;
+        font-size: 25px;
+        margin-left: 10%;
+        margin-top: 5%;
+        display: block;
     }
 
     .profil-account {

@@ -2,8 +2,8 @@ import "../css/account.css";
 import * as React from 'react';
 import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { Navbar, Button, Form, Container } from "react-bootstrap";
-import { FiCamera, FiEdit3, FiLogOut } from "react-icons/fi";
+import { Navbar, Container } from "react-bootstrap";
+import { FiEdit3, FiLogOut, FiArrowLeft } from "react-icons/fi";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Box from '@mui/material/Box';
@@ -88,24 +88,28 @@ export default function SelectedListItem() {
     return isLoggedIn ? (
         <>
             <Navbar expand="lg" className="navbar-account" >
+            <Link className="arrow-account" to="/" style={{ color: "black" }}>
+                <FiArrowLeft />
+            </Link>
                 <Container className="navbar-account-items">
                     <Navbar.Brand className="logo" href="/"></Navbar.Brand>
                     <h3 className="navbar-account-text">Akun Saya</h3>
-
                 </Container>
             </Navbar>
+            
+
             <Container className="my-5 w-50">
                 <Box className="profil-account">
                     <Box component={'img'}
-                    className="profil-camera-form"
-                    src={`${user.image}`}
+                        className="profil-camera-form"
+                        src={`${user.image}`}
                     />
                 </Box>
             </Container>
             <div className="account-items">
                 <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
                     <List component="nav" aria-label="main mailbox folders">
-                        <Link to={`/EditProfil/${user.id}`} style={{textDecoration: "none", color: "black"}}>
+                        <Link to={`/EditProfil/${user.id}`} style={{ textDecoration: "none", color: "black" }}>
                             <ListItemButton>
                                 <ListItemIcon>
                                     <FiEdit3 className="edit-account-icon" />

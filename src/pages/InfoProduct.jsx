@@ -150,19 +150,13 @@ function InfoProduct(props) {
         <CircularProgress color="inherit" />
       </Backdrop>
       {/* navbar */}
-      <div className="na1 py-4 shadow">
-        <nav className="navbar navbar-expand-lg navbar-light bg-all">
-          <Link to="/">
-            <button className="na2 navbar-brand box"></button>
-          </Link>
-          <Navbar.Brand href="#" className="brand" />
-          <div className="offcanvas-body" id="offcanvasRight">
-            <div className="info1 navbar">
-              <Nav className="text-dark"> Lengkapi Detail Produk </Nav>
-            </div>
-          </div>
-        </nav>
-      </div>
+      <nav className="navbar navbar-expand-lg navbar-light bg-all na1 py-3">
+        <Link to="/">
+          <button className="na2 navbar-brand box"></button>
+        </Link>
+        <Navbar.Brand href="#" className="brand" />
+        <Nav className="text-dark info1"> Lengkapi Detail Produk </Nav>
+      </nav>
 
       <Container className="my-5 w-50">
         <div>

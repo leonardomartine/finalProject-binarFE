@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Carousel from "react-bootstrap/Carousel";
 import "../css/detailproduct.css";
-import Navbar from "../components/NavBar";
+import Navbar2 from "../components/NavBar2";
 import { FiArrowLeft } from "react-icons/fi";
 import { useNavigate, Link, useParams, Navigate } from "react-router-dom";
 import axios from 'axios';
@@ -211,7 +211,7 @@ function DetailProduct() {
                 <CircularProgress color="inherit" />
             </Backdrop>
             <div className="bg-nav">
-                <Navbar />
+                <Navbar2 />
             </div>
             <Container >
                 {successResponse.isSuccess && (

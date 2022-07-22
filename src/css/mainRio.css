@@ -1,4 +1,8 @@
 /* navbar */
+.na1 {
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);
+}
+
 .na2{
 	margin-left: 160px;
 }
@@ -29,15 +33,19 @@
 }
 
 .info1{
-	margin-left: 375px;
+	margin-left: 20%;
 	font-weight: bold;
+	font-size: 20px;
+}
+
+.info-items {
+    margin-top: 0.6%;
+    margin-bottom: 0.5%;
 }
 
 /* Container Arrow*/
 .arrow2{
-	color: black;
-	font-size: 25px;
-	margin-left: -100px;
+	display: none;
 }
 
 /* search Navbar*/
@@ -172,8 +180,11 @@
 		transform: translate(10%, 8px);
 		display: block;
 	}
+
 	.arrow2{
-		position: absolute;
+		display: block;
+		color: black;
+		margin-left: -100px;
 	}
 
 	.border1{

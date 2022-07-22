@@ -1,4 +1,4 @@
-import "../css/main.css";
+import "../css/daftarJual.css";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -143,11 +143,11 @@ export default function NavBar() {
 
     return (
         <>
-            <Navbar expand="lg" className={color ? 'navbar-scroll' : 'navbar1'}>
+            <Navbar expand="lg" className={color ? 'navbar-scroll' : 'navbar3'}>
                 <Container className="home-navbar">
                     <Navbar.Brand className="logo" href="/"></Navbar.Brand>
-                    <div className="me-auto">
-                        <Search>
+                    <div className="me-auto search-daftarjual" >
+                        <Search >
                             <SearchIcon className="search-icon" />
                             <StyledInputBase
                                 onChange={(e) => {

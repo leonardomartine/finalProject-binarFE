@@ -170,14 +170,14 @@ function UpdateProduct() {
     return (
         <div>
             {/* navbar */}
-            <div className="na1-seller-product-penawar py-4 shadow">
+            <div className="na1-seller-product-penawar py-2">
                 <nav className="navbar navbar-expand-lg navbar-light bg-all">
                     <Link to="/">
                         <button className="na2-seller-product-penawar navbar-brand box-update-product"></button>
                     </Link>
                     <Navbar.Brand href="#" />
                     <div className="info-seller-product-penawar navbar">
-                        <Nav className="text-dark">Info Penawar</Nav>
+                        <Nav className="text-dark penawar-text-nav">Info Penawar</Nav>
                     </div>
                 </nav>
             </div>

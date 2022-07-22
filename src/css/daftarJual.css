@@ -1,3 +1,23 @@
+/********************
+ * Navbar
+ ********************/
+ .navbar3 {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);
+  }
+  .search-daftarjual {
+    display: block;
+}
+
+  @media screen and (max-width: 1023px) {
+    .search-daftarjual {
+        display: none;
+    }
+  }
+
+ /********************
+ * 
+ ********************/
+
 .daftar-jual {
     margin-top: 3%;
     padding: 0 5% 0 5%;

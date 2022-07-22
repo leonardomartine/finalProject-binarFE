@@ -164,19 +164,13 @@ function UpdateProduct() {
                 <CircularProgress color="inherit" />
             </Backdrop>
             {/* navbar */}
-            <div className="na1-update-product py-4 shadow">
-                <nav className="navbar navbar-expand-lg navbar-light bg-all">
-                    <Link to="/">
-                        <button className="na2-update-product navbar-brand box-update-product"></button>
-                    </Link>
-                    <Navbar.Brand href="/" />
-                    <div className="offcanvas-body" id="offcanvasRight">
-                        <div className="info-update-product-nav navbar">
-                            <Nav className="text-dark"> Update Produk </Nav>
-                        </div>
-                    </div>
-                </nav>
-            </div>
+            <nav className="navbar navbar-expand-lg navbar-light bg-all na1-update-product py-4">
+                <Link to="/">
+                    <button className="na2-update-product navbar-brand box-update-product"></button>
+                </Link>
+                <Navbar.Brand href="/" />
+                <Nav className="text-dark info-update-product-nav"> Update Produk </Nav>
+            </nav>
 
             <Container className="my-5 w-50">
                 <div>

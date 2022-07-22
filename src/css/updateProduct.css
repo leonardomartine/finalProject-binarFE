@@ -1,4 +1,8 @@
 /* navbar */
+.na1-update-product {
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);
+}
+
 .na2-update-product{
 	margin-left: 160px;
 }
@@ -10,6 +14,7 @@
 .info-update-product-nav{
 	margin-left: 315px;
 	font-weight: bold;
+	font-size: 20px;
 }
 
 /* Container Arrow*/

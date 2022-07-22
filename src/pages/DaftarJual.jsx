@@ -10,7 +10,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
-import Navbar from "../components/NavBar";
+import Navbar3 from "../components/NavBar3";
 import CardSeller1 from "../components/CardSeller1";
 import CardSeller2 from "../components/CardSeller2";
 import CardSeller3 from "../components/CardSeller3";
@@ -95,7 +95,7 @@ export default function DaftarJual() {
     return isLoggedIn ? (
         <>
             <div className="bg-nav">
-                <Navbar />
+                <Navbar3 />
             </div>
             <Stack sx={{ width: "50%", left: '27%', right: 0, top: 0, transition: '0.5s', marginTop: show ? { xs: "120px", md: '100px' } : "-350px", position: 'absolute', display: alert ? 'block' : 'none' }} spacing={2}>
                 <Alert onClose={handleClose}>{alert}</Alert>
