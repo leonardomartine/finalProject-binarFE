@@ -275,7 +275,7 @@ function DetailProduct() {
                 <div className="desc">
                     <div className="textShadowBox p-4 mt-4 mb-4">
                         <h4>Deskripsi</h4>
-                        <div>
+                        <div >
                             {data.description}
                         </div>
                     </div>

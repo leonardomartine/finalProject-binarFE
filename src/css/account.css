@@ -126,6 +126,14 @@
     .profil-camera-form .profil-camera-form1{
         position:fixed;
     }
+    .profil-camera-form1 {
+        height: 100%;
+        width: 100%;
+        margin-left: -30px;
+        border-radius: 12px;
+        object-fit: cover;
+       margin-top: -25px;
+    }
 
     .account-items {
         margin: 5% 0 0 10%; 

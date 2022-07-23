@@ -7516,12 +7516,12 @@ react-dom@16.14.0:
     scheduler "^0.19.1"
 
 react-dom@18.0.1:
-  version "18.3.0-next-e61fd91f5-20220630"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.3.0-next-e61fd91f5-20220630.tgz#b4293848726648d6a33f0756229d89d57d0b0012"
-  integrity sha512-5xhLAVVKAptlfkHxIjnWKxVWlMSSYcMU+P/L25sl1fwCiP5IjUlVkH3vtt+79keNTIj40083qRopgY33bPTb3A==
+  version "18.3.0-next-e225fa43a-20220711"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.3.0-next-e225fa43a-20220711.tgz#62ef8df9a27471896182339a11245da1090019b4"
+  integrity sha512-V2uxLiZY5TbZL5+K+W6986QwjeRyzrlfOQc998ztqxWZJEXdEaITI1+U+DAjYrKpHc+o61RDhVZkIWh64142lQ==
   dependencies:
     loose-envify "^1.1.0"
-    scheduler "0.24.0-next-e61fd91f5-20220630"
+    scheduler "0.24.0-next-e225fa43a-20220711"
 
 react-dropzone@^14.2.1:
   version "14.2.1"
@@ -7973,10 +7973,10 @@ saxes@^5.0.1:
   dependencies:
     xmlchars "^2.2.0"
 
-scheduler@0.24.0-next-e61fd91f5-20220630:
-  version "0.24.0-next-e61fd91f5-20220630"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.24.0-next-e61fd91f5-20220630.tgz#8fa1bd912f56ba2156958a9d3c3ad82419cb4712"
-  integrity sha512-1x8QqYTo8HIVbTPuhwxQxXUeuwDK+UC02/AdwcclUYDRkdzeB9sk0RsWAIadiXnP7vxUWxZusizAnc/ZsK9z/Q==
+scheduler@0.24.0-next-e225fa43a-20220711:
+  version "0.24.0-next-e225fa43a-20220711"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.24.0-next-e225fa43a-20220711.tgz#ec8562e5aa46f309d4c0e3f3a45090b2dd2e3824"
+  integrity sha512-S747YHNClEfdk+Vbkfe/B8HdvtaTqCTBK+z4lWgEoieIlJyPlMd1t1yfH87xY3P2qL2vZ/qB8vho9LssOqnmzA==
   dependencies:
     loose-envify "^1.1.0"
 
