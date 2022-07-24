@@ -108,7 +108,7 @@ function UpdateProduct() {
             });
             setOpen(true);
             const createRequest = await axios.put(
-                `http://localhost:8888/api/product/${id}`,
+                `https://deployment-finalprojectbe.herokuapp.com/api/product/${id}`,
                 postPayload,
                 {
                     headers: {
@@ -135,7 +135,7 @@ function UpdateProduct() {
     const getProduct = async () => {
         try {
             const token = localStorage.getItem("token");
-            const responseProduct = await axios.get(`http://localhost:8888/api/product/${id}`, {
+            const responseProduct = await axios.get(`https://deployment-finalprojectbe.herokuapp.com/api/product/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 },

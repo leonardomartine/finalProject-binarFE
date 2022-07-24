@@ -31,7 +31,7 @@ export default function Home() {
                 const token = localStorage.getItem("token");
 
                 const currentUserRequest = await axios.get(
-                    "http://localhost:8888/auth/me",
+                    "https://deployment-finalprojectbe.herokuapp.com/auth/me",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -85,7 +85,7 @@ export default function Home() {
     const getProductPublish = async () => {
         try {
             const dataProduct = await axios.get(
-                `http://localhost:8888/api/filter?sold=false&isPublish=true${categories}${searched}`
+                `https://deployment-finalprojectbe.herokuapp.com/api/filter?sold=false&isPublish=true${categories}${searched}`
             )
 
             const payloadData = await dataProduct.data.data.filteredProduct;

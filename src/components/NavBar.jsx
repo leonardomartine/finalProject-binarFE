@@ -85,7 +85,7 @@ export default function NavBar() {
 
                 // 2. Check token validity from API
                 const currentUserRequest = await axios.get(
-                    "http://localhost:8888/auth/me",
+                    "https://deployment-finalprojectbe.herokuapp.com/auth/me",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -120,7 +120,7 @@ export default function NavBar() {
                 const user_local = localStorage.getItem("user");
                 const user = JSON.parse(user_local);
 
-                const notifRequest = await axios.get(`http://localhost:8888/api/transactionNotif/${user.id}`,
+                const notifRequest = await axios.get(`https://deployment-finalprojectbe.herokuapp.com/api/transactionNotif/${user.id}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,

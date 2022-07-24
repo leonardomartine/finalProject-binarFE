@@ -56,7 +56,7 @@ export default function DaftarJual() {
                 const token = localStorage.getItem("token");
 
                 const currentUserRequest = await axios.get(
-                    "http://localhost:8888/auth/me",
+                    "https://deployment-finalprojectbe.herokuapp.com/auth/me",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -72,7 +72,7 @@ export default function DaftarJual() {
 
                 if (currentUserResponse.data.user.id) {
                     const dataProducts = await axios.get(
-                        `http://localhost:8888/users/${currentUserResponse.data.user.id}/product`,
+                        `https://deployment-finalprojectbe.herokuapp.com/users/${currentUserResponse.data.user.id}/product`,
                         {
                             headers: {
                                 Authorization: `Bearer ${token}`,

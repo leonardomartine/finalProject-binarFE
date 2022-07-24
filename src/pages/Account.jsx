@@ -30,7 +30,7 @@ export default function SelectedListItem() {
 
                 // 2. Check token validity from API
                 const currentUserRequest = await axios.get(
-                    "http://localhost:8888/auth/me",
+                    "https://deployment-finalprojectbe.herokuapp.com/auth/me",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,

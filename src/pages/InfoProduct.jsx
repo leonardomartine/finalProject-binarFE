@@ -111,7 +111,7 @@ function InfoProduct(props) {
       });
       setOpen(true);
       const createRequest = await axios.post(
-        "http://localhost:8888/api/product",
+        "https://deployment-finalprojectbe.herokuapp.com/api/product",
         postPayload,
         {
           headers: {

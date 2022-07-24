@@ -27,7 +27,7 @@ export default function Login() {
             };
 
             const loginRequest = await axios.post(
-                "http://localhost:8888/auth/login",
+                "https://deployment-finalprojectbe.herokuapp.com/auth/login",
                 userToLoginPayload
             );
 

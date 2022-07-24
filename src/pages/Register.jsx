@@ -27,7 +27,7 @@ export default function Register() {
             };
 
             const registerRequest = await axios.post(
-                "http://localhost:8888/auth/register",
+                "https://deployment-finalprojectbe.herokuapp.com/auth/register",
                 userToRegisterPayload
             );
 

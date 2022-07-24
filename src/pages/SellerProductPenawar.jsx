@@ -42,7 +42,7 @@ function UpdateProduct() {
     const getTransaksiById = async () => {
         try {
             const token = localStorage.getItem("token");
-            const responseProduct = await axios.get(`http://localhost:8888/api/transactionById/${id}`,
+            const responseProduct = await axios.get(`https://deployment-finalprojectbe.herokuapp.com/api/transactionById/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -71,7 +71,7 @@ function UpdateProduct() {
 
             const token = localStorage.getItem("token");
             const transactionRequest = await axios.put(
-                `http://localhost:8888/api/transaction/${id}`,
+                `https://deployment-finalprojectbe.herokuapp.com/api/transaction/${id}`,
                 updateTransaction,
                 {
                     headers: {
@@ -83,7 +83,7 @@ function UpdateProduct() {
             const transactionResponse = transactionRequest.data;
             console.log(transactionResponse);
 
-            const responseProduct = await axios.get(`http://localhost:8888/api/transactionById/${id}`,
+            const responseProduct = await axios.get(`https://deployment-finalprojectbe.herokuapp.com/api/transactionById/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -126,7 +126,7 @@ function UpdateProduct() {
 
             const token = localStorage.getItem("token");
             const statusRequest = await axios.put(
-                `http://localhost:8888/api/transaction/${id}`,
+                `https://deployment-finalprojectbe.herokuapp.com/api/transaction/${id}`,
                 payloadUpdateStatus,
                 {
                     headers: {
@@ -138,7 +138,7 @@ function UpdateProduct() {
             const statusResponse = statusRequest.data;
             console.log(statusResponse);
 
-            const responseProduct = await axios.get(`http://localhost:8888/api/transactionById/${id}`,
+            const responseProduct = await axios.get(`https://deployment-finalprojectbe.herokuapp.com/api/transactionById/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

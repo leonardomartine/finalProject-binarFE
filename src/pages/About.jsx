@@ -34,7 +34,7 @@ function About() {
 
         // 2. Check token validity from API
         const currentUserRequest = await axios.get(
-          "http://localhost:8888/auth/me",
+          "https://deployment-finalprojectbe.herokuapp.com/auth/me",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -69,7 +69,7 @@ function About() {
       setOpen(true);
 
       const updateRequest = await axios.put(
-        `http://localhost:8888/api/users/${id}`,
+        `https://deployment-finalprojectbe.herokuapp.com/api/users/${id}`,
         userToUpdatePayload,
         {
           headers: {

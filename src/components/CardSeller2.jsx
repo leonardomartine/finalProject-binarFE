@@ -52,7 +52,7 @@ export default function CardProduct() {
                 const token = localStorage.getItem("token");
 
                 const currentUserRequest = await axios.get(
-                    "http://localhost:8888/auth/me",
+                    "https://deployment-finalprojectbe.herokuapp.com/auth/me",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -68,7 +68,7 @@ export default function CardProduct() {
 
                 if (currentUserResponse.data.user.id) {
                     const dataTransaction = await axios.get(
-                        `http://localhost:8888/api/transactionOwner/${currentUserResponse.data.user.id}`,
+                        `https://deployment-finalprojectbe.herokuapp.com/api/transactionOwner/${currentUserResponse.data.user.id}`,
                         {
                             headers: {
                                 Authorization: `Bearer ${token}`,
